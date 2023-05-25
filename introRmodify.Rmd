@@ -1,0 +1,515 @@
+---
+title: "Analise de Dados com R - Introducao"
+output: html_notebook
+---
+
+Numeros
+```{r}
+1
+5.7
+Inf
+-Inf
+pi
+```
+
+
+```{r}
+
+##Isto são operadores
+5 + 4
+1 - 6
+5%%7
+1/4
+5^2
+```
+
+
+
+```{r}
+
+## isto é uma função
+abs(-3)
+max(2,5)
+min(-3,2.5)
+round(2.4543,2)
+exp(2)
+log(5)
+```
+
+
+Exercício
+1) Verifique o resultado de dividir 1 por infinito, na consola
+2) Crie em baixo desta alinea, um chunk de R e escreva código para fazer a divisão entre máximo entre 3 e 5, e o minimo entre -5 e 10 
+
+
+Comentários
+```{r}
+#isto nao vai ser avaliado, enqt a linha de baixo vai
+4 + 5 
+```
+
+Variaveis
+```{r}
+a <- -1
+b <- 4
+print(b)
+a + b
+resultado_da_multiplicacao <- a*b
+resultado_da_multiplicacao
+```
+
+Exercício
+1) Crie uma variável com o nome "raio" com o valor 10
+2) Crie uma variável com o nome "perimetro" (fórmula do perimetro: 2 vezes pi vezes o raio) e calcule usando a variável raio
+3) Faça o mesmo da alínea anterior com a área do circulo (pi vezes raio ao quadrado)
+4) Arredondar o perimetro com uma casa decimal
+
+Packages
+https://r4ds.had.co.nz/
+```{r}
+install.packages("tidyverse")
+```
+
+
+Characters/String
+https://github.com/rstudio/cheatsheets/blob/main/strings.pdf
+
+```{r}
+library("tidyverse")
+```
+
+
+```{r}
+"tigre" # fazer: #library(stringr)
+'gato'
+"1"
+str_c("Bem-vindos","à", "PGBIA",sep = " ")
+str_length("dá o numero de characters") 
+```
+
+Exercício 
+1) Crie uma variável com o nome "palavra" com o valor Mae
+2) Crie a frase "Com X letras apenas, se escreve a palavra Y", cujo o valor de X é o número de letras da variável palavra e Y o valor da variável palavra
+
+
+```{r}
+palavra <- "Mae" 
+#frase <- "Com  , size(palavra)
+paste("Com ", nchar(palavra), "letras apenas, se escreve a palavra", palavra, sep = " ")
+```
+
+Booleanos
+```{r}
+a <- "pato"
+TRUE #T
+FALSE #F igual
+1 == 1
+1 > 2
+4 != 3 & 3 < 1
+a == 2 | a == "pato"
+```
+
+
+
+
+Tempo
+https://github.com/rstudio/cheatsheets/blob/main/lubridate.pdf
+```{r}
+library(lubridate)
+# vimos o número, o texto e boleano, misto as datas
+# mais fácil com packages e mais intuitivo do que com o original!
+# um ficheiro e vamos buscar datas ... 
+# não é texto, é do tipo datas!
+# supostamente vamos ter o mês, o dia e o ano ...
+# aparece string mas com classe didferente!
+# forma canonica ao contrário
+```
+
+
+
+
+```{r}
+data_hoje <- today() # dá-nos o dia de hoje
+data_hoje + 1
+
+data_em_string <- "27  01   2084"
+data_em_formato_date <- dmy(data_em_string)
+class(dmy(data_em_string))
+mdy("01/23/2012")
+data_em_formato_date <- dmy(data_em_string)
+data_em_formato_date + 30
+
+month(data_em_formato_date)
+year(data_em_formato_date)
+
+
+```
+
+Exercicios 1
+ Escrever código em R, que escreva, substituindo o X pelo resultado:
+- "Faltam X dias para o dia 17 de Agosto"
+
+```{r}
+paste("Faltam", as.numeric(dmy("17-08-2023")-today()), "dias para o dia 17 de Agosto")# objecto próprio com funções própias ... as.numeric vai buscar só o valor diff type
+#str_c é necessário!?
+
+hoje <- today()
+ontem <-hoje -1
+hoje -ontem
+class(hoje - ontem)
+
+as.numeric(hoje - ontem) # instruções package e como lidar com ele)
+class(as.numeric(hoje - ontem))
+dmy("17 8 2023")
+```
+
+```{r}
+agosto17 <- dmy("17 8 2023")
+X <- as.numeric(agosto17 - today())
+str_c("Faltam ",X," dias para o dia ", day(agosto17), " de", month(agosto17, label = TRUE, abbr = FALSE))
+
+
+str_c("Faltam",
+      X,
+      " dias para o dia ",
+      day(agosto17),
+      " de ",
+      month(agosto17, label = TRUE, abbr = FALSE), #named parameters
+      sep = " ")
+
+# mais automático modular, vantagens...se mudar a data ele altera
+" F1 aparece a documentação!"
+```
+```{r}
+now()
+```
+
+
+```{r}
+data_hora_agora <- now()
+data_hora_agora + 60
+data_hora_agora - 24*60*60
+
+
+exemplo_datetime <- mdy_hms("08/07/21 23:09-21")
+exemplo_datetime + 60*5
+
+exemplo_datetime <- mdy_hms("Ago /07 21 23:09-21")
+exemplo_datetime
+
+hour(exemplo_datetime)
+
+# não recalcula, mas se executar novamente a função, vê que é uma hora difernte!
+now()
+
+# coloquei o mês o dia e o no e depois a hora e os segundos...
+```
+
+
+
+
+Vectores
+```{r}
+c(1,2,5)
+c(1,2,5) + 1
+c(1,4) + c(5,6)
+c(1,4) + c(5,6,9) ## cuidado, em caso dos scripts o Prof. Pedro diz que não faria sentido
+seq(3,6,0.1)
+#class(seq(3,6,0.1))
+2:10
+runif(10) # uniformemente aleatório, corre .. 10 números uniformemente aleatórios
+rnorm(20,2,2) # uma normal com media 2 e standar deviation de tam 20
+rep(11,5)
+x <- 100:200
+mean(100:200)
+sum(100:200)
+median(23:230)
+quantile(100:200,0.75)
+
+c("pato","lebre","gato")
+c(1,"pedro") ## atencao, vetores tem de ter o mesmo tipo, em listas é diferente!
+
+txt1 <- c("numero","letra","simbolo") 
+txt2 <- c("1","a","#") 
+str_c(txt1,txt2,sep  = ": ")
+
+paste(c("numero","letra","simbolo"),collapse  = ": ")
+
+
+tempos <- c("08/07/21 23:09:21","11/03/38 13:09:21")
+mdy_hms(tempos)
+
+c(TRUE, FALSE, TRUE, FALSE, FALSE)
+menor_treze <- c(11,12,15) < 13
+print(menor_treze)
+which(menor_treze) # indeice do vector o qual são verdadeiros.., isto acontece
+
+txt1[2]  # primeiro elemento é 1 
+
+```
+
+
+Simbolos especiais
+```{r}
+NA # quando não escrevem a idade nos questionários, é um NA
+NULL
+1 + NULL
+2 + NA # coisa desconhecida
+c(10,NA)
+c(5,NULL)
+
+x <- c(1,5,NA,6) 
+sum(x)
+sum(x,na.rm = TRUE) # os names parameter pode por em qq posição
+```
+
+
+Classes
+```{r}
+class("a")
+class(data.frame(a = 1:5,b = c("pedro","joao","sergio","coelho","sapo")))
+class(1)
+class(Sys.time())
+class()
+```
+
+Data Frames/ Tabela
+```{r}
+data.frame(coluna_1 = 1:5,
+           coluna_2 = c("pedro","joao","sergio","coelho","sapo"))
+iris
+mtcars
+```
+
+Exercicio 
+a) Criar uma tabela/data.frame com duas colunas: nome e data de nascimento. Com as seguintes entradas:
+- Pedro nascido a 24 de Janeiro de 1985 
+- Joao nascido a 03 de Novembro de 1978
+- Antonio nascido a 15 de Julho de 1992
+# Um DataFrame com duas colunas, Pedro João e António e na segunda coluna, temos a data de nascimento, mas no formato date time.
+```{r}
+pedro_n <- dmy("24-01-1985")
+w = data.frame(nome = c("pedro","joao","antonio"),
+           data_nascimento = c(dmy("24-01-1985"), dmy("3-11-1978"), dmy("15-07-1992")))
+```
+
+```{r}
+#Vetor de nomes que vai ser a nossa coluna...
+
+nomes <- c("Pedro", "Joao", "Antonio")
+datas_stg <- c("24 1 1985", "3 11 1978", "15 7 1992")
+datas <- dmy(datas_stg)
+
+data.frame(nomes = nomes,
+           data_nascimento = datas)
+```
+
+Obtenha da frase “Hoje é 26 de Fevereiro de 2023 e comecei a trabalhar
+às 8 horas e 31 minutos”, um objecto do tipo datetime (POSIXct) com a
+informação do dia e hora do inicio do trabalho
+```{r}
+work_day = paste("Hoje é ", dmy("26 02 2023"), "e comecei a trabalhar às", hm("08 31"))
+data <- dmy_hm("26 02 2023 08 31")
+d <- day(data)
+m <- month(data, label=T, abbr = F) #   month(2, label=T, abbr = F)
+y <- year(data)
+h <- hour(data)
+mt <- minute(data)
+work_day2 = paste("Hoje é ",
+                  d, "de", 
+                  m, "de", 
+                  y, "e comecei a trabalhar às",
+                  h, "horas e", mt, "minutos")
+# m("08 31"))
+work_day
+
+
+```
+2) Crie a frase “Já passaram X dias desde o inicio da PGBIA e faltam Y meses
+para terminar” onde X é o número de dias desde o 10 de Fevereiro de 2023
+e Y é o número de meses até 15 de Janeiro de 2024
+
+```{r}
+init <- dmy("19 05 2023")
+end <- dmy("2 07 2023")
+x <- as.numeric(today()-init)
+x <- day(today()-day(init))
+#x <- as.numeric(end-init) # day(
+y <- as.numeric(month(end)-month(today()))
+paste("Já passaram", x, 'dia(s) desde o início do PRR Analise de dados em R e faltam', y, 'mes(es) para terminar')
+```
+
+Exercício 2
+Crie um vector de 4 a 10 de 0.1 em 0.1 para uma variável e calcule
+média, soma e a mediana
+
+```{r}
+#vet <- c(4,10, 0.1)
+vet <- seq(4,10,0.1) # enough
+#vet <- c(seq(4,10,0.1))
+vet
+
+mean(vet)
+sum(vet)
+quantile(vet, 0.5)
+median(4:10)
+median(vet)
+quantile(4:10,0.5)
+quantile(vet, 0.5)
+```
+2) Dados o vector c(3,10,6,20) :
+a. verifique quais elementos são menores do que 11
+b. em que posição se encontram os elementos menor do 11
+
+```{r}
+lessthan11 <- c(3,10,6,20) < 11
+lessthan11
+which(lessthan11)
+```
+3) Crie um vector de números aleatórios, entre 0 e 1, de tamanho 100,
+para uma variável e
+a. transforme num vector de numero aleatórios entre 0 e 10
+b. Calcule o valor exponencial de cada elemento do vector da alínea
+4(Dica: use a função exp)
+c. Calcule a média e soma do vector da alínea 4)
+
+```{r}
+runif(100, 0, 1)
+vect <- runif(10, 0, 10)
+vect
+exponencial <- exp(vect)
+#rm(explonencial)
+mean(exponencial)
+sum(exponencial)
+```
+4) Crie um vector que seja uma sequência de 20 dias consecutivos com
+inicio em 20/12/2023.
+
+```{r}
+seq(as.Date("2000/1/1"), by = "month", length.out = 12)
+vector <- seq(as.Date(dmy("20/12/2023")), by = "day", length.out = 20)
+```
+
+Exercicio 3
+1. Apresente código para satisfazer as seguintes alíneas:
+a) Criar uma tabela/data.frame para uma variável, com a seguinte
+informação
+
+```{r}
+nomes <- c("Pedro", "Antonio", "Ana", "Sofia")
+apelido <- c("Pereira", "Tavares", "Sousa", "Correia")
+datas_stg <- c("12 de Abril 1967", "5 de Agosto de 1994", "29 de Dezembro de 1985", "3 de Janeiro de 1974")
+distancia_casa_emprego <- c(1.3, 2, 5, 0.5)
+profissao <- c('Diretor', 'Professor', 'Data Scientist', NA)
+clube_favorito <- c("FCP", NA, "Boavista", "Salgueiros")
+
+datas <- dmy(datas_stg)
+
+tab1 <- data.frame(nomes = nomes,
+           apelidos = apelido,
+           data_nascimento = datas,
+           distancia = distancia_casa_emprego,
+           prof = profissao,
+           clube = clube_favorito,
+           stringsAsFactors = F)
+
+tab2 <- data.frame(nomes = nomes,
+           apelidos = apelido,
+           data_nascimento = datas_stg,
+           distancia = distancia_casa_emprego,
+           prof = profissao,
+           clube = clube_favorito)
+
+nomes <- c("Pedro", "Joao", "Antonio")
+
+
+
+data.frame(nomes = nomes,
+           data_nascimento = datas)
+
+--
+nomes <- c("Pedro", "Joao", "Antonio")
+datas_stg <- c("24 1 1985", "3 11 1978", "15 7 1992")
+datas <- dmy(datas_stg)
+
+data.frame(nomes = nomes,
+           data_nascimento = datas)  
+```
+
+
+
+
+EXTRAS
+
+Factores
+```{r}
+a <- as.factor(c("a","b","b","r","a")) # os fatores tem um fator de lista de elimentos ao qual se encontra restrita (outra lista de elementos, precisa de outro vector!)
+y <- c("a", "b", "b", "r", "a")
+y
+y[4] <- "sdfsdf"
+y
+
+a[6] <- "f"
+a[6] <- "a"
+a
+```
+
+Formulas
+```{r}
+a + b ~ c # formula .., o qual, se vê este símbolo.., o til
+# vai usar isto para receber regressão linear por exemplo., para usar regressões lineares etc
+class(a + b ~ c)
+#pegar no dataframe, filtrar colunas e linhas, groupby e tabelas e tarefas, de profiling, exploração de dados, 1º saber lidar com dataFrames! para a semna ou doutoramento e tabela de dados a explorar, interessante trazer e ver se é viável para usar no projecto. não assinar ndas e tamanho razoável
+. ~ y
+```
+
+Matrix
+```{r}
+matrix(0,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5) + 1
+matrix(1:11,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5) + matrix(1:11,nrow = 10,ncol = 5)
+```
+
+Listas
+```{r}
+list(a = 1:10,b = c("pato","lebre","gato"),outra = "a",maiscoisas = TRUE)
+```
+
+
+
+Loops
+```{r}
+i <- 0
+
+while(i < 10)
+{
+  i <- i + 1
+  print(i)
+}
+
+for(j in 10:20)
+{
+  print(j)
+}
+
+```
+
+
+Funcoes
+```{r}
+
+## Variavel minha_primeira_funcao é a funcao
+minha_primeira_funcao <- function(x,y)
+{
+  a <- x + y  
+  
+  return(a)
+}
+
+minha_primeira_funcao(x = 5,y = 10)
+
+
+
+```
