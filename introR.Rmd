@@ -1,0 +1,296 @@
+---
+title: "Analise de Dados com R - Introducao"
+output: html_notebook
+---
+
+Numeros
+```{r}
+1
+5.7
+Inf
+-Inf
+pi
+```
+
+
+```{r}
+
+##Isto são operadores
+5 + 4
+1 - 6
+5%%7
+1/4
+5^2
+```
+
+
+
+```{r}
+
+## isto é uma função
+abs(-3)
+max(2,5)
+min(-3,2.5)
+round(2.4543,2)
+exp(2)
+log(5)
+```
+
+
+Exercício
+1) Verifique o resultado de dividir 1 por infinito, na consola
+2) Crie em baixo desta alinea, um chunk de R e escreva código para fazer a divisão entre máximo entre 3 e 5, e o minimo entre -5 e 10 
+
+
+Comentários
+```{r}
+#isto nao vai ser avaliado, enqt a linha de baixo vai
+4 + 5 
+```
+
+Variaveis
+```{r}
+a <- -1
+b <- 4
+print(b)
+a + b
+resultado_da_multiplicacao <- a*b
+resultado_da_multiplicacao
+```
+
+Exercício
+1) Crie uma variável com o nome "raio" com o valor 10
+2) Crie uma variável com o nome "perimetro" (fórmula do perimetro: 2 vezes pi vezes o raio) e calcule usando a variável raio
+3) Faça o mesmo da alínea anterior com a área do circulo (pi vezes raio ao quadrado)
+4) Arredondar o perimetro com uma casa decimal
+
+Packages
+https://r4ds.had.co.nz/
+```{r}
+install.packages("tidyverse")
+```
+
+
+Characters/String
+https://github.com/rstudio/cheatsheets/blob/main/strings.pdf
+
+```{r}
+library("tidyverse")
+```
+
+
+```{r}
+"tigre"
+'gato'
+"1"
+str_c("Bem-vindos","à", "PGBIA",sep = " ")
+str_length("dá o numero de characters")
+```
+
+Exercício 
+1) Crie uma variável com o nome "palavra" com o valor Mae
+2) Crie a frase "Com X letras apenas, se escreve a palavra Y", cujo o valor de X é o número de letras da variável palavra e Y o valor da variável palavra
+
+
+
+Booleanos
+```{r}
+a <- "pato"
+TRUE
+FALSE
+1 == 1
+1 > 2
+4 != 3 & 3 < 1
+a == 2 | a == "pato"
+```
+
+
+
+
+Tempo
+https://github.com/rstudio/cheatsheets/blob/main/lubridate.pdf
+```{r}
+library(lubridate)
+```
+
+
+
+
+```{r}
+data_hoje <- today()
+data_hoje + 1
+
+data_em_string <- "27  01   2084"
+data_em_formato_date <- dmy(data_em_string)
+
+data_em_formato_date + 30
+
+month(data_em_formato_date)
+
+
+
+```
+
+Exercicios 1
+ Escrever código em R, que escreva, substituindo o X pelo resultado:
+- "Faltam X dias para o dia 17 de Agosto"
+
+```{r}
+data_hora_agora <- now()
+data_hora_agora + 60
+data_hora_agora - 24*60*60
+
+
+exemplo_datetime <- mdy_hms("08/07/21 23:09-21")
+exemplo_datetime + 60*5
+
+hour(exemplo_datetime)
+
+
+```
+
+
+
+
+Vectores
+```{r}
+c(1,2,5)
+c(1,2,5) + 1
+c(1,4) + c(5,6)
+c(1,4) + c(5,6,9) ## cuidado
+seq(3,6,0.1)
+2:10
+runif(10)
+rep(11,5)
+x <- 100:200
+mean(100:200)
+sum(100:200)
+quantile(100:200,0.75)
+
+c("pato","lebre","gato")
+c(1,"pedro") ## atencao
+
+txt1 <- c("numero","letra","simbolo") 
+txt2 <- c("1","a","#") 
+str_c(txt1,txt2,sep  = ": ")
+
+paste(c("numero","letra","simbolo"),collapse  = ": ")
+
+
+tempos <- c("08/07/21 23:09:21","11/03/38 13:09:21")
+mdy_hms(tempos)
+
+c(TRUE, FALSE)
+menor_treze <- c(11,12,15) < 13
+which(menor_treze)
+
+txt1[2]
+
+```
+
+
+Simbolos especiais
+```{r}
+NA 
+NULL
+1 + NULL
+2 + NA
+c(10,NA)
+c(5,NULL)
+
+x <- c(1,5,NA,6) 
+sum(x)
+sum(x,na.rm = TRUE)
+```
+
+
+Classes
+```{r}
+class("a")
+class(data.frame(a = 1:5,b = c("pedro","joao","sergio","coelho","sapo")))
+class(1)
+class(Sys.time())
+```
+
+Data Frames/ Tabela
+```{r}
+data.frame(coluna_1 = 1:5,
+           coluna_2 = c("pedro","joao","sergio","coelho","sapo"))
+iris
+mtcars
+```
+
+Exercicio 
+a) Criar uma tabela/data.frame com duas colunas: nome e data de nascimento. Com as seguintes entradas:
+- Pedro nascido a 24 de Janeiro de 1985 
+- Joao nascido a 03 de Novembro de 1978
+- Antonio nascido a 15 de Julho de 1992
+
+
+
+EXTRAS
+
+Factores
+```{r}
+a <- as.factor(c("a","b","b","r","a"))
+a[6] <- "f"
+a[6] <- "a"
+a
+```
+
+Formulas
+```{r}
+a + b ~ c
+. ~ y
+```
+
+Matrix
+```{r}
+matrix(0,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5) + 1
+matrix(1:11,nrow = 10,ncol = 5)
+matrix(1:10,nrow = 10,ncol = 5) + matrix(1:11,nrow = 10,ncol = 5)
+```
+
+Listas
+```{r}
+list(a = 1:10,b = c("pato","lebre","gato"),outra = "a",maiscoisas = TRUE)
+```
+
+
+
+Loops
+```{r}
+i <- 0
+
+while(i < 10)
+{
+  i <- i + 1
+  print(i)
+}
+
+for(j in 10:20)
+{
+  print(j)
+}
+
+```
+
+
+Funcoes
+```{r}
+
+## Variavel minha_primeira_funcao é a funcao
+minha_primeira_funcao <- function(x,y)
+{
+  a <- x + y  
+  
+  return(a)
+}
+
+minha_primeira_funcao(x = 5,y = 10)
+
+
+
+```

@@ -1,0 +1,7 @@
+```{r}
+raio <- 10
+perimetro <- 2*pi*raio
+area <- pi*raio^2
+
+```
+
