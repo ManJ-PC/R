@@ -1,0 +1,443 @@
+---
+title: "Data Frames"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+Instalar no Tools > Install packages
+tidyr  
+# esconder código, .. opção com: aprendemos até agora profiling e lnhas e exploração de dados e sumarizar, pegar no código que fez aqui
+```{r, eval = F}
+install.packages("tidyr")
+install.packages("ggplot2")
+install.packages("esquisse")
+install.packages("DataExplorer")
+```
+# todas as funções do dataFrame da para este objecto o tibble ... 
+# se puserem num dataframe, transformam num dataFrame que é o tiblle, dataFrame especial... 
+# este package transforma, limpar, colunas e linhas não são necessárias e a granularidade, precisamos agrupar por clientes (v comprasque o cliente tem)
+#Juntar tabelas ... select, groupby filter arrange inner join
+#R base, vamos ter uma função, o select e o filter, (dataframe, colunas , 
+# introduzir o chamado pipe, aumenta a rapidez, de v/ processos e código mais limpo
+
+
+<h1>Manipulação de data.frames com tidyverse</h1>
+```{r}
+library("tidyr")
+```
+
+<h2>Select</h2>
+```{r}
+library("dplyr")
+just_three_col_iris <- 
+  iris %>%
+  select(Sepal.Length,Petal.Length,col_3 = Species) 
+
+colunas_selecionar <- c("Petal.Length","col_3") # mais automaticamente
+
+just_two_col_iris <- 
+  just_three_col_iris %>%
+  select(all_of(colunas_selecionar))
+
+View(just_two_col_iris)
+
+sem_uma_coluna <- 
+  just_two_col_iris %>%
+  select(-Petal.Length) # retirar, -outra,-aculoutra
+
+
+just_three_col_iris
+just_two_col_iris
+sem_uma_coluna
+```
+
+Exercicio
+a) Criar um data.frame, apartir do data.frame mtcars, com as colunas mpg, carb e gear
+b) Criar um data.frame, apartir do data.frame mtcars, sem as colunas disp e hp
+
+```{r}
+df_mtcars3 <- 
+  mtcars %>%
+  select(mpg, carb,gear) 
+```
+```{r}
+colunas_a_remover <- c("disp","hp") # mais automaticamente
+df_mtcarsb <- 
+  mtcars %>%
+  select(-all_of(colunas_a_remover))
+
+#Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+#Please use `all_of()` or `any_of()` instead.
+# Was:
+#data %>% select(colunas_a_remover)
+# df_mtcarsb <- 
+#   mtcars %>%
+#   select(-colunas_a_remover)) #ctrl+shift+c
+
+# df_mtcarsd <- 
+#   mtcars %>%
+#   select(-all_of("disp", "hp")) #Erro não dá
+  
+  
+  #Correção
+mtcars %>%
+  select(mpg, carb, gear)
+
+mtcars %>%
+  select(-disp, -hp)
+```
+
+<h2>Mutate</h2>
+```{r}
+nova_variavel_iris <-  # mutate cria colunas novas
+  iris %>%
+  mutate(nova_variavel = Sepal.Length + 1,
+         outra_nova_variavel = log(Petal.Length))
+
+nova_variavel_iris
+```
+
+Exercicio
+a) Adicionar uma coluna à data.frame iris, usando o mutate, com o valor ao quadrado da Petal.Length
+b) Criar um id incremental (criar uma coluna com o index da linha, ou seja, uma sequencia incremental de 1 em 1)  no data.frame mtcars 
+      Dica: numero de linhas de um data.frame usar o nrow
+
+```{r}
+nova_variavel_iris <-  # mutate cria colunas novas
+  iris %>%
+  mutate(quadrado_petal_length = Petal.Length**2)
+```
+
+```{r}
+nrow(mtcars)
+mtcars %>%
+  mutate(id = 1:nrow(mtcars))
+```
+
+<h2>Filter</h2>
+<h3>Exemplo 1</h3>
+```{r}
+iris_filtered <- 
+  iris %>%
+  filter(Sepal.Length > 7.5 | Sepal.Width < 3.5 & Species == "setosa")
+
+iris_filtered
+```
+
+Exercicio
+1) Criar um data.frame mtcars só com entradas mpg menor que 20 ou hp maior que 180
+
+```{r}
+
+  mtcars %>%
+  filter(mpg < 20 | hp > 180)
+# Limpeza de colunas(acima) e limpezas de linhas (aqui)
+
+```
+
+
+<h2>Group by</h2>
+<h3>Summarize</h3>
+```{r}
+# groupby agraga por algum valor!
+# amédia de um aluno num determinado ano_lectivo
+
+notas <- data.frame(aluno_id = c(1, 2, 1,1,2,2,1, 2, 1,1,2,2),
+                    anoletivo = c("2021/22", "2021/22","2021/22" ,"2021/22", "2021/22","2021/22","2022/23", "2022/23","2022/23" ,"2022/23", "2022/23","2022/23" ),
+                    disciplina= c("Matematica","Matematica","Portugues","Ingles","Portugues","Ingles","Matematica","Matematica","Portugues","Ingles","Portugues","Ingles"),
+                    notas = c(15,14,12,10,9,16,17,15,14,13,13,18),
+                      stringsAsFactors = F)
+
+
+
+summarize_aluno_anoletivo <- 
+  notas %>% 
+  group_by(aluno_id,anoletivo) %>%
+  summarize(media_notas = mean(notas),
+            max_notas = max(notas) ) %>% #outro pipe para cada aluno, ano_lectio!, 2 colunas! e pipe . acabou para fazer tudo que foi feitodentro do grouby!, tiblle groupby.., tudo vai ser um grupo, summary vai fazer todas as linahs! . só para sair em modo groupby. alunoid ano Lectivo e uma média!
+  
+  # aluni 1 e 2 para cada ano lectivos! Vimos a média dos alunos, a escola quer comparar disciplinas!
+  ungroup
+
+summarize_aluno_anoletivo
+```
+
+```{r}
+notas[1, "anoletivo"] <- "2023/24" # com factores com strings a TRUE , factores são elementos de uma linhas, strings são texto
+
+# daí ele a True não adiciona, pois este valor não existe na lista já existente
+
+```
+
+
+Exercicios
+1) Calcule a media e o a standard deviation por cada disciplina e anoletivo
+```{r}
+#standard deviation é sd('')
+qq <-
+  notas %>% 
+  group_by(disciplina,anoletivo) %>%
+  summarize(media_nota = mean(notas),
+            sd_notas = sd(notas) ) %>%
+  ungroup
+qq
+
+```
+
+
+<h3>Mutate</h3>
+
+```{r}
+df1 <- data.frame(x = c("a", "a", "a","b","b","b","b"), y = c(34,57,12,87,34,1,6),
+                         stringsAsFactors = F)
+
+
+exemplo_groupby_mutate <- 
+  df1 %>% 
+  group_by(x) %>%
+  mutate(media_x = mean(y),
+            rank_x = rank(y)) %>%
+  ungroup
+
+exemplo_groupby_mutate
+```
+
+```{r}
+notas_with_agg_disciplina_info <- 
+  notas %>% 
+  group_by(disciplina,anoletivo) %>%
+  mutate(media_notas = mean(notas),
+            rank_notas = rank(notas)) %>%
+  ungroup
+
+notas_with_agg_disciplina_info
+```
+
+Exericios
+1) Para uma variavel, calcular a magnitude maxima e minima e o desvio padrao do (função sd) depth  por stations no data.frame quakes
+
+```{r}
+stats_for_stations <-
+quakes %>%
+  group_by(stations) %>% 
+  summarize(max_magnitude = max(mag), # uma linha por estação, quero o summarize ...
+            min_magnitude = min(mag),
+            sd_depth = sd(depth)) %>%
+  ungroup # como é ... uma função sem variáveis ... , tem uma implícita, o summarize vai para dentro do ungroup,# o r não liga a tabulações a identações, pode por espaço e tudo mais
+
+```
+
+2) Para uma variavel, calcular o intervalo (maximo - minimo) dos valores de magnitude por station
+  Dica: usar o exercicio 1)
+```{r}
+stats_for_stations %>%
+  mutate(range_magnitude = max_magnitude-min_magnitude)
+```
+```{r}
+ y <- c(34,65,78,96,56,78,54,57,89)  #creates a list 'y' having some values
+mean(y)
+sd(y)
+```
+
+<h2>Arrange</h2>
+<h3>Exemplo 1</h3>
+```{r}
+arrange_by_sepal_length <- 
+  iris %>%
+  arrange(Sepal.Length,desc(Sepal.Width)) # o default é crescente, caso iguais valores vai à segunda
+
+arrange_by_sepal_length
+```
+
+<h2>Rename</h2>
+<h3>Exemplo 1</h3>
+```{r}
+ iris %>%
+  rename(col_3 = Species) 
+```
+
+```{r}
+#install.packages("gglot2")
+```
+
+
+<h2>Pipeline no dplyr</h2>
+
+class(summary(iris)), não meio da pipeline não posso usar um summary, pois não é um tibble, é uma table!
+```{r, eval=F}
+todos <- # uma seq. mu,a só pipeline ... entre u tibble e sai um tibble
+  iris %>% 
+  select(Sepal.Length,Sepal.Width,Species) %>%
+  filter(Sepal.Length > 5) %>%
+  group_by(Species) %>%
+  mutate(media_sepal_length_per_species = mean(Sepal.Length),
+            sd_sepal_width_per_species = sd(Sepal.Width)) %>%
+  ungroup %>%
+  mutate(media_sepal_length = mean(Sepal.Length),
+            sd_sepal_width = sd(Sepal.Width)) 
+
+todos
+```
+
+
+Exercicio
+1) Juntar numa pipeline, as transformações feitas nas duas alineas, do Exercicios do Group By
+
+<h1>Joins</h1>
+  
+Joins
+```{r}
+
+alunos <- data.frame(aluno_id = c(1, 2),
+                    nome = c("Joao", "Antonio")) 
+# juntar a informação das duas tabelas
+
+aluno <- data.frame(aluno_id =  2,
+                    nome =  "Antonio")  # exemplo da aula, inverso
+
+notas_aluno <-
+  notas %>%
+  right_join(aluno, by = "aluno_id")
+
+notas_alunos <-
+  notas %>%
+  left_join(alunos, by = "aluno_id")
+
+notas_alunos # tabelas normalizadas que ligam por um determinado id ..., senão ... vinham com morada, com tudo e ocuparia mto espaço
+notas_alunos <- 
+  notas %>%
+  inner_join(alunos, by = "aluno_id")
+
+View(notas_alunos)
+```
+
+
+
+```{r}
+alunos_anoletivo <- data.frame(aluno_id = c(1, 2,1,2),
+                     anoletivo = c("2021/22", "2021/22","2022/23", "2022/23"),
+                    nome = c("Joao", "Ana","Paula", "Antonio")) 
+
+
+notas_alunos_anoletivo <-
+  notas %>%
+  left_join(alunos_anoletivo, by = c("aluno_id","anoletivo"))
+
+notas_alunos_anoletivo
+
+```
+```{r}
+a <- notas %>% 
+  left_join(alunos_anoletivo, by = c("aluno_id"), relationship="many-to-many") # MÁ PRÁTICA
+```
+
+
+```{r}
+y <- c(34,65,78,96,56,78,54,57,89)  #creates a list 'y' having some values
+y <- c(1,3)
+
+data1 <- y[1:5] #extract specific values using its Index
+mean_y = mean(data1) 
+
+mean_y = mean(y)
+variance = sum((y - mean_y)**2) /length(y)
+
+variance = sum(data1 - mean_y)**2 /length(variance)
+
+standard_deviation = variance**(1/2)
+
+sd(data1) #calculates the standard deviation for Indexed or extracted values from the list.
+```
+
+
+
+```{r}
+notas_ano_lectivo <-
+# fazer em conj. trabalho .. exploração  de dados e questões , explorar perguntas..
+#PORJECTO (aprender o das aulas , aplicados a novo dados!)
+  # não tantos as tarefas, mas aquilo que aprendemos! Variáveis categóricas, faz sentido um groupby ?
+  # fazer o que ele fez no dataset, fez bem estes pasos todos, afinar umm bocadinho e vou fazer mais isto!
+  #  falamos em proofiling , pegar nos datasets.., os conhecimentos adquiridos para o dataset dado
+  #média deste dado para este valores, tentar treinar aquilo que nos fizemos, consigo usar a função nestes daods
+```
+
+```{r}
+arrange_by_sepal_length <-
+  iris %>%
+  arrange_by_sepal_length
+```
+
+
+```{r}
+mag_stats = c(max(quakes$mag),min(quakes$mag), sd(quakes$mag))  
+
+stats_mags <-
+quakes %>%
+  group_by(stations) %>% 
+  summarize(max_magnitude = max(mag), # uma linha por estação, quero o summarize ...
+            min_magnitude = min(mag),
+            sd_depth = sd(depth)) %>%
+    ungroup %>% # como é 
+  mutate(range_magnitude = max_magnitude - min_magnitude) #stats magnitude
+stats_mags
+```
+```{r}
+iris_mod <- iris %>% mutate(Sepal.Length, Sepal.Length== 4.7, 4.8)
+View(iris_mod)
+iris_mod <- iris %>% mutate(Sepal.Length=replace(Sepal.Length, Sepal.Length==4.8,NA))
+
+iris_mod[,"Sepal.Length"] <- replace(Sepal.Length,Sepal.Length= 4.6,NA)
+
+replace(iris[,"Sepal.Length"], iris[,"Sepal.Length"]==4.6, NA) # não atribuí
+```
+
+Exercício 
+
+```{r}
+quakes %>%
+  group_by(stations) %>%
+  summarise(max_mag=max(mag),
+            min_mag=min(mag),
+            sd_depth=sd(depth)) %>% #tirar as variáveis que estão no intermédio ..
+  ungroup %>%
+  mutate(range_mag = max_mag - min_mag)
+
+```
+
+
+```{r}
+library(ggplot2)
+ggplot(datasets::iris) +
+  aes(x = Sepal.Length, colour = Species) +
+  geom_histogram(bins = 30L, fill = "#112446") +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  facet_wrap(vars(Species))
+```
+```{r}
+shapiro.test(mtcars$mpg) # não devemos rejeitar RH0 .., 5% definido (não há uma razão, valor standard .. 45 graus e são induzidas em erro!)
+
+# não gosta de ir por teste estatísticos, modelo e vê a que nível (multivariável)
+#ciência de medir parâmetros .., modelo é mau .. previsão falha.. e não tano os p values!
+esta disponível , mas não .. recomenda para análise de dados!
+  quando ñ mto baixo, não é igual..
+
+não é tudo difenrete, mas uma será...!
+  este gráfico que vimos..,
+2^-16 são iguaus os tamnho para as dif. especies (sepal length) com ANOVAS
+Post Doc, anovas 2 a 2.. (aov) otil ~ é igual, + e 2 waves aova (species e outra coisa qq) dentro da espécie ter outra variável.
+#e o valor de 3..
+```
+
+
+```{r}
+cor(iris[,1:3])
+cor(datasets::iris[,c(1,2,3,4)])
+```
+```{r, coollapse=T}
+library("DataExplorer")
+DataExplorer::create_report(iris)
+```
+
