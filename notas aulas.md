@@ -1,3 +1,39 @@
+Visualização de Dados com Hélder Crespo,
+
+FC6 Laboratório de Ciência dos Computadores
+
+Paralelo à rua do Campo Alegre
+
+base sólida que depois vai - se diversificando
+
+2000
+
+estantes em contraplacado
+
+Valeu a pena,
+Críticos em relação à visualização de DadosEm que situações necessitam de uma VIsualização estática e dinâmica e quantas dimensões
+Ser capazes de as fazer
+Sempre que possível exemplo reais da vida real
+Desafios iniciais
+Exemplificações de soluções e código em R, não é preciso saber muito de R
+
+em termos pedagógicos não há dúvida que R é mto melhor e porque utilizá-obter
+
+apresentação de soluções individuais e desafios..,,
+interpretarem e raciocionarem sobre isto.
+isto vai ser avaliado
+Trabalho prático ao longo do curso.
+2 elementos
+Nota Final: 30%TP + 10%FR + 60%EX
+Trabalho prático, menos exigente que as licenciaturas
+
+Foruns em que só conseguimos ver a resposta dos outros depois de darem a vossa.
+Declaração de intenções
+Outro tipo de visualiações que não são gráficos propriamente
+4 a 5 semanas para fazer o trabalho prático
+texto um conjunto de arg. e a favor e contra 
+----
+
 Matemática associar-se a dados.
 INESC TEC
 veículos autónomos,  e numa consultora
