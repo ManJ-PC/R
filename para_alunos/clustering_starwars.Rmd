@@ -1,0 +1,149 @@
+---
+title: "Clustering"
+output: html_notebook
+---
+
+```{r}
+library("tidyr")
+library("factoextra")
+library(GGally)
+library("dplyr")
+```
+
+
+Select the attributes to study
+```{r}
+starwars_physical_structure <- 
+  starwars %>%
+  select(mass,height)
+
+summary(starwars_physical_structure)
+```
+
+
+```{r}
+ggplot(starwars_physical_structure) +
+  aes(x = mass, y = height) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+
+
+```
+
+
+
+```{r}
+starwars_physical_structure %>%
+ filter(mass >= 15L & mass <= 437L | is.na(mass)) %>%
+ ggplot() +
+  aes(x = mass, y = height) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+```
+
+
+
+Deal missing values
+```{r}
+clean_starwars_physical_structure <-
+  starwars_physical_structure %>%
+  drop_na()
+```
+
+
+
+
+
+```{r}
+starwars_physical_structure_featured <- 
+  clean_starwars_physical_structure %>%
+  mutate(zscore_height = (height - mean(height, na.rm = T))/sd(height, na.rm = T),
+         zscore_mass = (mass - mean(mass, na.rm = T))/sd(mass, na.rm = T)) %>%
+  select(zscore_height, zscore_mass) 
+
+starwars_physical_structure_featured
+```
+
+
+
+Clustering algorithm - first glitchs
+```{r}
+resultado_kmeans <- kmeans(starwars_physical_structure_featured, centers = 3)
+clean_starwars_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_starwars_physical_structure) +
+  aes(x = mass, y = height, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+
+
+
+Clustering algorithm - first glitchs
+```{r}
+
+centers <- as.data.frame(resultado_kmeans$centers)
+centers$cluster <- rownames(resultado_kmeans$centers)
+
+ggparcoord(centers, columns = 1:2, groupColumn = 3) 
+```
+
+
+
+
+Find better hyper-parameters
+```{r}
+
+fviz_nbclust(starwars_physical_structure_featured, kmeans, method = "wss", k.max = 10)
+```
+
+Clustering algorithm - after elbow method
+```{r}
+resultado_kmeans <- kmeans(starwars_physical_structure_featured, centers = 4)
+clean_starwars_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_starwars_physical_structure) +
+  aes(x = mass, y = height, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+
+
+Clustering algorithm - first glitchs
+```{r}
+library("dbscan")
+
+minPts=2
+resultado_kmeans <- dbscan(starwars_physical_structure_featured, eps = 4, minPts = minPts)
+clean_starwars_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_starwars_physical_structure) +
+  aes(x = mass, y = height, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+
+```{r}
+kNNdist(starwars_physical_structure_featured, minPts)
+```
+
+
+```{r}
+kNNdistplot(starwars_physical_structure_featured, minPts, minPts - 1)
+```
+```{r}
+library("dbscan")
+
+resultado_kmeans <- dbscan(starwars_physical_structure_featured, eps = 1, minPts)
+clean_starwars_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_starwars_physical_structure) +
+  aes(x = mass, y = height, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+

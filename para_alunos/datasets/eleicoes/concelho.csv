@@ -1,0 +1,309 @@
+CODIGO,NOME,DISTRITO
+101,Águeda,1
+102,Albergaria-a-Velha,1
+103,Anadia,1
+104,Arouca,1
+105,Aveiro,1
+106,"Castelo de Paiva",1
+107,Espinho,1
+108,Estarreja,1
+109,"Santa Maria da Feira",1
+110,Ílhavo,1
+111,Mealhada,1
+112,Murtosa,1
+113,"Oliveira de Azemeis",1
+114,"Oliveira do Bairro",1
+115,Ovar,1
+116,"São João da Madeira",1
+117,"Sever do Vouga",1
+118,Vagos,1
+119,"Vale de Cambra",1
+201,Aljustrel,2
+202,Almodovar,2
+203,Alvito,2
+204,Barrancos,2
+205,Beja,2
+206,"Castro Verde",2
+207,Cuba,2
+208,"Ferreira do Alentejo",2
+209,Mértola,2
+210,Moura,2
+211,Odemira,2
+212,Ourique,2
+213,Serpa,2
+214,Vidigueira,2
+301,Amares,3
+302,Barcelos,3
+303,Braga,3
+304,"Cabeceiras de Basto",3
+305,"Celorico de Basto",3
+306,Esposende,3
+307,Fafe,3
+308,Guimarães,3
+309,"Póvoa de Lanhoso",3
+310,"Terras de Bouro",3
+311,"Vieira do Minho",3
+312,"Vila Nova de Famalicão",3
+313,"Vila Verde",3
+314,Vizela,3
+401,"Alfandega da Fé",4
+402,Bragança,4
+403,"Carrazeda de Ansiães",4
+404,"Freixo Espada a Cinta",4
+405,"Macedo de Cavaleiros",4
+406,"Miranda do Douro",4
+407,Mirandela,4
+408,Mogadouro,4
+409,"Torre de Moncorvo",4
+410,"Vila Flor",4
+411,Vimioso,4
+412,Vinhais,4
+501,Belmonte,5
+502,"Castelo Branco",5
+503,Covilhã,5
+504,Fundão,5
+505,Idanha-a-Nova,5
+506,Oleiros,5
+507,Penamacor,5
+508,Proença-a-Nova,5
+509,Sertã,5
+510,"Vila de Rei",5
+511,"Vila Velha de Rodão",5
+601,Arganil,6
+602,Cantanhede,6
+603,Coimbra,6
+604,Condeixa-a-Nova,6
+605,"Figueira da Foz",6
+606,Góis,6
+607,Lousã,6
+608,Mira,6
+609,"Miranda do Corvo",6
+610,Montemor-o-Velho,6
+611,"Oliveira do Hospital",6
+612,"Pampilhosa da Serra",6
+613,Penacova,6
+614,Penela,6
+615,Soure,6
+616,Tábua,6
+617,"Vila Nova de Poiares",6
+701,Alandroal,7
+702,Arraiolos,7
+703,Borba,7
+704,Estremoz,7
+705,Évora,7
+706,Montemor-o-Novo,7
+707,Mora,7
+708,Mourão,7
+709,Portel,7
+710,Redondo,7
+711,"Reguengos de Monsaraz",7
+712,"Vendas Novas",7
+713,"Viana do Alentejo",7
+714,"Vila Viçosa",7
+801,Albufeira,8
+802,Alcoutim,8
+803,Aljezur,8
+804,"Castro Marim",8
+805,Faro,8
+806,Lagoa,8
+807,Lagos,8
+808,Loulé,8
+809,Monchique,8
+810,Olhão,8
+811,Portimão,8
+812,"São Brás de Alportel",8
+813,Silves,8
+814,Tavira,8
+815,"Vila do Bispo",8
+816,"Vila Real Sto Antonio",8
+901,"Aguiar da Beira",9
+902,Almeida,9
+903,"Celorico da Beira",9
+904,"Fig. Castelo Rodrigo",9
+905,"Fornos de Algodres",9
+906,Gouveia,9
+907,Guarda,9
+908,Manteigas,9
+909,Meda,9
+910,Pinhel,9
+911,Sabugal,9
+912,Seia,9
+913,Trancoso,9
+914,"Vila Nova de Foz Coa",9
+1001,Alcobaça,10
+1002,Alvaiázere,10
+1003,Ansião,10
+1004,Batalha,10
+1005,Bombarral,10
+1006,"Caldas da Rainha",10
+1007,"Castanheira de Pera",10
+1008,"Figueiró dos Vinhos",10
+1009,Leiria,10
+1010,"Marinha Grande",10
+1011,Nazaré,10
+1012,Óbidos,10
+1013,"Pedrogão Grande",10
+1014,Peniche,10
+1015,Pombal,10
+1016,"Porto de Mós",10
+1101,Alenquer,11
+1102,"Arruda dos Vinhos",11
+1103,Azambuja,11
+1104,Cadaval,11
+1105,Cascais,11
+1106,Lisboa,11
+1107,Loures,11
+1108,Lourinhã,11
+1109,Mafra,11
+1110,Oeiras,11
+1111,Sintra,11
+1112,"Sobral de Monte Agraço",11
+1113,"Torres Vedras",11
+1114,"Vila Franca de Xira",11
+1115,Amadora,11
+1116,Odivelas,11
+1201,"Alter do Chão",12
+1202,Arronches,12
+1203,Avis,12
+1204,"Campo Maior",12
+1205,"Castelo de Vide",12
+1206,Crato,12
+1207,Elvas,12
+1208,Fronteira,12
+1209,Gavião,12
+1210,Marvão,12
+1211,Monforte,12
+1212,Nisa,12
+1213,"Ponte de Sor",12
+1214,Portalegre,12
+1215,Sousel,12
+1301,Amarante,13
+1302,Baião,13
+1303,Felgueiras,13
+1304,Gondomar,13
+1305,Lousada,13
+1306,Maia,13
+1307,"Marco de Canaveses",13
+1308,Matosinhos,13
+1309,"Paços de Ferreira",13
+1310,Paredes,13
+1311,Penafiel,13
+1312,Porto,13
+1313,"Póvoa de Varzim",13
+1314,"Santo Tirso",13
+1315,Valongo,13
+1316,"Vila do Conde",13
+1317,"Vila Nova de Gaia",13
+1318,Trofa,13
+1401,Abrantes,14
+1402,Alcanena,14
+1403,Almeirim,14
+1404,Alpiarça,14
+1405,Benavente,14
+1406,Cartaxo,14
+1407,Chamusca,14
+1408,Constancia,14
+1409,Coruche,14
+1410,Entroncamento,14
+1411,"Ferreira do Zezere",14
+1412,Golegã,14
+1413,Mação,14
+1414,"Rio Maior",14
+1415,"Salvaterra de Magos",14
+1416,Santarém,14
+1417,Sardoal,14
+1418,Tomar,14
+1419,"Torres Novas",14
+1420,"Vila Nova da Barquinha",14
+1421,Ourém,14
+1501,"Alcácer do Sal",15
+1502,Alcochete,15
+1503,Almada,15
+1504,Barreiro,15
+1505,Grandola,15
+1506,Moita,15
+1507,Montijo,15
+1508,Palmela,15
+1509,"Santiago do Cacém",15
+1510,Seixal,15
+1511,Sesimbra,15
+1512,Setúbal,15
+1513,Sines,15
+1601,"Arcos de Valdevez",16
+1602,Caminha,16
+1603,Melgaço,16
+1604,Monção,16
+1605,"Paredes de Coura",16
+1606,"Ponte da Barca",16
+1607,"Ponte de Lima",16
+1608,Valença,16
+1609,"Viana do Castelo",16
+1610,"Vila Nova de Cerveira",16
+1701,Alijó,17
+1702,Boticas,17
+1703,Chaves,17
+1704,"Mesão Frio",17
+1705,"Mondim de Basto",17
+1706,Montalegre,17
+1707,Murça,17
+1708,"Peso da Régua",17
+1709,"Ribeira de Pena",17
+1710,Sabrosa,17
+1711,"Sta Marta de Penaguião",17
+1712,Valpaços,17
+1713,"Vila Pouca de Aguiar",17
+1714,"Vila Real",17
+1801,Armamar,18
+1802,"Carregal do Sal",18
+1803,"Castro Daire",18
+1804,Cinfães,18
+1805,Lamego,18
+1806,Mangualde,18
+1807,"Moimenta da Beira",18
+1808,Mortágua,18
+1809,Nelas,18
+1810,"Oliveira de Frades",18
+1811,"Penalva do Castelo",18
+1812,Penedono,18
+1813,Resende,18
+1814,"Santa Comba Dão",18
+1815,"São João da Pesqueira",18
+1816,"São Pedro do Sul",18
+1817,Satão,18
+1818,Sernancelhe,18
+1819,Tabuaço,18
+1820,Tarouca,18
+1821,Tondela,18
+1822,"Vila Nova de Paiva",18
+1823,Viseu,18
+1824,Vouzela,18
+3101,Calheta,30
+3102,"Câmara de Lobos",30
+3103,Funchal,30
+3104,Machico,30
+3105,"Ponta do Sol",30
+3106,"Porto Moniz",30
+3107,"Ribeira Brava",30
+3108,"Santa Cruz",30
+3109,Santana,30
+3110,"São Vicente",30
+3201,"Porto Santo",30
+4101,"Vila do Porto",40
+4201,Lagoa,40
+4202,Nordeste,40
+4203,"Ponta Delgada",40
+4204,Povoação,40
+4205,"Ribeira Grande",40
+4206,"Vila Franca do Campo",40
+4301,"Angra do Heroismo",40
+4302,"Praia da Vitória",40
+4401,"Santa Cruz da Graciosa",40
+4501,Calheta,40
+4502,Velas,40
+4601,"Lajes do Pico",40
+4602,Madalena,40
+4603,"São Roque do Pico",40
+4701,Horta,40
+4801,"Lajes das Flores",40
+4802,"Santa Cruz das Flores",40
+4901,Corvo,40

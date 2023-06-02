@@ -1,0 +1,4242 @@
+CODIGO,NOME,CONCELHO
+10101,Agadão,101
+10102,"Aguada de Baixo",101
+10103,"Aguada de Cima",101
+10104,Águeda,101
+10105,Barro,101
+10106,"Belazaima do Chão",101
+10107,"Castanheira do Vouga",101
+10108,Espinhel,101
+10109,Fermentelos,101
+10110,"Lamas do Vouga",101
+10111,"Macieira de Alcoba",101
+10112,"Macinhata do Vouga",101
+10113,"Óis da Ribeira",101
+10114,Préstimo,101
+10115,Recardães,101
+10116,Segadães,101
+10117,Travassó,101
+10118,Trofa,101
+10119,"Valongo do Vouga",101
+10120,Borralha,101
+10201,Albergaria-a-Velha,102
+10202,Alquerubim,102
+10203,Angeja,102
+10204,Branca,102
+10205,Frossos,102
+10206,"Ribeira de Fráguas",102
+10207,"São João de Loure",102
+10208,Valmaior,102
+10301,"Amoreira da Gandara",103
+10302,Ancas,103
+10303,Arcos,103
+10304,"Avelãs de Caminho",103
+10305,"Avelãs de Cima",103
+10306,Mogofores,103
+10307,Moita,103
+10308,"Óis do Bairro",103
+10309,Sangalhos,103
+10310,"São Lourenço do Bairro",103
+10311,Tamengos,103
+10312,"Vila Nova de Monsarros",103
+10313,"Vilarinho do Bairro",103
+10314,"Paredes do Bairro",103
+10315,Aguim,103
+10401,"Albergaria da Serra",104
+10402,Alvarenga,104
+10403,Arouca,104
+10404,Burgo,104
+10405,Cabreiros,104
+10406,Canelas,104
+10407,Chave,104
+10408,"Covelo de Paivó",104
+10409,Escariz,104
+10410,Espiunca,104
+10411,Fermedo,104
+10412,Janarde,104
+10413,Mansores,104
+10414,Moldes,104
+10415,Rossas,104
+10416,"Santa Eulália",104
+10417,"São Miguel do Mato",104
+10418,Tropeço,104
+10419,Urro,104
+10420,Várzea,104
+10501,Aradas,105
+10502,Cacia,105
+10503,Eirol,105
+10504,Eixo,105
+10505,Esgueira,105
+10506,Glória,105
+10507,Nariz,105
+10508,Oliveirinha,105
+10509,Requeixo,105
+10510,"São Bernardo",105
+10511,"São Jacinto",105
+10512,"Vera Cruz",105
+10513,"Santa Joana",105
+10514,"N Sra de Fátima",105
+10601,Bairros,106
+10602,Fornos,106
+10603,Paraíso,106
+10604,Pedorido,106
+10605,Raiva,106
+10606,Real,106
+10607,"Santa Maria de Sardoura",106
+10608,"São Martinho de Sardoura",106
+10609,Sobrado,106
+10701,Anta,107
+10702,Espinho,107
+10703,Guetim,107
+10704,Páramos,107
+10705,Silvalde,107
+10801,Avanca,108
+10802,Beduído,108
+10803,Canelas,108
+10804,Fermelã,108
+10805,Pardilhó,108
+10806,Salreu,108
+10807,Veiros,108
+10901,Argoncilhe,109
+10902,Arrifana,109
+10903,Canedo,109
+10904,Escapães,109
+10905,Espargo,109
+10906,Feira,109
+10907,Fiães,109
+10908,Fornos,109
+10909,Gião,109
+10910,Guisande,109
+10911,Lobão,109
+10912,Louredo,109
+10913,Lourosa,109
+10914,"Milheirós de Poiares",109
+10915,Mosteiró,109
+10916,Mozelos,109
+10917,"Nogueira da Regedoura",109
+10918,"São Paio de Oleiros",109
+10919,"Paços de Brandão",109
+10920,Pigeiros,109
+10921,"Rio Meão",109
+10922,Romariz,109
+10923,Sanfins,109
+10924,Sanguedo,109
+10925,"Santa Maria de Lamas",109
+10926,"São João de Ver",109
+10927,"Caldas de São Jorge",109
+10928,Souto,109
+10929,Travanca,109
+10930,Vale,109
+10931,"Vila Maior",109
+11001,"Gafanha do Carmo",110
+11002,"Gafanha da Encarnação",110
+11003,"Gafanha da Nazaré",110
+11004,"I S Salvador",110
+11101,Antes,111
+11102,Barcouço,111
+11103,"Casal Comba",111
+11104,Luso,111
+11105,Mealhada,111
+11106,Pampilhosa,111
+11107,Vacariça,111
+11108,"Ventosa do Bairro",111
+11201,Bunheiro,112
+11202,Monte,112
+11203,Murtosa,112
+11204,Torreira,112
+11301,Carregosa,113
+11302,Cesar,113
+11303,Fajões,113
+11304,Loureiro,113
+11305,"Macieira de Sarnes",113
+11306,"Macinhata de Seixa",113
+11307,Madail,113
+11308,"Nogueira do Cravo",113
+11309,"Oliveira de Azemeis",113
+11310,Ossela,113
+11311,Palmaz,113
+11312,Pindelo,113
+11313,"Pinheiro da Bemposta",113
+11314,"Santiago de Riba-Ul",113
+11315,"São Martinho da Gandara",113
+11316,Travanca,113
+11317,Ul,113
+11318,"São Roque",113
+11319,"Vila de Cucujães",113
+11401,Bustos,114
+11402,Mamarrosa,114
+11403,Oiã,114
+11404,"Oliveira do Bairro",114
+11405,Palhaça,114
+11406,Troviscal,114
+11501,Arada,115
+11502,Cortegaça,115
+11503,Esmoriz,115
+11504,Maceda,115
+11505,Ovar,115
+11506,"São Vicente de Pereira Jusã",115
+11507,Válega,115
+11508,"São João",115
+11601,"São João da Madeira",116
+11701,Cedrim,117
+11702,"Couto de Esteves",117
+11703,Paradela,117
+11704,"Pessegueiro do Vouga",117
+11705,"Rocas do Vouga",117
+11706,"Sever do Vouga",117
+11707,"Silva Escura",117
+11708,Talhadas,117
+11709,Dornelas,117
+11801,Calvão,118
+11802,"Covão do Lobo",118
+11803,"Fonte de Angeão",118
+11804,"Gafanha da Boa Hora",118
+11805,Ouca,118
+11806,"Ponte de Vagos",118
+11807,Soza,118
+11808,Vagos,118
+11809,"Santo Antonio de Vagos",118
+11810,"Santo André de Vagos",118
+11811,"Santa Catarina",118
+11901,Arões,119
+11902,"São Pedro de Castelões",119
+11903,Cepelos,119
+11904,Codal,119
+11905,Junqueira,119
+11906,"Macieira de Cambra",119
+11907,Roge,119
+11908,"Vila Chã",119
+11909,"Vila Cova de Perrinho",119
+20101,Aljustrel,201
+20102,Ervidel,201
+20103,Messejana,201
+20104,"São João de Negrilhos",201
+20105,"Rio de Moinhos",201
+20201,Almodovar,202
+20202,"Gomes Aires",202
+20203,Rosário,202
+20204,"Santa Clara-a-Nova",202
+20205,"Santa Cruz",202
+20206,"São Barnabé",202
+20207,"Senhora da Graça de Padrões",202
+20208,"Aldeia dos Fernandes",202
+20301,Alvito,203
+20302,"Vila Nova da Baronia",203
+20401,Barrancos,204
+20501,Albernoa,205
+20502,Baleizão,205
+20503,Beringel,205
+20504,"Cabeça Gorda",205
+20505,Mombeja,205
+20506,"N Sra das Neves",205
+20507,Quintos,205
+20508,Salvada,205
+20509,"B Salvador",205
+20510,"Santa Clara de Louredo",205
+20511,"B Sta Maria da Feira",205
+20512,"Santa Vitoria",205
+20513,"B Santiago Maior",205
+20514,"São Brissos",205
+20515,"B S João Baptista",205
+20516,"São Matias",205
+20517,Trindade,205
+20518,Trigaches,205
+20601,Casével,206
+20602,"Castro Verde",206
+20603,Entradas,206
+20604,"Santa Barbara de Padrões",206
+20605,"São Marcos da Ataboeira",206
+20701,Cuba,207
+20702,"Faro do Alentejo",207
+20703,"Vila Alva",207
+20704,"Vila Ruiva",207
+20801,Alfundão,208
+20802,"Ferreira do Alentejo",208
+20803,"Figueira dos Cavaleiros",208
+20804,Odivelas,208
+20805,Peroguarda,208
+20806,Canhestros,208
+20901,"Alcaria Ruiva",209
+20902,"Corte do Pinto",209
+20903,"Espirito Santo",209
+20904,Mértola,209
+20905,"Santana de Cambas",209
+20906,"São João dos Caldeireiros",209
+20907,"São Miguel do Pinheiro",209
+20908,"São Pedro de Solis",209
+20909,"São Sebastião dos Carros",209
+21001,Amareleja,210
+21002,"Póvoa de São Miguel",210
+21003,Safara,210
+21004,"M Sto Agostinho",210
+21005,"Santo Aleixo da Restauração",210
+21006,"Santo Amador",210
+21007,"M S João Baptista",210
+21008,"Sobral da Adiça",210
+21101,Colos,211
+21102,Reliquias,211
+21103,Sabóia,211
+21104,"Santa Clara-a-Velha",211
+21105,"O Sta Maria",211
+21106,"São Luis",211
+21107,"São Martinho das Amoreiras",211
+21108,"O S Salvador",211
+21109,"São Teotonio",211
+21110,"Vale de Santiago",211
+21111,"Vila Nova de Milfontes",211
+21112,Pereiras-Gare,211
+21113,Bicos,211
+21114,"Zambujeira do Mar",211
+21115,Luzianes-Gare,211
+21201,Conceição,212
+21202,Garvão,212
+21203,Ourique,212
+21204,Panoias,212
+21205,"Santa Luzia",212
+21206,"Santana da Serra",212
+21301,"Aldeia Nova de São Bento",213
+21302,Brinches,213
+21303,Pias,213
+21304,"S Salvador",213
+21305,"S Sta Maria",213
+21306,"Vale de Vargo",213
+21307,"Vila Verde de Ficalho",213
+21401,Pedrogão,214
+21402,Selmes,214
+21403,Vidigueira,214
+21404,"Vila de Frades",214
+30101,Amares,301
+30102,Barreiros,301
+30103,Besteiros,301
+30104,Bico,301
+30105,Caires,301
+30106,Caldelas,301
+30107,Carrazedo,301
+30108,Dornelas,301
+30109,Ferreiros,301
+30110,Figueiredo,301
+30111,Fiscal,301
+30112,Goães,301
+30113,Lago,301
+30114,Paranhos,301
+30115,"Paredes Secas",301
+30116,Portela,301
+30117,Prozelo,301
+30118,Rendufe,301
+30119,"Bouro (Sta Maria)",301
+30120,"Bouro (Sta Marta)",301
+30121,Sequeiros,301
+30122,Seramil,301
+30123,Torre,301
+30124,Vilela,301
+30201,"Abade de Neiva",302
+30202,Aborim,302
+30203,Adães,302
+30204,Aguiar,302
+30205,Airó,302
+30206,Aldreu,302
+30207,Alheira,302
+30208,Alvelos,302
+30209,Arcozelo,302
+30210,Areias,302
+30211,"Areias de Vilar",302
+30212,Balugães,302
+30213,Barcelinhos,302
+30214,Barcelos,302
+30215,Barqueiros,302
+30216,Cambeses,302
+30217,Campo,302
+30218,Carapeços,302
+30219,Carreira,302
+30220,Carvalhal,302
+30221,Carvalhos,302
+30222,Chavão,302
+30223,Chorente,302
+30224,Cossourado,302
+30225,Courel,302
+30226,Couto,302
+30227,Creixomil,302
+30228,Cristelo,302
+30229,Durrães,302
+30230,Encourados,302
+30231,Faria,302
+30232,Feitos,302
+30233,"Fonte Coberta",302
+30234,Fornelos,302
+30235,Fragoso,302
+30236,Gamil,302
+30237,Gilmonde,302
+30238,Goios,302
+30239,Grimancelos,302
+30240,Gueral,302
+30241,"Igreja Nova",302
+30242,Lama,302
+30243,Lijó,302
+30244,"Macieira de Rates",302
+30245,Manhente,302
+30246,Mariz,302
+30247,Martim,302
+30248,Midões,302
+30249,Milhazes,302
+30250,Minhotães,302
+30251,"Monte de Fralães",302
+30252,Moure,302
+30253,Negreiros,302
+30254,Oliveira,302
+30255,Palme,302
+30256,Panque,302
+30257,Paradela,302
+30258,"Pedra Furada",302
+30259,Pereira,302
+30260,Perelhal,302
+30261,Pousa,302
+30262,Quintiães,302
+30263,Remelhe,302
+30264,Roriz,302
+30265,"Rio Covo (Sta Eugénia)",302
+30266,"Rio Covo (Sta Eulália)",302
+30267,"Tamel (Sta Leocádia)",302
+30268,"Galegos (Sta Maria)",302
+30269,"Bastuço (Sto Estevão)",302
+30270,"Bastuço (S João)",302
+30271,"Alvito (S Martinho)",302
+30272,"Galegos (S Martinho)",302
+30273,"Vila Frescainha (S Martinho)",302
+30274,"Alvito (S Pedro)",302
+30275,"Vila Frescainha (S Pedro)",302
+30276,"Tamel (S Pedro Fins)",302
+30277,"Tamel (S Verissimo)",302
+30278,Sequeade,302
+30279,Silva,302
+30280,Silveiros,302
+30281,Tregosa,302
+30282,Ucha,302
+30283,Várzea,302
+30284,Viatodos,302
+30285,"Vila Boa",302
+30286,"Vila Cova",302
+30287,"Vila Seca",302
+30288,"Vilar de Figos",302
+30289,"Vilar do Monte",302
+30301,Adaúfe,303
+30302,Arcos,303
+30303,Arentim,303
+30304,Aveleda,303
+30305,Cabreiros,303
+30306,Celeiros,303
+30307,"B Cividade",303
+30308,Crespos,303
+30309,Cunha,303
+30310,Dume,303
+30311,Escudeiros,303
+30312,Espinho,303
+30313,Esporões,303
+30314,Ferreiros,303
+30315,Figueiredo,303
+30316,Fraião,303
+30317,Frossos,303
+30318,Gondizalves,303
+30319,Gualtar,303
+30320,Guisande,303
+30321,Lamaçães,303
+30322,Lamas,303
+30323,Lomar,303
+30324,"B Maximinos",303
+30325,"Mire de Tibães",303
+30326,Morreira,303
+30327,Navarra,303
+30328,Nogueira,303
+30329,Nogueiró,303
+30330,"Padim da Graça",303
+30331,Palmeira,303
+30332,Panoias,303
+30333,"Parada de Tibães",303
+30334,Pedralva,303
+30335,Pousada,303
+30336,Priscos,303
+30337,Real,303
+30338,Ruilhe,303
+30339,"Santa Lucrécia de Algeriz",303
+30340,"Penso (Sto Estevão)",303
+30341,"B S João do Souto",303
+30342,"B S José de S Lázaro",303
+30343,"Passos (S Julião)",303
+30344,"Este (S Mamede)",303
+30345,"Merelim (S Paio)",303
+30346,"Este (S Pedro)",303
+30347,"Merelim (S Pedro)",303
+30348,"Oliveira (S Pedro)",303
+30349,"B S Vicente",303
+30350,"Penso (S Vicente)",303
+30351,"B S Vitor",303
+30352,"B Sé",303
+30353,Semelhe,303
+30354,Sequeira,303
+30355,Sobreposta,303
+30356,Tadim,303
+30357,Tebosa,303
+30358,Tenões,303
+30359,Trandeiras,303
+30360,Vilaça,303
+30361,Vimieiro,303
+30362,Fradelos,303
+30401,Abadim,304
+30402,Alvite,304
+30403,"Arco de Baúlhe",304
+30404,Basto,304
+30405,Buços,304
+30406,"Cabeceiras de Basto",304
+30407,Cavez,304
+30408,Faia,304
+30409,Gondiães,304
+30410,Outeiro,304
+30411,Painzela,304
+30412,Passos,304
+30413,Pedraça,304
+30414,"Refojos de Basto",304
+30415,"Rio Douro",304
+30416,"Vila Nune",304
+30417,"Vilar de Cunhas",304
+30501,Agilde,305
+30502,Arnoia,305
+30503,"Borba de Montanha",305
+30504,Britelo,305
+30505,Caçarilhe,305
+30506,"Canedo de Basto",305
+30507,Carvalho,305
+30508,Codeçoso,305
+30509,Corgo,305
+30510,Fervença,305
+30511,Gagos,305
+30512,Gémeos,305
+30513,Infesta,305
+30514,Molares,305
+30515,"Moreira do Castelo",305
+30516,Ourilhe,305
+30517,Rego,305
+30518,Ribas,305
+30519,"Basto (Sta Tecla)",305
+30520,"Basto (S Clemente)",305
+30521,"Vale de Bouro",305
+30522,Veade,305
+30601,Antas,306
+30602,Apúlia,306
+30603,Belinho,306
+30604,Curvos,306
+30605,Esposende,306
+30606,Fão,306
+30607,"Fonte Boa",306
+30608,Forjães,306
+30609,Gandra,306
+30610,Gemeses,306
+30611,Mar,306
+30612,Marinhas,306
+30613,"Palmeira de Faro",306
+30614,"Rio Tinto",306
+30615,"Vila Chã",306
+30701,Aboim,307
+30702,Agrela,307
+30703,Antime,307
+30704,Ardegão,307
+30705,Armil,307
+30706,Arnozela,307
+30707,Cepães,307
+30708,Estorãos,307
+30709,Fafe,307
+30710,Fareja,307
+30711,Felgueiras,307
+30712,Fornelos,307
+30713,Freitas,307
+30714,Golães,307
+30715,Gontim,307
+30716,Medelo,307
+30717,Monte,307
+30718,"Moreira do Rei",307
+30719,Passos,307
+30720,Pedraido,307
+30721,Queimadela,307
+30722,Quinchães,307
+30723,Regadas,307
+30724,Revelhe,307
+30725,Ribeiros,307
+30726,"Arões (Sta Cristina)",307
+30727,"Silvares (S Clemente)",307
+30728,"São Gens",307
+30729,"Silvares (S Martinho)",307
+30730,"Arões (S Romão)",307
+30731,Seidões,307
+30732,Serafão,307
+30733,Travassós,307
+30734,"Várzea Cova",307
+30735,"Vila Cova",307
+30736,Vinhós,307
+30801,Aldão,308
+30802,Arosa,308
+30803,Atães,308
+30804,Azurém,308
+30805,Balazar,308
+30806,Barco,308
+30807,Brito,308
+30808,Caldelas,308
+30809,Calvos,308
+30810,Castelões,308
+30811,Conde,308
+30812,Costa,308
+30813,Creixomil,308
+30814,Donim,308
+30815,Fermentões,308
+30816,Figueiredo,308
+30817,Gandarela,308
+30818,Gémeos,308
+30819,Gominhães,308
+30820,Gonça,308
+30821,Gondar,308
+30822,Gondomar,308
+30823,Guardizela,308
+30824,Infantas,308
+30826,Leitões,308
+30827,Longos,308
+30828,Lordelo,308
+30829,Mascotelos,308
+30830,"Mesão Frio",308
+30831,"Moreira de Cónegos",308
+30832,Nespereira,308
+30833,Oleiros,308
+30834,"G Oliveira do Castelo",308
+30835,Penselo,308
+30836,Pinheiro,308
+30837,Polvoreira,308
+30838,Ponte,308
+30839,Rendufe,308
+30840,Ronfe,308
+30841,"Briteiros (Salvador)",308
+30842,"Prazins (Sta Eufémia)",308
+30843,"Briteiros (Sta Leocádia)",308
+30844,"Airão (Sta Maria)",308
+30845,"Souto (Sta Maria)",308
+30846,"Candoso (Santiago)",308
+30847,"Briteiros (Sto Estevão)",308
+30848,"Prazins (Sto Tirso)",308
+30849,"Sande (S Clemente)",308
+30850,"Selho (S Cristovão)",308
+30851,"Vizela (S Faustino)",308
+30853,"Airão (S João Baptista)",308
+30854,"Selho (S Jorge)",308
+30855,"Sande (S Lourenço)",308
+30856,"Selho (S Lourenço)",308
+30857,"Candoso (S Martinho)",308
+30858,"Sande (S Martinho)",308
+30860,"G S Paio",308
+30862,"Souto (S Salvador)",308
+30863,"G S Sebastião",308
+30864,"Abação (S Tomé)",308
+30865,"São Torcato",308
+30866,Serzedelo,308
+30867,Serzedo,308
+30868,Silvares,308
+30869,Tabuadelo,308
+30871,Urgezes,308
+30872,Vermil,308
+30873,"Sande (Vila Nova)",308
+30901,"Águas Santas",309
+30902,Ajude,309
+30903,Brunhais,309
+30904,Calvos,309
+30905,Campos,309
+30906,Covelas,309
+30907,Esperança,309
+30908,Ferreiros,309
+30909,"Fonte Arcada",309
+30910,Frades,309
+30911,Friande,309
+30912,Galegos,309
+30913,Garfe,309
+30914,"Geraz do Minho",309
+30915,Lanhoso,309
+30916,Louredo,309
+30917,Monsul,309
+30918,Moure,309
+30919,"PL N Sra do Amparo",309
+30920,Oliveira,309
+30921,Rendufinho,309
+30922,"Santo Emilião",309
+30923,"São João de Rei",309
+30924,Serzedelo,309
+30925,"Sobradelo da Goma",309
+30926,Taíde,309
+30927,Travassos,309
+30928,Verim,309
+30929,Vilela,309
+31001,Balança,310
+31002,Brufe,310
+31003,"Campo do Geres",310
+31004,Carvalheira,310
+31005,Chamoim,310
+31006,Chorense,310
+31007,Cibões,310
+31008,Covide,310
+31009,Gondoriz,310
+31010,Moimenta,310
+31011,Monte,310
+31012,Ribeira,310
+31013,"Rio Caldo",310
+31014,Souto,310
+31015,Valdosende,310
+31016,Vilar,310
+31017,"Vilar da Veiga",310
+31101,Anissó,311
+31102,Anjos,311
+31103,Campos,311
+31104,Caniçada,311
+31105,Cantelães,311
+31106,Cova,311
+31107,"Eira Vedra",311
+31108,Guilhofrei,311
+31109,Louredo,311
+31110,Mosteiro,311
+31111,"Parada do Bouro",311
+31112,Pinheiro,311
+31113,Rossas,311
+31114,Ruivães,311
+31115,Salamonde,311
+31116,Soengas,311
+31117,Soutelo,311
+31118,Tabuaças,311
+31119,Ventosa,311
+31120,"Vieira do Minho",311
+31121,"Vilar Chão",311
+31201,"Abade de Vermoim",312
+31202,Antas,312
+31203,Avidos,312
+31204,Bairro,312
+31205,Bente,312
+31206,Brufe,312
+31207,Cabeçudos,312
+31208,Calendário,312
+31209,Carreira,312
+31210,Castelões,312
+31211,Cavalões,312
+31212,Cruz,312
+31213,Delães,312
+31214,Esmeriz,312
+31215,Fradelos,312
+31216,Gavião,312
+31217,Gondifelos,312
+31218,Jesufrei,312
+31219,Joane,312
+31220,Lagoa,312
+31221,Landim,312
+31222,Lemenhe,312
+31223,Louro,312
+31224,Lousado,312
+31225,Mogege,312
+31226,Mouquim,312
+31227,Nine,312
+31228,Novais,312
+31229,Outiz,312
+31230,Pedome,312
+31231,Portela,312
+31232,"Pousada de Saramagos",312
+31233,Requião,312
+31234,"Riba de Ave",312
+31235,Ribeirão,312
+31236,Ruivães,312
+31237,"Arnoso (Sta Eulália)",312
+31238,"Arnoso (Sta Maria)",312
+31239,"Oliveira (Sta Maria)",312
+31240,"Vale (S Cosme)",312
+31241,"Vale (S Martinho)",312
+31242,"Oliveira (S Mateus)",312
+31243,"Seide (S Miguel)",312
+31244,"Seide (S Paio)",312
+31245,Sezures,312
+31246,Telhado,312
+31247,Vermoim,312
+31248,"Vila Nova de Famalicão",312
+31249,"Vilarinho das Cambas",312
+31301,"Aboim da Nóbrega",313
+31302,Arcozelo,313
+31303,Atães,313
+31304,Atiães,313
+31305,Azões,313
+31306,Barbudo,313
+31307,Barros,313
+31308,Cabanelas,313
+31309,Cervães,313
+31310,Codeceda,313
+31311,Coucieiro,313
+31312,Covas,313
+31313,Dossãos,313
+31314,"Duas Igrejas",313
+31315,Esqueiros,313
+31316,Freiriz,313
+31317,Geme,313
+31318,Goães,313
+31319,Godinhaços,313
+31320,Gomide,313
+31321,Gondiães,313
+31322,Gondomar,313
+31323,Lage,313
+31324,Lanhas,313
+31325,Loureira,313
+31326,Marrancos,313
+31327,Mós,313
+31328,Moure,313
+31329,Nevogilde,313
+31330,Oleiros,313
+31331,"Parada de Gatim",313
+31332,Passo,313
+31333,Pedregais,313
+31334,Penascais,313
+31335,Pico,313
+31336,"Pico de Regalados",313
+31337,Ponte,313
+31338,"Portela das Cabras",313
+31339,"Rio Mau",313
+31340,Sabariz,313
+31341,Sande,313
+31342,"Vila de Prado",313
+31343,"Oriz (Sta Marinha)",313
+31344,"Carreiras (Santiago)",313
+31345,"Escariz (S Mamede)",313
+31346,"Escariz (S Martinho)",313
+31347,"Valbom (S Martinho)",313
+31348,"Carreiras (S Miguel)",313
+31349,"Oriz (S Miguel)",313
+31350,"Prado (S Miguel)",313
+31351,"Valbom (S Pedro)",313
+31352,Soutelo,313
+31353,Travassós,313
+31354,Turiz,313
+31355,Valdreu,313
+31356,Valões,313
+31357,"Vila Verde",313
+31358,Vilarinho,313
+31401,"Santa Eulália",314
+31402,"Caldas de Vizela (S João)",314
+31403,"Caldas de Vizela (S Miguel)",314
+31404,Infias,314
+31405,Tagilde,314
+31406,"Vizela (Sto Adrião)",314
+31407,"Vizela (S Paio)",314
+40101,Agrobom,401
+40102,"Alfandega da Fé",401
+40103,Cerejais,401
+40104,Eucisia,401
+40105,Ferradosa,401
+40106,Gebelim,401
+40107,Gouveia,401
+40108,Parada,401
+40109,Pombal,401
+40110,Saldonha,401
+40111,Sambade,401
+40112,"Sendim da Ribeira",401
+40113,"Sendim da Serra",401
+40114,Soeima,401
+40115,"Vale Pereiro",401
+40116,Vales,401
+40117,Valverde,401
+40118,"Vilar Chão",401
+40119,Vilarelhos,401
+40120,"Vilares de Vilariça",401
+40201,Alfaião,402
+40202,Aveleda,402
+40203,Babe,402
+40204,Baçal,402
+40205,Calvelhe,402
+40206,Carragosa,402
+40207,Carrazedo,402
+40208,Castrelos,402
+40209,"Castro de Avelãs",402
+40210,Coelhoso,402
+40211,Deilão,402
+40212,Donai,402
+40213,Espinhosela,402
+40214,Failde,402
+40215,França,402
+40216,Gimonde,402
+40217,Gondesende,402
+40218,Gostei,402
+40219,"Grijó de Parada",402
+40220,Izeda,402
+40221,"Macedo do Mato",402
+40222,Meixedo,402
+40223,Milhão,402
+40224,Mós,402
+40225,Nogueira,402
+40226,Outeiro,402
+40227,Parada,402
+40228,"Paradinha Nova",402
+40229,Paramio,402
+40230,Pinela,402
+40231,Pombares,402
+40232,Quintanilha,402
+40233,"Quintela de Lampaças",402
+40234,Rabal,402
+40235,Rebordainhos,402
+40236,Rebordãos,402
+40237,"Rio Frio",402
+40238,"Rio de Onor",402
+40239,Salsas,402
+40240,Samil,402
+40241,"Santa Comba de Rossas",402
+40242,"B Sta Maria",402
+40243,"São Julião de Palacios",402
+40244,"São Pedro de Sarracenos",402
+40245,"B Sé",402
+40246,Sendas,402
+40247,Serapicos,402
+40248,Sortes,402
+40249,Zoio,402
+40301,Amedo,403
+40302,"Beira Grande",403
+40303,Belver,403
+40304,"Carrazeda de Ansiães",403
+40305,Castanheiro,403
+40306,"Fonte Longa",403
+40307,Lavandeira,403
+40308,Linhares,403
+40309,Marzagão,403
+40310,"Mogo de Malta",403
+40311,Parambos,403
+40312,Pereiros,403
+40313,"Pinhal do Norte",403
+40314,Pombal,403
+40315,Ribalonga,403
+40316,"Seixo de Ansiães",403
+40317,Selores,403
+40318,"Vilarinho de Castanheira",403
+40319,Zedes,403
+40401,Fornos,404
+40402,"Freixo de Espada à Cinta",404
+40403,Lagoaça,404
+40404,Ligares,404
+40405,Mazouco,404
+40406,Poiares,404
+40501,Ala,405
+40502,Amendoeira,405
+40503,Arcas,405
+40504,Bagueixe,405
+40505,Bornes,405
+40506,Burga,405
+40507,Carrapatas,405
+40508,Castelãos,405
+40509,Chacim,405
+40510,Cortiços,405
+40511,Corujas,405
+40512,Edroso,405
+40513,Espadanedo,405
+40514,Ferreira,405
+40515,"Grijo de Vale Benfeito",405
+40516,Lagoa,405
+40517,Lamalonga,405
+40518,"Lamas de Podence",405
+40519,Lombo,405
+40520,"Macedo de Cavaleiros",405
+40521,Morais,405
+40522,Murçós,405
+40523,Olmos,405
+40524,Peredo,405
+40525,Podence,405
+40526,Salselas,405
+40527,"Santa Combinha",405
+40528,Sezulfe,405
+40529,"Soutelo Mourisco",405
+40530,Talhas,405
+40531,Talhinhas,405
+40532,"Vale Benfeito",405
+40533,"Vale da Porca",405
+40534,"Vale de Prados",405
+40535,"Vilar do Monte",405
+40536,"Vilarinho de Agrochão",405
+40537,"Vilarinho do Monte",405
+40538,Vinhas,405
+40601,Atenor,406
+40602,Cicouro,406
+40603,Constantim,406
+40604,"Duas Igrejas",406
+40605,Genisio,406
+40606,Ifanes,406
+40607,Malhadas,406
+40608,"Miranda do Douro",406
+40609,Palaçoulo,406
+40610,Paradela,406
+40611,Picote,406
+40612,Póvoa,406
+40613,"São Martinho de Angueira",406
+40614,Sendim,406
+40615,Silva,406
+40616,"Vila Chã de Braciosa",406
+40701,Abambres,407
+40702,Abreiro,407
+40703,Aguieiras,407
+40704,Alvites,407
+40705,Avantos,407
+40706,Avidagos,407
+40707,Barcel,407
+40708,Bouça,407
+40709,Cabanelas,407
+40710,Caravelas,407
+40711,Carvalhais,407
+40712,Cedães,407
+40713,Cobro,407
+40714,Fradizela,407
+40715,Franco,407
+40716,Frechas,407
+40717,Freixeda,407
+40718,"Lamas de Orelhão",407
+40719,Marmelos,407
+40720,Mascarenhas,407
+40721,Mirandela,407
+40722,Múrias,407
+40723,Navalho,407
+40724,Passos,407
+40725,Pereira,407
+40726,Romeu,407
+40727,"São Pedro Velho",407
+40728,"São Salvador",407
+40729,Suçães,407
+40730,"Torre de Dona Chama",407
+40731,"Vale de Asnes",407
+40732,"Vale de Gouvinhas",407
+40733,"Vale de Salgueiro",407
+40734,"Vale de Telhas",407
+40735,Valverde,407
+40736,"Vila Boa",407
+40737,"Vila Verde",407
+40801,Azinhoso,408
+40802,Bemposta,408
+40803,Bruçó,408
+40804,Brunhoso,408
+40805,Brunhosinho,408
+40806,Castanheira,408
+40807,"Castelo Branco",408
+40808,"Castro Vicente",408
+40809,Meirinhos,408
+40810,Mogadouro,408
+40811,Paradela,408
+40812,"Penas Roias",408
+40813,"Peredo da Bemposta",408
+40814,Remondes,408
+40815,Saldanha,408
+40816,Sanhoane,408
+40817,"São Martinho do Peso",408
+40818,Soutelo,408
+40819,Tó,408
+40820,Travanca,408
+40821,Urrós,408
+40822,"Vale da Madre",408
+40823,"Vale de Porco",408
+40824,Valverde,408
+40825,Ventozelo,408
+40826,"Vila de Ala",408
+40827,"Vilar de Rei",408
+40828,"Vilarinho dos Galegos",408
+40901,Açoreira,409
+40902,Adeganha,409
+40903,"Cabeça Boa",409
+40904,Cardanha,409
+40905,Carviçais,409
+40906,Castedo,409
+40907,Felgar,409
+40908,Felgueiras,409
+40909,"Horta da Vilariça",409
+40910,Larinho,409
+40911,Lousa,409
+40912,Maçores,409
+40913,Mós,409
+40914,"Peredo dos Castelhanos",409
+40915,"Souto da Velha",409
+40916,"Torre de Moncorvo",409
+40917,Urros,409
+41001,Assares,410
+41002,Benlhevai,410
+41003,Candoso,410
+41004,"Carvalho de Egas",410
+41005,Freixiel,410
+41006,Lodões,410
+41007,Mourão,410
+41008,Nabo,410
+41009,Roios,410
+41010,Samões,410
+41011,Sampaio,410
+41012,"Santa Comba de Vilariça",410
+41013,"Seixo de Manhoses",410
+41014,Trindade,410
+41015,"Vale Frechoso",410
+41016,Valtorno,410
+41017,"Vila Flor",410
+41018,"Vilarinho das Azenhas",410
+41019,"Vilas Boas",410
+41101,Algoso,411
+41102,Angueira,411
+41103,Argoselo,411
+41104,Avelanoso,411
+41105,Caçarelhos,411
+41106,"Campo de Viboras",411
+41107,Carção,411
+41108,Matela,411
+41109,Pinelo,411
+41110,Santulhão,411
+41111,Uva,411
+41112,"Vale de Frades",411
+41113,"Vilar Seco",411
+41114,Vimioso,411
+41201,Agrochão,412
+41202,Alvaredos,412
+41203,Candedo,412
+41204,Celas,412
+41205,Curopos,412
+41206,Edral,412
+41207,Edrosa,412
+41208,Ervedosa,412
+41209,Fresulfe,412
+41210,Mofreita,412
+41211,Moimenta,412
+41212,Montouto,412
+41213,Nunes,412
+41214,Ousilhão,412
+41215,Paço,412
+41216,"Penhas Juntas",412
+41217,"Pinheiro Novo",412
+41218,Quirás,412
+41219,Rebordelo,412
+41220,"Santa Cruz",412
+41221,Santalha,412
+41222,"São Jomil",412
+41223,"Sobreiro de Baixo",412
+41224,Soeira,412
+41225,Travanca,412
+41226,Tuizelo,412
+41227,"Vale das Fontes",412
+41228,"Vale de Janeiro",412
+41229,"Vila Boa de Ousilhão",412
+41230,"Vila Verde",412
+41231,"Vilar de Lomba",412
+41232,"Vilar de Ossos",412
+41233,"Vilar de Peregrinos",412
+41234,"Vilar Seco de Lomba",412
+41235,Vinhais,412
+50101,Belmonte,501
+50102,Caria,501
+50103,"Colmeal da Torre",501
+50104,Inguias,501
+50105,Maçainhas,501
+50201,Alcains,502
+50202,Almaceda,502
+50203,Benquerenças,502
+50204,Cafede,502
+50205,"Castelo Branco",502
+50206,"Cebolais de Cima",502
+50207,"Escalos de Baixo",502
+50208,"Escalos de Cima",502
+50209,"Freixial do Campo",502
+50210,"Juncal do Campo",502
+50211,Lardosa,502
+50212,"Louriçal do Campo",502
+50213,Lousa,502
+50214,"Malpica do Tejo",502
+50215,Mata,502
+50216,"Monforte da Beira",502
+50217,"Ninho do Açor",502
+50218,"Póvoa de Rio de Moinhos",502
+50219,Retaxo,502
+50220,"Salgueiro do Campo",502
+50221,"Santo André das Tojeiras",502
+50222,"São Vicente da Beira",502
+50223,Sarzedas,502
+50224,"Sobral do Campo",502
+50225,Tinalhas,502
+50301,"Aldeia do Carvalho",503
+50302,"Aldeia de S Francisco de Assis",503
+50303,"Aldeia do Souto",503
+50304,Barco,503
+50305,Boidobra,503
+50306,Casegas,503
+50307,"C Conceição",503
+50308,"Cortes do Meio",503
+50309,Dominguizo,503
+50310,Erada,503
+50311,Ferro,503
+50312,Orjais,503
+50313,Ourondo,503
+50314,Paul,503
+50315,Peraboa,503
+50316,Peso,503
+50317,"C Sta Maria",503
+50318,"São Jorge da Beira",503
+50319,"C S Martinho",503
+50320,"C S Pedro",503
+50321,Sarzedo,503
+50322,"Sobral de São Miguel",503
+50323,Teixoso,503
+50324,Tortozendo,503
+50325,"Unhais da Serra",503
+50326,"Vale Formoso",503
+50327,Verdelhos,503
+50328,"Vales do Rio",503
+50329,Coutada,503
+50330,Cantar-Galo,503
+50331,Canhoso,503
+50401,Alcaide,504
+50402,Alcaria,504
+50403,Alcongosta,504
+50404,"Aldeia de Joanes",504
+50405,"Aldeia Nova do Cabo",504
+50406,Alpedrinha,504
+50407,"Atalaia do Campo",504
+50408,Barroca,504
+50409,"Bogas de Baixo",504
+50410,"Bogas de Cima",504
+50411,Capinha,504
+50412,Castelejo,504
+50413,"Castelo Novo",504
+50414,Donas,504
+50415,Escarigo,504
+50416,Fatela,504
+50417,Fundão,504
+50418,"Janeiro de Cima",504
+50419,Lavacolhos,504
+50420,Orca,504
+50421,"Pero Viseu",504
+50422,"Póvoa de Atalaia",504
+50423,Salgueiro,504
+50424,Silvares,504
+50425,Soalheira,504
+50426,"Souto da Casa",504
+50427,Telhado,504
+50428,"Vale de Prazeres",504
+50429,Valverde,504
+50430,"Mata da Rainha",504
+50431,Enxames,504
+50501,Alcafozes,505
+50502,"Aldeia de Santa Margarida",505
+50503,Idanha-a-Nova,505
+50504,Idanha-a-Velha,505
+50505,Ladoeiro,505
+50506,Medelim,505
+50507,Monfortinho,505
+50508,Monsanto,505
+50509,Oledo,505
+50510,"Penha Garcia",505
+50511,Proença-a-Velha,505
+50512,Rosmaninhal,505
+50513,"Salvaterra do Extremo",505
+50514,"São Miguel de Acha",505
+50515,Segura,505
+50516,Toulões,505
+50517,Zebreira,505
+50601,Álvaro,506
+50602,Amieira,506
+50603,Cambas,506
+50604,Estreito,506
+50605,Isna,506
+50606,Madeirã,506
+50607,Mosteiro,506
+50608,Oleiros,506
+50609,Orvalho,506
+50610,"Sarnadas de São Simão",506
+50611,Sobral,506
+50612,"Vilar Barroco",506
+50701,Águas,507
+50702,"Aldeia do Bispo",507
+50703,"Aldeia de João Pires",507
+50704,Aranhas,507
+50705,Bemposta,507
+50706,Benquerença,507
+50707,Meimão,507
+50708,Meimoa,507
+50709,"Pedrógão de São Pedro",507
+50710,Penamacor,507
+50711,Salvador,507
+50712,"Vale da Senhora da Póvoa",507
+50801,"Alvito da Beira",508
+50802,"Montes da Senhora",508
+50803,Peral,508
+50804,Proença-a-Nova,508
+50805,"São Pedro do Esteval",508
+50806,"Sobreira Formosa",508
+50901,Cabeçudo,509
+50902,Carvalhal,509
+50903,Castelo,509
+50904,"Cernache do Bonjardim",509
+50905,Cumeada,509
+50906,Ermida,509
+50907,Figueiredo,509
+50908,Marmeleiro,509
+50909,Nesperal,509
+50910,Palhais,509
+50911,"Pedrogão Pequeno",509
+50912,Sertã,509
+50913,Troviscal,509
+50914,"Várzea dos Cavaleiros",509
+51001,Fundada,510
+51002,"São João do Peso",510
+51003,"Vila de Rei",510
+51101,Fratel,511
+51102,Perais,511
+51103,"Sarnadas de Rodão",511
+51104,"Vila Velha de Rodão",511
+60101,Anceriz,601
+60102,Arganil,601
+60103,"Barril de Alva",601
+60104,Benfeita,601
+60105,Celavisa,601
+60106,Cepos,601
+60107,Cerdeira,601
+60108,Coja,601
+60109,Folques,601
+60110,"Moura da Serra",601
+60111,Piodão,601
+60112,Pomares,601
+60113,"Pombeiro da Beira",601
+60114,"São Martinho da Cortiça",601
+60115,Sarzedo,601
+60116,Secarias,601
+60117,Teixeira,601
+60118,"Vila Cova de Alva",601
+60201,Ançã,602
+60202,Bolho,602
+60203,Cadima,602
+60204,Cantanhede,602
+60205,Cordinhã,602
+60206,Covões,602
+60207,Febres,602
+60208,Murtede,602
+60209,Ourentã,602
+60210,Outil,602
+60211,Pocariça,602
+60212,Portunhos,602
+60213,Sepins,602
+60214,Tocha,602
+60215,"São Caetano",602
+60216,"Corticeiro de Cima",602
+60217,Vilamar,602
+60218,Sanguinheira,602
+60219,Camarneira,602
+60301,Almalagues,603
+60302,"C Almedina",603
+60303,Ameal,603
+60304,Antanhol,603
+60305,Antuzede,603
+60306,Arzila,603
+60307,Assafarge,603
+60308,Botão,603
+60309,Brasfemes,603
+60310,"Castelo Viegas",603
+60311,Ceira,603
+60312,Cernache,603
+60313,Eiras,603
+60314,Lamarosa,603
+60315,"Ribeira de Frades",603
+60316,"Santa Clara",603
+60317,"C Sta Cruz",603
+60318,"Santo Antonio dos Olivais",603
+60319,"C S Bartolomeu",603
+60320,"São João do Campo",603
+60321,"São Martinho de Árvore",603
+60322,"São Martinho do Bispo",603
+60323,"São Paulo de Frades",603
+60324,"São Silvestre",603
+60325,"C Sé Nova",603
+60326,Souselas,603
+60327,Taveiro,603
+60328,"Torre de Vilela",603
+60329,"Torres do Mondego",603
+60330,Trouxemil,603
+60331,"Vil de Matos",603
+60401,Anobra,604
+60402,Belide,604
+60403,"Bem da Fé",604
+60404,Condeixa-a-Nova,604
+60405,Condeixa-a-Velha,604
+60406,Ega,604
+60407,Furadouro,604
+60408,Sebal,604
+60409,"Vila Seca",604
+60410,Zambujal,604
+60501,Alhadas,605
+60502,Alqueidão,605
+60503,Brenha,605
+60504,Buarcos,605
+60505,Ferreira-a-Nova,605
+60506,Lavos,605
+60507,Maiorca,605
+60508,"Marinha das Ondas",605
+60509,Paião,605
+60510,Quiaios,605
+60511,"São Julião da Figueira da Foz",605
+60512,Tavarede,605
+60513,"Vila Verde",605
+60514,"São Pedro",605
+60515,"Bom Sucesso",605
+60516,Santana,605
+60517,"Borda do Campo",605
+60518,"Moinhos da Gândara",605
+60601,Alvares,606
+60602,Cadafaz,606
+60603,Colmeal,606
+60604,Gois,606
+60605,"Vila Nova do Ceira",606
+60701,"Casal de Ermio",607
+60702,"Foz de Arouce",607
+60703,Lousã,607
+60704,Serpins,607
+60705,Vilarinho,607
+60801,Mira,608
+60802,Seixo,608
+60803,Carapelhos,608
+60804,"Praia de Mira",608
+60901,Lamas,609
+60902,"Miranda do Corvo",609
+60903,"Rio Vide",609
+60904,Semide,609
+60905,"Vila Nova",609
+61001,Abrunheira,610
+61002,Arazede,610
+61003,Carapinheira,610
+61004,Gatões,610
+61005,Liceia,610
+61006,"Meãs do Campo",610
+61007,Montemor-o-Velho,610
+61008,Pereira,610
+61009,"Santo Varão",610
+61010,"Seixo de Gatões",610
+61011,Tentugal,610
+61012,Verride,610
+61013,"Vila Nova da Barca",610
+61014,Ereira,610
+61101,"Aldeia das Dez",611
+61102,"Alvoco das Várzeas",611
+61103,Avo,611
+61104,Bobadela,611
+61105,Ervedal,611
+61106,Lagares,611
+61107,"Lagos da Beira",611
+61108,Lajeosa,611
+61109,Lourosa,611
+61110,Meruge,611
+61111,"Nogueira do Cravo",611
+61112,"Oliveira do Hospital",611
+61113,"Penalva de Alva",611
+61114,"Santa Ovaia",611
+61115,"São Gião",611
+61116,"São Paio de Gramaços",611
+61117,"São Sebastião da Feira",611
+61118,"Seixo da Beira",611
+61119,"Travanca de Lagos",611
+61120,"Vila Pouca da Beira",611
+61121,"Vila Franca da Beira",611
+61201,Cabril,612
+61202,"Dornelas do Zezere",612
+61203,Fajão,612
+61204,"Janeiro de Baixo",612
+61205,Machio,612
+61206,"Pampilhosa da Serra",612
+61207,Pessegueiro,612
+61208,"Portela do Fojo",612
+61209,Unhais-o-Velho,612
+61210,Vidual,612
+61301,Carvalho,613
+61302,"Figueira de Lorvão",613
+61303,Friumes,613
+61304,Lorvão,613
+61305,"Oliveira do Mondego",613
+61306,Paradela,613
+61307,Penacova,613
+61308,"São Paio de Mondego",613
+61309,"São Pedro de Alva",613
+61310,"Sazes do Lorvão",613
+61311,"Travanca do Mondego",613
+61401,Cumeeira,614
+61402,Espinhal,614
+61403,Podentes,614
+61404,Rabaçal,614
+61405,"P Sta Eufémia",614
+61406,"P S Miguel",614
+61501,Alfarelos,615
+61502,Brunhós,615
+61503,Degracias,615
+61504,"Figueiró do Campo",615
+61505,Gesteira,615
+61506,"Granja do Ulmeiro",615
+61507,Pombalinho,615
+61508,Samuel,615
+61509,Soure,615
+61510,Tapeus,615
+61511,"Vila Nova de Anços",615
+61512,"Vinha da Rainha",615
+61601,Ázere,616
+61602,Candosa,616
+61603,Carapinha,616
+61604,Covas,616
+61605,Covelo,616
+61606,Espariz,616
+61607,"Meda de Mouros",616
+61608,Midões,616
+61609,Mouronho,616
+61610,"Pinheiro de Coja",616
+61611,"Povoa de Midões",616
+61612,"São João da Boa Vista",616
+61613,Sinde,616
+61614,Tábua,616
+61615,"Vila Nova de Oliveirinha",616
+61701,Arrifana,617
+61702,Lavegadas,617
+61703,"Poiares (Sto André)",617
+61704,"São Miguel de Poiares",617
+70101,"A N Sra da Conceição",701
+70102,"Juromenha (N Sra do Loreto)",701
+70103,"Santiago Maior",701
+70104,"Capelins (Sto António)",701
+70105,"Terena (S Pedro)",701
+70106,"São Brás Matos (Mina Bugalho)",701
+70201,Arraiolos,702
+70202,Igrejinha,702
+70203,"Santa Justa",702
+70204,"São Gregório",702
+70205,"Gafanhoeira (S Pedro)",702
+70206,Vimieiro,702
+70207,Sabugueiro,702
+70301,"B Matriz",703
+70302,Orada,703
+70303,"Rio de Moinhos",703
+70304,"B S Bartolomeu",703
+70401,Arcos,704
+70402,Glória,704
+70403,"E Sta Maria",704
+70404,"Évora Monte (Sta Maria)",704
+70405,"Santa Vitória do Ameixial",704
+70406,"E Sto André",704
+70407,"Santo Estevão",704
+70408,"São Bento do Ameixial",704
+70409,"São Bento de Ana Loura",704
+70410,"São Bento do Cortiço",704
+70411,"São Domingos de Ana Loura",704
+70412,"São Lourenço de Mamporcão",704
+70413,Veiros,704
+70501,"N Sra da Boa Fé",705
+70502,"N Sra da Graça do Divor",705
+70503,"N Sra de Machede",705
+70504,"N Sra da Torega",705
+70505,"E Sto Antão",705
+70506,"São Bento do Mato",705
+70507,"E S Mamede",705
+70508,"São Manços",705
+70509,"São Miguel de Machede",705
+70511,"São Vicente do Pigeiro",705
+70512,"Sé e São Pedro",705
+70513,"Torre dos Coelheiros",705
+70514,"São Sebastião da Giesteira",705
+70515,Canaviais,705
+70516,"N Sra de Guadalupe",705
+70517,Malagueira,705
+70518,"Horta das Figueiras",705
+70519,"Senhora da Saúde",705
+70520,Bacelo,705
+70601,Cabrela,706
+70602,Lavre,706
+70603,"N Sra do Bispo",706
+70604,"N Sra da Vila",706
+70605,"Santiago do Escoural",706
+70606,"São Cristovão",706
+70607,Ciborro,706
+70608,"Cortiçadas de Lavre",706
+70609,Silveiras,706
+70610,"Foros de Vale de Figueira",706
+70701,Brotas,707
+70702,Cabeção,707
+70703,Mora,707
+70704,Pavia,707
+70801,Granja,708
+70802,Luz,708
+70803,Mourão,708
+70901,Alqueva,709
+70902,Amieira,709
+70903,"Monte do Trigo",709
+70904,Oriola,709
+70905,Portel,709
+70906,Santana,709
+70907,"São Bartolomeu do Outeiro",709
+70908,"Vera Cruz",709
+71001,Montoito,710
+71002,Redondo,710
+71101,Campo,711
+71102,Corval,711
+71103,Monsaraz,711
+71104,"Reguengos de Monsaraz",711
+71105,Campinho,711
+71201,"Vendas Novas",712
+71202,Landeira,712
+71301,Alcáçovas,713
+71302,"Viana do Alentejo",713
+71303,Aguiar,713
+71401,Bencatel,714
+71402,Ciladas,714
+71403,"VV Conceição",714
+71404,Pardais,714
+71405,"VV S Bartolomeu",714
+80101,Albufeira,801
+80102,Guia,801
+80103,Paderne,801
+80104,"Olhos de Água",801
+80105,Ferreiras,801
+80201,Alcoutim,802
+80202,Giões,802
+80203,"Martim Longo",802
+80204,Pereiro,802
+80205,Vaqueiros,802
+80301,Aljezur,803
+80302,Bordeira,803
+80303,Odeceixe,803
+80304,Rogil,803
+80401,Azinhal,804
+80402,"Castro Marim",804
+80403,Odeleite,804
+80404,Altura,804
+80501,Conceição,805
+80502,Estoi,805
+80503,"Santa Barbara de Nexe",805
+80504,"F S Pedro",805
+80505,"F Sé",805
+80506,Montenegro,805
+80601,Estombar,806
+80602,Ferragudo,806
+80603,Lagoa,806
+80604,Porches,806
+80605,Carvoeiro,806
+80606,Parchal,806
+80701,"Barão de São João",807
+80702,Bensafrim,807
+80703,Luz,807
+80704,Odiáxere,807
+80705,"L Sta Maria",807
+80706,"L S Sebastião",807
+80801,Almansil,808
+80802,Alte,808
+80803,Ameixial,808
+80804,Boliqueime,808
+80805,Quarteira,808
+80806,Querença,808
+80807,Salir,808
+80808,"L S Clemente",808
+80809,"L S Sebastião",808
+80810,Benafim,808
+80811,Tôr,808
+80901,Alferce,809
+80902,Marmelete,809
+80903,Monchique,809
+81001,Fuseta,810
+81002,Moncarapacho,810
+81003,Olhão,810
+81004,Pechão,810
+81005,Quelfes,810
+81101,Alvor,811
+81102,"Mexilhoeira Grande",811
+81103,Portimão,811
+81201,"São Brás de Alportel",812
+81301,Alcantarilha,813
+81302,Algoz,813
+81303,"Armação de Pera",813
+81304,Pera,813
+81305,"São Bartolomeu de Messines",813
+81306,"São Marcos da Serra",813
+81307,Silves,813
+81308,Tunes,813
+81401,Cachopo,814
+81402,Conceição,814
+81403,Luz,814
+81404,"Santa Catarina Fonte do Bispo",814
+81405,"T Sta Maria",814
+81406,"T Santiago",814
+81407,"Santo Estevão",814
+81408,"Santa Luzia",814
+81409,"Cabanas de Tavira",814
+81501,"Barão de São Miguel",815
+81502,Budens,815
+81503,Raposeira,815
+81504,Sagres,815
+81505,"Vila do Bispo",815
+81601,"Vila Nova de Cacela",816
+81602,"Vila Real de Santo Antonio",816
+81603,"Monte Gordo",816
+90101,"Aguiar da Beira",901
+90102,Carapito,901
+90103,Cortiçada,901
+90104,Coruche,901
+90105,Dornelas,901
+90106,Eirado,901
+90107,Forninhos,901
+90108,Gradiz,901
+90109,"Pena Verde",901
+90110,Pinheiro,901
+90111,Sequeiros,901
+90112,"Souto de Aguiar da Beira",901
+90113,Valverde,901
+90201,Ade,902
+90202,"Aldeia Nova",902
+90203,Almeida,902
+90204,Amoreira,902
+90205,Azinhal,902
+90206,Cabreira,902
+90207,"Castelo Bom",902
+90208,"Castelo Mendo",902
+90209,Freineda,902
+90210,Freixo,902
+90211,Junça,902
+90212,Leomil,902
+90213,"Malhada Sorda",902
+90214,Malpartida,902
+90215,Mesquitela,902
+90216,Mido,902
+90217,Miuzela,902
+90218,"Monte Perobolço",902
+90219,"Nave de Haver",902
+90220,Naves,902
+90221,Parada,902
+90222,Peva,902
+90223,"Porto de Ovelha",902
+90224,"São Pedro de Rio Seco",902
+90225,Senouras,902
+90226,"Vale de Coelha",902
+90227,"Vale da Mula",902
+90228,"Vale Verde",902
+90229,"Vilar Formoso",902
+90301,Açores,903
+90302,Baraçal,903
+90303,Cadafaz,903
+90304,Carrapichana,903
+90305,"Cortiço da Serra",903
+90306,"Forno Telheiro",903
+90307,"Lajeosa do Mondego",903
+90308,Linhares,903
+90309,"Maçal do Chão",903
+90310,Mesquitela,903
+90311,Minhocal,903
+90312,Prados,903
+90313,Rapa,903
+90314,Ratoeira,903
+90315,Salgueirais,903
+90316,"Celorico (Sta Maria)",903
+90317,"Celorico (S Pedro)",903
+90318,"Vale de Azares",903
+90319,Velosa,903
+90320,"Vide Entre Vinhas",903
+90321,"Vila Boa do Mondego",903
+90322,"Casas do Soeiro",903
+90401,Algodres,904
+90402,Almofala,904
+90403,"Castelo Rodrigo",904
+90404,"Cinco Vilas",904
+90405,Colmeal,904
+90406,Escalhão,904
+90407,Escarigo,904
+90408,"Figueira de Castelo Rodrigo",904
+90409,"Freixeda do Torrão",904
+90410,"Mata de Lobos",904
+90411,"Penha de Águia",904
+90412,"Quinta de Pero Martins",904
+90413,Reigada,904
+90414,"Vale de Afonsinho",904
+90415,Vermiosa,904
+90416,"Vilar de Amargo",904
+90417,"Vilar Torpim",904
+90501,Algodres,905
+90502,"Casal Vasco",905
+90503,Cortiço,905
+90504,"Figueiró da Granja",905
+90505,"Fornos de Algodres",905
+90506,Fuinhas,905
+90507,Infias,905
+90508,Juncais,905
+90509,Maceira,905
+90510,Matança,905
+90511,Muxagata,905
+90512,Queiriz,905
+90513,"Sobral Pichorro",905
+90514,"Vila Chã",905
+90515,"Vila Ruiva",905
+90516,"Vila Soeiro do Chão",905
+90601,Aldeias,906
+90602,Arcozelo,906
+90603,Cativelos,906
+90604,"Figueiro da Serra",906
+90605,Folgosinho,906
+90606,"Freixo da Serra",906
+90607,Lagarinhos,906
+90608,"Mangualde da Serra",906
+90609,Melo,906
+90610,"Moimenta da Serra",906
+90611,Nabais,906
+90612,Nespereira,906
+90613,"Paços da Serra",906
+90614,Ribamondego,906
+90615,"Rio Torto",906
+90616,"G S Julião",906
+90617,"São Paio",906
+90618,"G S Pedro",906
+90619,"Vila Cortes da Serra",906
+90620,"Vila Franca da Serra",906
+90621,"Vila Nova de Tazém",906
+90622,Vinhó,906
+90701,Adão,907
+90702,Albardo,907
+90703,"Aldeia do Bispo",907
+90704,"Aldeia Viçosa",907
+90705,Alvendre,907
+90706,Arrifana,907
+90707,"Avelãs de Ambom",907
+90708,"Avelãs da Ribeira",907
+90709,Benespera,907
+90710,"Carvalhal Meão",907
+90711,"Casal de Cinza",907
+90712,Castanheira,907
+90713,Cavadoude,907
+90714,Codesseiro,907
+90715,Corujeira,907
+90716,Faia,907
+90717,Famalicão,907
+90718,"Fernão Joanes",907
+90719,Gagos,907
+90720,Gonçalo,907
+90721,"Gonçalo Bocas",907
+90722,"João Antão",907
+90723,"Maçainhas de Baixo",907
+90724,Marmeleiro,907
+90725,Meios,907
+90726,Mizarela,907
+90727,"Monte Margarida",907
+90728,"Panoias de Cima",907
+90729,Pega,907
+90730,"Pera do Moço",907
+90731,"Pero Soares",907
+90732,"Porto da Carne",907
+90733,Pousada,907
+90734,Ramela,907
+90735,"Ribeira dos Carinhos",907
+90736,Rocamondo,907
+90737,Rochoso,907
+90738,"Santana da Azinha",907
+90739,"Jarmelo (S Miguel)",907
+90740,"Jarmelo (S Pedro)",907
+90741,"G S Vicente",907
+90742,"G Sé",907
+90743,"Seixo Amarelo",907
+90744,"Sobral da Serra",907
+90745,Trinta,907
+90746,"Vale de Estrela",907
+90747,Valhelhas,907
+90748,Vela,907
+90749,Videmonte,907
+90750,"Vila Cortes do Mondego",907
+90751,"Vila Fernando",907
+90752,"Vila Franca do Deão",907
+90753,"Vila Garcia",907
+90754,"Vila Soeiro",907
+90755,"São Miguel da Guarda",907
+90756,"Vale de Amoreira",907
+90801,Sameiro,908
+90802,"M Sta Maria",908
+90803,"M S Pedro",908
+90901,Aveloso,909
+90902,Barreira,909
+90903,Carvalhal,909
+90904,Casteição,909
+90905,Coriscada,909
+90906,"Fonte Longa",909
+90907,Longroiva,909
+90908,Marialva,909
+90909,Meda,909
+90910,"Outeiro de Gatos",909
+90911,"Pai Penela",909
+90912,"Poço do Canto",909
+90913,Prova,909
+90914,Rabaçal,909
+90915,Ranhados,909
+90916,"Vale Flor",909
+91001,"Alverca da Beira",910
+91002,Atalaia,910
+91003,Azevo,910
+91004,Bogalhal,910
+91005,"Bouça Cova",910
+91006,Cerejo,910
+91007,Cidadelhe,910
+91008,"Ervas Tenras",910
+91009,Ervedosa,910
+91010,Freixedas,910
+91011,Gouveia,910
+91012,Lamegal,910
+91013,Lameiras,910
+91014,Manigoto,910
+91015,Pala,910
+91016,Pereiro,910
+91017,Pinhel,910
+91018,Pínzio,910
+91019,Pomares,910
+91020,"Povoa de El-Rei",910
+91021,Safurdão,910
+91022,"Santa Eufémia",910
+91023,Sorval,910
+91024,"Souro Pires",910
+91025,Valbom,910
+91026,"Vale de Madeira",910
+91027,Vascoveiro,910
+91101,"Águas Belas",911
+91102,"Aldeia do Bispo",911
+91103,"Aldeia da Ponte",911
+91104,"Aldeia da Ribeira",911
+91105,"Aldeia de Santo António",911
+91106,"Aldeia Velha",911
+91107,Alfaiates,911
+91108,Badamalos,911
+91109,Baraçal,911
+91110,Bendada,911
+91111,Bismula,911
+91112,Casteleiro,911
+91113,Cerdeira,911
+91114,Foios,911
+91115,Forcalhos,911
+91116,Lajeosa,911
+91117,Lomba,911
+91118,Malcata,911
+91119,Moita,911
+91120,Nave,911
+91121,"Pena Lobo",911
+91122,"Pousafoles do Bispo",911
+91123,Quadrazais,911
+91124,"Quintas de São Bartolomeu",911
+91125,"Rapoula do Coa",911
+91126,Rebolosa,911
+91127,Rendo,911
+91128,Ruivos,911
+91129,Ruvina,911
+91130,Sabugal,911
+91131,"Santo Estevão",911
+91132,"Seixo do Coa",911
+91133,Sortelha,911
+91134,Souto,911
+91135,"Vale das Eguas",911
+91136,"Vale de Espinho",911
+91137,"Vale Longo",911
+91138,"Vila Boa",911
+91139,"Vila do Touro",911
+91140,"Vilar Maior",911
+91201,"Alvoco da Serra",912
+91202,Cabeça,912
+91203,Carragozela,912
+91204,Folhadosa,912
+91205,Girabolhos,912
+91206,Lajes,912
+91207,Loriga,912
+91208,Paranhos,912
+91209,Pinhanços,912
+91210,Sabugueiro,912
+91211,Sameice,912
+91212,Sandomil,912
+91213,"Santa Comba",912
+91214,"Santa Eulália",912
+91215,"Santa Marinha",912
+91216,Santiago,912
+91217,"São Martinho",912
+91218,"São Romão",912
+91219,"Sazes da Beira",912
+91220,Seia,912
+91221,Teixeira,912
+91222,Torrozelo,912
+91223,Tourais,912
+91224,Travancinha,912
+91225,Valezim,912
+91226,"Varzea de Meruge",912
+91227,Vide,912
+91228,"Vila Cova a Coelheira",912
+91229,"Lapa dos Dinheiros",912
+91301,"Aldeia Nova",913
+91302,Carnicães,913
+91303,Castanheira,913
+91304,Cogula,913
+91305,Cótimos,913
+91306,Feital,913
+91307,Fiães,913
+91308,Freches,913
+91309,Granja,913
+91310,Guilheiro,913
+91311,Moimentinha,913
+91312,"Moreira de Rei",913
+91313,Palhais,913
+91314,"Póvoa do Concelho",913
+91315,Reboleiro,913
+91316,"Rio de Mel",913
+91317,"T Sta Maria",913
+91318,"T S Pedro",913
+91319,"Sebadelhe da Serra",913
+91320,"Souto Maior",913
+91321,Tamanhos,913
+91322,Terrenho,913
+91323,"Torre do Terrenho",913
+91324,Torres,913
+91325,Valdujo,913
+91326,"Vale do Seixo",913
+91327,"Vila Franca das Naves",913
+91328,"Vila Garcia",913
+91329,Vilares,913
+91401,Almendra,914
+91402,"Castelo Melhor",914
+91403,Cedovim,914
+91404,Chãs,914
+91405,Custóias,914
+91406,"Freixo de Numão",914
+91407,Horta,914
+91408,Mós,914
+91409,Murça,914
+91410,Muxagata,914
+91411,Numão,914
+91412,"Santa Comba",914
+91413,"Santo Amaro",914
+91414,Sebadelhe,914
+91415,Seixas,914
+91416,Touça,914
+91417,"Vila Nova de Foz Coa",914
+100101,Alcobaça,1001
+100102,Alfeizerão,1001
+100103,Alpedriz,1001
+100104,Bárrio,1001
+100105,Benedita,1001
+100106,Cela,1001
+100107,Coz,1001
+100108,"Évora de Alcobaça",1001
+100109,Maiorga,1001
+100110,Pataias,1001
+100111,"Aljubarrota (Prazeres)",1001
+100112,"São Martinho do Porto",1001
+100113,"Aljubarrota (S Vicente)",1001
+100114,Turquel,1001
+100115,Vestiaria,1001
+100116,Vimeiro,1001
+100117,Moita,1001
+100118,Martingança,1001
+100119,Montes,1001
+100201,Almoster,1002
+100202,Alvaiázere,1002
+100203,"Maçãs de Caminho",1002
+100204,"Maçãs de Dona Maria",1002
+100205,Pelmá,1002
+100206,Pussos,1002
+100207,"Rego da Murta",1002
+100301,Alvorge,1003
+100302,Ansião,1003
+100303,Avelar,1003
+100304,"Chão de Couce",1003
+100305,Lagarteira,1003
+100306,Pousaflores,1003
+100307,"Santiago da Guarda",1003
+100308,"Torre de Vale de Todos",1003
+100401,Batalha,1004
+100402,"Reguengo do Fetal",1004
+100403,"São Mamede",1004
+100404,Golpilheira,1004
+100501,Bombarral,1005
+100502,Carvalhal,1005
+100503,Roliça,1005
+100504,"Vale Covo",1005
+100505,Pó,1005
+100601,"A dos Francos",1006
+100602,Alvorninha,1006
+100603,"CR N Sra do Pópulo",1006
+100604,"Carvalhal Benfeito",1006
+100605,Coto,1006
+100606,"Foz do Arelho",1006
+100607,Landal,1006
+100608,Nadadouro,1006
+100609,"Salir de Matos",1006
+100610,"Salir do Porto",1006
+100611,"Santa Catarina",1006
+100612,"São Gregório",1006
+100613,"Serra do Bouro",1006
+100614,Tornada,1006
+100615,Vidais,1006
+100616,"CR Sto Onofre",1006
+100701,"Castanheira de Pera",1007
+100702,Coentral,1007
+100801,Aguda,1008
+100802,Arega,1008
+100803,Campelo,1008
+100804,"Figueiró dos Vinhos",1008
+100805,Bairradas,1008
+100901,Amor,1009
+100902,Arrabal,1009
+100903,Azoia,1009
+100904,Barosa,1009
+100905,Barreira,1009
+100906,"Boa Vista",1009
+100907,Caranguejeira,1009
+100908,Carvide,1009
+100909,Coimbrão,1009
+100910,Colmeias,1009
+100911,Cortes,1009
+100912,Leiria,1009
+100913,Maceira,1009
+100914,Marrazes,1009
+100915,Milagres,1009
+100916,"Monte Real",1009
+100917,"Monte Redondo",1009
+100918,Ortigosa,1009
+100919,Parceiros,1009
+100920,Pousos,1009
+100921,"Regueira de Pontes",1009
+100922,"Santa Catarina da Serra",1009
+100923,"Santa Eufémia",1009
+100924,"Souto de Carpalhosa",1009
+100925,Bajouca,1009
+100926,"Bidoeira de Cima",1009
+100927,Memória,1009
+100930,Carreira,1009
+100931,Chainça,1009
+101001,"Marinha Grande",1010
+101002,"Vieira de Leiria",1010
+101101,Famalicão,1011
+101102,Nazaré,1011
+101103,"Valado dos Frades",1011
+101201,"A dos Negros",1012
+101202,Amoreira,1012
+101203,"Olho Marinho",1012
+101204,"O Sta Maria",1012
+101205,"O S Pedro",1012
+101206,"Sobral da Lagoa",1012
+101207,Vau,1012
+101208,Gaeiras,1012
+101209,Usseira,1012
+101301,Graça,1013
+101302,"Pedrogão Grande",1013
+101303,"Vila Facaia",1013
+101401,"P Ajuda",1014
+101402,"Atouguia da Baleia",1014
+101403,"P Conceição",1014
+101404,"P S Pedro",1014
+101405,"Serra d¿El-Rei",1014
+101406,Ferrel,1014
+101501,Abiul,1015
+101502,"Albergaria dos Doze",1015
+101503,Almagreira,1015
+101504,Carnide,1015
+101505,Carriço,1015
+101506,Louriçal,1015
+101507,"Mata Mourisca",1015
+101508,Pelariga,1015
+101509,Pombal,1015
+101510,Redinha,1015
+101511,"Santiago de Litém",1015
+101512,"São Simão de Litém",1015
+101513,Vermoil,1015
+101514,"Vila Cã",1015
+101515,Meirinhas,1015
+101516,Guia,1015
+101517,Ilha,1015
+101601,Alcaria,1016
+101602,"Alqueidão da Serra",1016
+101603,Alvados,1016
+101604,Arrimal,1016
+101605,"Calvaria de Cima",1016
+101606,Juncal,1016
+101607,Mendiga,1016
+101608,"Mira de Aire",1016
+101609,Pedreiras,1016
+101610,"São Bento",1016
+101611,"PM S João Baptista",1016
+101612,"PM S Pedro",1016
+101613,"Serro Ventoso",1016
+110101,Abrigada,1101
+110102,"Aldeia Galega da Merceana",1101
+110103,"Aldeia Gavinha",1101
+110104,"Cabanas de Torres",1101
+110105,Cadafais,1101
+110106,Carnota,1101
+110107,Meca,1101
+110108,Olhalvo,1101
+110109,Ota,1101
+110110,"Pereiro de Palhacana",1101
+110111,"A Sto Estevão",1101
+110112,"A Triana",1101
+110113,Ventosa,1101
+110114,"Vila Verde dos Francos",1101
+110115,Carregado,1101
+110116,Ribafria,1101
+110201,Arranhó,1102
+110202,"Arruda dos Vinhos",1102
+110203,Cardosas,1102
+110204,"Santiago dos Velhos",1102
+110301,Alcoentre,1103
+110302,"Aveiras de Baixo",1103
+110303,"Aveiras de Cima",1103
+110304,Azambuja,1103
+110305,"Manique do Intendente",1103
+110306,"Vale do Paraiso",1103
+110307,"Vila Nova da Rainha",1103
+110308,"Vila Nova de São Pedro",1103
+110309,Maçussa,1103
+110401,Alguber,1104
+110402,Cadaval,1104
+110403,Cercal,1104
+110404,Figueiros,1104
+110405,Lamas,1104
+110406,Painho,1104
+110407,Peral,1104
+110408,"Pero Moniz",1104
+110409,Vermelha,1104
+110410,Vilar,1104
+110501,Alcabideche,1105
+110502,Carcavelos,1105
+110503,Cascais,1105
+110504,Estoril,1105
+110505,Parede,1105
+110506,"São Domingos de Rana",1105
+110601,Ajuda,1106
+110602,Alcantara,1106
+110603,"Alto do Pina",1106
+110604,Alvalade,1106
+110605,Ameixoeira,1106
+110606,Anjos,1106
+110607,Beato,1106
+110608,Benfica,1106
+110609,"Campo Grande",1106
+110610,Campolide,1106
+110611,Carnide,1106
+110612,Castelo,1106
+110613,Charneca,1106
+110614,"Coração de Jesus",1106
+110615,Encarnação,1106
+110616,Graça,1106
+110617,Lapa,1106
+110618,Lumiar,1106
+110619,Madalena,1106
+110620,Mártires,1106
+110621,Marvila,1106
+110622,Merces,1106
+110623,"N Sra de Fátima",1106
+110624,Pena,1106
+110625,"Penha de França",1106
+110626,Prazeres,1106
+110627,Sacramento,1106
+110628,"Santa Catarina",1106
+110629,"Santa Engrácia",1106
+110630,"Santa Isabel",1106
+110631,"Santa Justa",1106
+110632,"Santa Maria de Belém",1106
+110633,"Santa Maria dos Olivais",1106
+110634,Santiago,1106
+110635,"Santo Condestável",1106
+110636,"Santo Estevão",1106
+110637,Santos-o-Velho,1106
+110638,"São Cristovão e São Lourenço",1106
+110639,"São Domingos de Benfica",1106
+110640,"São Francisco Xavier",1106
+110641,"São João",1106
+110642,"São João de Brito",1106
+110643,"São João de Deus",1106
+110644,"São Jorge de Arroios",1106
+110645,"São José",1106
+110646,"São Mamede",1106
+110647,"São Miguel",1106
+110648,"São Nicolau",1106
+110649,"São Paulo",1106
+110650,"São Sebastião da Pedreira",1106
+110651,"São Vicente de Fora",1106
+110652,Sé,1106
+110653,Socorro,1106
+110701,Apelação,1107
+110702,Bucelas,1107
+110703,Camarate,1107
+110705,Fanhões,1107
+110706,Frielas,1107
+110707,Loures,1107
+110708,Lousa,1107
+110709,Moscavide,1107
+110712,Sacavém,1107
+110713,"Santa Iria de Azoia",1107
+110714,"Santo Antão do Tojal",1107
+110715,"São João da Talha",1107
+110716,"São Julião do Tojal",1107
+110717,Unhos,1107
+110719,Portela,1107
+110722,Bobadela,1107
+110723,"Prior Velho",1107
+110724,"Santo António dos Cavaleiros",1107
+110801,Lourinhã,1108
+110802,Miragaia,1108
+110803,"Moita dos Ferreiros",1108
+110804,Moledo,1108
+110805,"Reguengo Grande",1108
+110806,"Santa Bárbara",1108
+110807,"São Bartolomeu dos Galegos",1108
+110808,Vimeiro,1108
+110809,Marteleira,1108
+110810,Ribamar,1108
+110811,Atalaia,1108
+110901,Azueira,1109
+110902,Carvoeira,1109
+110903,Cheleiros,1109
+110904,Encarnação,1109
+110905,"Enxara do Bispo",1109
+110906,Ericeira,1109
+110907,Gradil,1109
+110908,"Igreja Nova",1109
+110909,Mafra,1109
+110910,Malveira,1109
+110911,Milharado,1109
+110912,"Santo Estevão das Galés",1109
+110913,"Santo Isidoro",1109
+110914,"Sobral da Abelheira",1109
+110915,"Vila Franca do Rosário",1109
+110916,"Venda do Pinheiro",1109
+110917,"São Miguel de Alcainça",1109
+111002,Barcarena,1110
+111003,Carnaxide,1110
+111004,"Oeiras e São Julião da Barra",1110
+111005,"Paço de Arcos",1110
+111006,Algés,1110
+111007,"Cruz Quebrada-Dafundo",1110
+111008,Linda-a-Velha,1110
+111009,"Porto Salvo",1110
+111010,Queijas,1110
+111101,Agualva-Cacem,1111
+111102,"Algueirão-Mem Martins",1111
+111103,"Almargem do Bispo",1111
+111104,Belas,1111
+111105,Colares,1111
+111106,Montelavar,1111
+111107,Queluz,1111
+111108,"Rio de Mouro",1111
+111109,"S Sta Maria e S Miguel",1111
+111110,"São João das Lampas",1111
+111111,"S S Martinho",1111
+111112,"S S Pedro de Penaferrim",1111
+111113,Terrugem,1111
+111114,"Pero Pinheiro",1111
+111115,"Casal de Cambra",1111
+111116,Massamá,1111
+111117,"Monte Abraão",1111
+111201,"Santo Quintino",1112
+111202,Sapataria,1112
+111203,"Sobral de Monte Agraço",1112
+111301,"A dos Cunhados",1113
+111302,Campelos,1113
+111303,Carmões,1113
+111304,Carvoeira,1113
+111305,"Dois Portos",1113
+111306,Freiria,1113
+111307,Matacães,1113
+111308,Maxial,1113
+111309,"Monte Redondo",1113
+111310,"Ponte do Rol",1113
+111311,Ramalhal,1113
+111312,Runa,1113
+111313,"TV Sta Maria Castelo S Miguel",1113
+111314,"São Pedro da Cadeira",1113
+111315,"TV S Pedro e S Tiago",1113
+111316,Silveira,1113
+111317,Turcifal,1113
+111318,Ventosa,1113
+111319,"Outeiro da Cabeça",1113
+111320,Maceira,1113
+111401,Alhandra,1114
+111402,"Alverca do Ribatejo",1114
+111403,Cachoeiras,1114
+111404,Calhandriz,1114
+111405,"Castanheira do Ribatejo",1114
+111406,"Póvoa de Santa Iria",1114
+111407,"São João dos Montes",1114
+111408,Vialonga,1114
+111409,"Vila Franca de Xira",1114
+111410,Sobralinho,1114
+111411,"Forte da Casa",1114
+111501,Alfragide,1115
+111502,Brandoa,1115
+111503,Buraca,1115
+111504,Damaia,1115
+111505,Falagueira,1115
+111506,Mina,1115
+111507,Reboleira,1115
+111508,Venteira,1115
+111509,Alfornelos,1115
+111510,"Venda Nova",1115
+111511,"São Brás",1115
+111601,Caneças,1116
+111602,Famões,1116
+111603,Odivelas,1116
+111604,"Olival de Basto",1116
+111605,Pontinha,1116
+111606,"Póvoa de Santo Adrião",1116
+111607,Ramada,1116
+120101,"Alter do Chão",1201
+120102,Chancelaria,1201
+120103,Seda,1201
+120104,Cunheira,1201
+120201,Assunção,1202
+120202,Esperança,1202
+120203,Mosteiros,1202
+120301,Alcorrego,1203
+120302,"Aldeia Velha",1203
+120303,Avis,1203
+120304,Benavila,1203
+120305,Ervedal,1203
+120306,"Figueira e Barros",1203
+120307,Maranhão,1203
+120308,Valongo,1203
+120401,"N Sra da Expectação",1204
+120402,"N Sra da Graça dos Degolados",1204
+120403,"São João Baptista",1204
+120501,"N Sra da Graça Póvoa e Meadas",1205
+120502,"Santa Maria da Devesa",1205
+120503,"Santiago Maior",1205
+120504,"São João Baptista",1205
+120601,"Aldeia da Mata",1206
+120602,"Crato e Mártires",1206
+120603,"Flor da Rosa",1206
+120604,Gafete,1206
+120605,"Monte da Pedra",1206
+120606,"Vale do Peso",1206
+120701,"Ajuda Salvador e Sto Ildefonso",1207
+120702,Alcaçova,1207
+120703,Assunção,1207
+120704,Barbacena,1207
+120705,"Caia e São Pedro",1207
+120706,"Santa Eulália",1207
+120707,"São Brás e São Lourenço",1207
+120708,"São Vicente e Ventosa",1207
+120709,Terrugem,1207
+120710,"Vila Boim",1207
+120711,"Vila Fernando",1207
+120801,"Cabeço de Vide",1208
+120802,Fronteira,1208
+120803,"São Saturnino",1208
+120901,Atalaia,1209
+120902,Belver,1209
+120903,Comenda,1209
+120904,Gavião,1209
+120905,Margem,1209
+121001,Beirã,1210
+121002,"Santa Maria de Marvão",1210
+121003,"Santo António das Areias",1210
+121004,"São Salvador da Aramenha",1210
+121101,Assumar,1211
+121102,Monforte,1211
+121103,"Santo Aleixo",1211
+121104,Vaiamonte,1211
+121201,Alpalhão,1212
+121202,"Amieira do Tejo",1212
+121203,Arez,1212
+121204,"Espirito Santo",1212
+121205,Montalvão,1212
+121206,"N Sra da Graça",1212
+121207,Santana,1212
+121208,"São Matias",1212
+121209,"São Simão",1212
+121210,Tolosa,1212
+121301,Galveias,1213
+121302,Montargil,1213
+121303,"Ponte de Sor",1213
+121304,"Foros de Arrão",1213
+121305,Longomel,1213
+121306,"Vale de Açor",1213
+121307,Tramaga,1213
+121401,Alagoa,1214
+121402,Alegrete,1214
+121403,Carreiras,1214
+121404,Fortios,1214
+121405,Reguengo,1214
+121406,"Ribeira de Nisa",1214
+121407,"São Julião",1214
+121408,"São Lourenço",1214
+121409,Sé,1214
+121410,Urra,1214
+121501,Cano,1215
+121502,"Casa Branca",1215
+121503,"Santo Amaro",1215
+121504,Sousel,1215
+130101,Aboadela,1301
+130102,Aboim,1301
+130103,Ansiães,1301
+130104,Ataíde,1301
+130105,Bustelo,1301
+130106,Canadelo,1301
+130107,Candemil,1301
+130108,Carneiro,1301
+130109,"Carvalho do Rei",1301
+130110,Cepelos,1301
+130111,Chapa,1301
+130112,Fregim,1301
+130113,"Freixo de Baixo",1301
+130114,"Freixo de Cima",1301
+130115,Fridão,1301
+130116,Gatão,1301
+130117,Gondar,1301
+130118,Jazente,1301
+130119,Lomba,1301
+130120,Louredo,1301
+130121,Lufrei,1301
+130122,Madalena,1301
+130123,Mancelos,1301
+130124,Oliveira,1301
+130125,Olo,1301
+130126,Padronelo,1301
+130127,Real,1301
+130128,Rebordelo,1301
+130129,"Salvador do Monte",1301
+130130,Sanche,1301
+130131,"Figueiró (Sta Cristina)",1301
+130132,"Figueiró (Santiago)",1301
+130133,"A S Gonçalo",1301
+130134,"Gouveia (S Simão)",1301
+130135,Telões,1301
+130136,Travanca,1301
+130137,Várzea,1301
+130138,"Vila Caiz",1301
+130139,"Vila Chã do Marão",1301
+130140,"Vila Garcia",1301
+130201,Ancede,1302
+130202,Campelo,1302
+130203,Covelas,1302
+130204,Frende,1302
+130205,Gestaço,1302
+130206,Gove,1302
+130207,Grilo,1302
+130208,"Loivos do Monte",1302
+130209,"Loivos da Ribeira",1302
+130210,Mesquinhata,1302
+130211,Ovil,1302
+130212,Ribadouro,1302
+130213,"Santa Cruz do Douro",1302
+130214,"B Sta Leocádia",1302
+130215,"Santa Marinha do Zezere",1302
+130216,Teixeira,1302
+130217,Teixeiró,1302
+130218,Tresouras,1302
+130219,Valadares,1302
+130220,Viariz,1302
+130301,Aião,1303
+130302,Airães,1303
+130303,"Borba de Godim",1303
+130304,Caramos,1303
+130305,Friande,1303
+130306,Idães,1303
+130307,Jugueiros,1303
+130308,Lagares,1303
+130309,Lordelo,1303
+130310,"Macieira da Lixa",1303
+130311,Moure,1303
+130312,Pedreira,1303
+130313,Penacova,1303
+130314,Pinheiro,1303
+130315,"Pombeiro de Ribavizela",1303
+130316,Rande,1303
+130317,Refontoura,1303
+130318,Regilde,1303
+130319,Revinhade,1303
+130320,"Margaride (Sta Eulália)",1303
+130321,Santão,1303
+130323,"Vizela (S Jorge)",1303
+130324,Sendim,1303
+130325,Sernande,1303
+130326,Sousa,1303
+130327,Torrados,1303
+130328,Unhão,1303
+130329,Várzea,1303
+130330,Varziela,1303
+130331,"Vila Cova da Lixa",1303
+130332,"Vila Fria",1303
+130333,"Vila Verde",1303
+130401,Covelo,1304
+130402,Fanzeres,1304
+130403,"Foz do Sousa",1304
+130404,Jovim,1304
+130405,Lomba,1304
+130406,Medas,1304
+130407,Melres,1304
+130408,"Rio Tinto",1304
+130409,"G S Cosme",1304
+130410,"São Pedro da Cova",1304
+130411,Valbom,1304
+130412,"Baguim do Monte (Rio Tinto)",1304
+130501,Alvarenga,1305
+130502,Aveleda,1305
+130503,Boim,1305
+130504,"Caíde de Rei",1305
+130505,Casais,1305
+130506,Cernadelo,1305
+130507,Covas,1305
+130508,Cristelos,1305
+130509,Figueiras,1305
+130510,Lodares,1305
+130511,Lustosa,1305
+130512,Macieira,1305
+130513,Meinedo,1305
+130514,Nespereira,1305
+130515,Nevogilde,1305
+130516,Nogueira,1305
+130517,Ordem,1305
+130518,Pias,1305
+130520,"L Sta Margarida",1305
+130521,"Barrosas (Sto Estevão)",1305
+130522,"L S Miguel",1305
+130523,Silvares,1305
+130524,Sousela,1305
+130525,Torno,1305
+130526,"Vilar do Torno e Alentém",1305
+130601,"Águas Santas",1306
+130602,Barca,1306
+130603,Folgosa,1306
+130604,Gemunde,1306
+130605,Gondim,1306
+130606,Gueifães,1306
+130607,Maia,1306
+130608,Milheirós,1306
+130609,Moreira,1306
+130610,Nogueira,1306
+130611,"Avioso (Sta Maria)",1306
+130612,"Avioso (S Pedro)",1306
+130613,"São Pedro Fins",1306
+130614,"Silva Escura",1306
+130615,Vermoim,1306
+130616,"Vila Nova da Telha",1306
+130617,Pedrouços,1306
+130701,"Alpendurada e Matos",1307
+130702,Ariz,1307
+130703,Avessadas,1307
+130704,"Banho e Carvalhosa",1307
+130705,Constance,1307
+130706,Favões,1307
+130707,Folhada,1307
+130708,Fornos,1307
+130709,Freixo,1307
+130710,Magrelos,1307
+130711,Manhuncelos,1307
+130712,Maureles,1307
+130713,"Paços de Gaiolo",1307
+130714,"Paredes de Viadores",1307
+130715,"Penha Longa",1307
+130716,"Rio de Galinhas",1307
+130717,Rosem,1307
+130718,Sande,1307
+130719,"Santo Isidoro",1307
+130720,"São Lourenço do Douro",1307
+130721,"São Nicolau",1307
+130722,Soalhães,1307
+130723,Sobretamega,1307
+130724,Tabuado,1307
+130725,Torrão,1307
+130726,Toutosa,1307
+130727,Tuias,1307
+130728,"Várzea do Douro",1307
+130729,"Várzea da Ovelha e Aliviada",1307
+130730,"Vila Boa do Bispo",1307
+130731,"Vila Boa de Quires",1307
+130801,Custóias,1308
+130802,Guifões,1308
+130803,Lavra,1308
+130804,"Leça do Balio",1308
+130805,"Leça da Palmeira",1308
+130806,Matosinhos,1308
+130807,Perafita,1308
+130808,"Santa Cruz do Bispo",1308
+130809,"São Mamede de Infesta",1308
+130810,"Senhora da Hora",1308
+130901,Arreigada,1309
+130902,Carvalhosa,1309
+130903,Codessos,1309
+130904,Eiriz,1309
+130905,Ferreira,1309
+130906,Figueiró,1309
+130907,Frazão,1309
+130908,Freamunde,1309
+130909,Lamoso,1309
+130910,Meixomil,1309
+130911,Modelos,1309
+130912,"Paços de Ferreira",1309
+130913,Penamaior,1309
+130914,Raimonda,1309
+130915,"Sanfins de Ferreira",1309
+130916,Seroa,1309
+131001,"Aguiar de Sousa",1310
+131002,Astromil,1310
+131003,Baltar,1310
+131004,Beire,1310
+131005,Besteiros,1310
+131006,Bitarães,1310
+131007,"Castelões de Cepeda",1310
+131008,Cete,1310
+131009,Cristelo,1310
+131010,"Duas Igrejas",1310
+131011,Gandra,1310
+131012,Gondalães,1310
+131013,Lordelo,1310
+131014,Louredo,1310
+131015,Madalena,1310
+131016,Mouriz,1310
+131017,"Parada de Todeia",1310
+131018,Rebordosa,1310
+131019,Recarei,1310
+131020,Sobreira,1310
+131021,Sobrosa,1310
+131022,Vandoma,1310
+131023,"Vila Cova de Carros",1310
+131024,Vilela,1310
+131101,Abragão,1311
+131102,Boelhe,1311
+131103,Bustelo,1311
+131104,"Cabeça Santa",1311
+131105,Canelas,1311
+131106,Capela,1311
+131107,Castelões,1311
+131108,Croca,1311
+131109,"Duas Igrejas",1311
+131110,Eja,1311
+131111,Figueira,1311
+131112,"Fonte Arcada",1311
+131113,Galegos,1311
+131114,Guilhufe,1311
+131115,Irivo,1311
+131116,Lagares,1311
+131117,Luzim,1311
+131118,Marecos,1311
+131119,Milhundos,1311
+131120,Novelas,1311
+131121,Oldrões,1311
+131122,"Paço de Sousa",1311
+131123,Paredes,1311
+131124,Penafiel,1311
+131125,Perozelo,1311
+131126,Pinheiro,1311
+131127,Portela,1311
+131128,Rans,1311
+131129,"Rio de Moinhos",1311
+131130,"Santa Marta",1311
+131131,"Santiago de Subarrifana",1311
+131132,"Recezinhos (S Mamede)",1311
+131133,"Recezinhos (S Martinho)",1311
+131134,Sebolido,1311
+131135,Urro,1311
+131136,Valpedre,1311
+131137,"Vila Cova",1311
+131138,"Rio Mau",1311
+131201,Aldoar,1312
+131202,Bonfim,1312
+131203,Campanhã,1312
+131204,Cedofeita,1312
+131205,"Foz do Douro",1312
+131206,"Lordelo do Ouro",1312
+131207,Massarelos,1312
+131208,Miragaia,1312
+131209,Nevogilde,1312
+131210,Paranhos,1312
+131211,Ramalde,1312
+131212,"Santo Ildefonso",1312
+131213,"São Nicolau",1312
+131214,Sé,1312
+131215,Vitória,1312
+131301,"A Ver o Mar",1313
+131302,Aguçadoura,1313
+131303,Amorim,1313
+131304,Argivai,1313
+131305,Balazar,1313
+131306,Beiriz,1313
+131307,Estela,1313
+131308,Laundos,1313
+131309,Navais,1313
+131310,"Póvoa de Varzim",1313
+131311,Rates,1313
+131312,Terroso,1313
+131401,Agrela,1314
+131402,"Água Longa",1314
+131404,Areias,1314
+131405,Aves,1314
+131406,Burgães,1314
+131407,Carreira,1314
+131410,Guimarei,1314
+131411,Lama,1314
+131412,Lamelas,1314
+131413,"Monte Cordova",1314
+131415,Palmeira,1314
+131416,Rebordões,1314
+131417,"Refojos de Riba de Ave",1314
+131418,Reguenga,1314
+131419,Roriz,1314
+131420,"Couto (Sta Cristina)",1314
+131422,"Santo Tirso",1314
+131424,"Negrelos (S Mamede)",1314
+131426,"Campo (S Martinho)",1314
+131427,"Couto (S Miguel)",1314
+131429,"São Salvador do Campo",1314
+131430,"Negrelos (S Tomé)",1314
+131431,Sequeiró,1314
+131432,Vilarinho,1314
+131501,Alfena,1315
+131502,Campo,1315
+131503,Ermesinde,1315
+131504,Sobrado,1315
+131505,Valongo,1315
+131601,Arcos,1316
+131602,Árvore,1316
+131603,Aveleda,1316
+131604,Azurara,1316
+131605,Bagunte,1316
+131606,Canidelo,1316
+131607,Fajozes,1316
+131608,Ferreiro,1316
+131609,Fornelo,1316
+131610,Gião,1316
+131611,Guilhabreu,1316
+131612,Junqueira,1316
+131613,Labruge,1316
+131614,"Macieira da Maia",1316
+131615,Malta,1316
+131616,Mindelo,1316
+131617,Modivas,1316
+131618,Mosteiró,1316
+131619,"Outeiro Maior",1316
+131620,Parada,1316
+131621,Retorta,1316
+131622,"Rio Mau",1316
+131623,Tougues,1316
+131624,Touguinha,1316
+131625,Touguinho,1316
+131626,Vairão,1316
+131627,"Vila Chã",1316
+131628,"Vila do Conde",1316
+131629,Vilar,1316
+131630,"Vilar do Pinheiro",1316
+131701,Arcozelo,1317
+131702,Avintes,1317
+131703,Canelas,1317
+131704,Canidelo,1317
+131705,Crestuma,1317
+131706,Grijó,1317
+131707,Gulpilhares,1317
+131708,Lever,1317
+131709,Madalena,1317
+131710,Mafamude,1317
+131711,Olival,1317
+131712,"Oliveira do Douro",1317
+131713,Pedroso,1317
+131714,Perozinho,1317
+131715,Sandim,1317
+131716,"VNG Sta Marinha",1317
+131717,"São Felix da Marinha",1317
+131718,"São Pedro da Afurada",1317
+131719,Seixezelo,1317
+131720,Sermonde,1317
+131721,Serzedo,1317
+131722,Valadares,1317
+131723,"Vilar de Andorinho",1317
+131724,"Vilar do Paraiso",1317
+131801,Alvarelhos,1318
+131802,"Bougado (Santiago)",1318
+131803,"Bougado (S Martinho)",1318
+131804,"Coronado (S Mamede)",1318
+131805,"Coronado (S Romão)",1318
+131806,Covelas,1318
+131807,Guidões,1318
+131808,Muro,1318
+140101,"Aldeia do Mato",1401
+140102,Alferrarede,1401
+140103,Alvega,1401
+140104,Bemposta,1401
+140105,Martinchel,1401
+140106,Mouriscas,1401
+140107,Pego,1401
+140108,"Rio de Moinhos",1401
+140109,"Rossio ao Sul do Tejo",1401
+140110,"São Facundo",1401
+140111,"A S João",1401
+140112,"São Miguel do Rio Torto",1401
+140113,"A S Vicente",1401
+140114,Souto,1401
+140115,Tramagal,1401
+140116,"Vale das Mós",1401
+140117,Concavada,1401
+140118,Fontes,1401
+140119,Carvalhal,1401
+140201,Alcanena,1402
+140202,Bugalhos,1402
+140203,Espinheiro,1402
+140204,Louriceira,1402
+140205,Malhou,1402
+140206,Minde,1402
+140207,"Moitas Venda",1402
+140208,Monsanto,1402
+140209,"Serra de Santo António",1402
+140210,"Vila Moreira",1402
+140301,Almeirim,1403
+140302,"Benfica do Ribatejo",1403
+140303,"Fazendas de Almeirim",1403
+140304,Raposa,1403
+140401,Alpiarça,1404
+140501,Benavente,1405
+140502,"Samora Correia",1405
+140503,"Santo Estevão",1405
+140504,Barrosa,1405
+140601,Cartaxo,1406
+140602,Ereira,1406
+140603,Lapa,1406
+140604,Pontével,1406
+140605,Valada,1406
+140606,"Vale da Pinta",1406
+140607,"Vila Chã de Ourique",1406
+140608,"Vale da Pedra",1406
+140701,Chamusca,1407
+140702,Chouto,1407
+140703,"Pinheiro Grande",1407
+140704,Ulme,1407
+140705,"Vale de Cavalos",1407
+140706,Parreira,1407
+140707,Carregueira,1407
+140801,Constancia,1408
+140802,Montalvo,1408
+140803,"Santa Margarida da Coutada",1408
+140901,Coruche,1409
+140902,Couço,1409
+140903,"São Jose da Lamarosa",1409
+140904,Fajarda,1409
+140905,Branca,1409
+140906,Erra,1409
+140907,Biscainho,1409
+140908,"Santana do Mato",1409
+141001,Entroncamento,1410
+141101,"Águas Belas",1411
+141102,Areias,1411
+141103,Beco,1411
+141104,Chãos,1411
+141105,Dornes,1411
+141106,"Ferreira do Zezere",1411
+141107,"Igreja Nova do Sobral",1411
+141108,"Paio Mendes",1411
+141109,Pias,1411
+141201,Azinhaga,1412
+141202,Golegã,1412
+141301,Aboboreira,1413
+141302,Amendoa,1413
+141303,Cardigos,1413
+141304,Carvoeiro,1413
+141305,Envendos,1413
+141306,Mação,1413
+141307,Ortiga,1413
+141308,Penhascoso,1413
+141401,Alcobertas,1414
+141402,Arrouquelas,1414
+141403,"Arruda dos Pisões",1414
+141404,Azambujeira,1414
+141405,Fráguas,1414
+141406,Marmeleira,1414
+141407,"Outeiro da Cortiçada",1414
+141408,"Rio Maior",1414
+141409,"São João da Ribeira",1414
+141410,Asseiceira,1414
+141411,"São Sebastião",1414
+141412,"Ribeira de São João",1414
+141413,Malaqueijo,1414
+141414,Assentiz,1414
+141501,"Glória do Ribatejo",1415
+141502,Marinhais,1415
+141503,Muge,1415
+141504,"Salvaterra de Magos",1415
+141505,"Foros de Salvaterra",1415
+141506,Granho,1415
+141601,Abitureiras,1416
+141602,Abra,1416
+141603,Achete,1416
+141604,Alcanede,1416
+141605,Alcanhões,1416
+141606,Almoster,1416
+141607,"Amiais de Baixo",1416
+141608,"Arneiro das Milhariças",1416
+141609,"Azoia de Baixo",1416
+141610,"Azoia de Cima",1416
+141611,Casével,1416
+141612,"S Marvila",1416
+141613,Moçarria,1416
+141614,Pernes,1416
+141615,Pombalinho,1416
+141616,"Povoa da Isenta",1416
+141617,"Póvoa de Santarém",1416
+141618,Romeira,1416
+141619,"Santa Iria da Ribeira Santarém",1416
+141620,"S S Nicolau",1416
+141621,"S Salvador",1416
+141622,"São Vicente de Paúl",1416
+141623,Tremes,1416
+141624,"Vale de Figueira",1416
+141625,"Vale de Santarém",1416
+141626,Vaqueiros,1416
+141627,Várzea,1416
+141628,Gançaria,1416
+141701,Alcaravela,1417
+141702,"Santiago de Montalegre",1417
+141703,Sardoal,1417
+141704,Valhascos,1417
+141801,Alviobeira,1418
+141802,Asseiceira,1418
+141803,Beselga,1418
+141804,Carregueiros,1418
+141805,Casais,1418
+141806,Junceira,1418
+141807,Madalena,1418
+141808,Olalhas,1418
+141809,Paialvo,1418
+141810,Pedreira,1418
+141811,"Sta Maria dos Olivais",1418
+141812,"T S João Baptista",1418
+141813,"São Pedro de Tomar",1418
+141814,Sabacheira,1418
+141815,Serra,1418
+141816,"Além da Ribeira",1418
+141901,Alcorochel,1419
+141902,Assentiz,1419
+141903,Brogueira,1419
+141904,Chancelaria,1419
+141905,Lapas,1419
+141906,Olaia,1419
+141907,Paço,1419
+141908,"Parceiros de Igreja",1419
+141909,Pedrogão,1419
+141910,Riachos,1419
+141911,"Ribeira Branca",1419
+141912,"TN Salvador",1419
+141913,"TN Sta Maria",1419
+141914,"TN Santiago",1419
+141915,"TN S Pedro",1419
+141916,Zibreira,1419
+142001,Atalaia,1420
+142002,"Praia do Ribatejo",1420
+142003,Tancos,1420
+142004,"Vila Nova da Barquinha",1420
+142005,"Moita do Norte",1420
+142101,Alburitel,1421
+142102,Atouguia,1421
+142103,"Casal dos Bernardos",1421
+142104,Caxarias,1421
+142105,Espite,1421
+142106,Fátima,1421
+142107,Formigais,1421
+142108,Freixianda,1421
+142109,Gondemaria,1421
+142110,Olival,1421
+142111,"N Sra das Misericórdias",1421
+142112,"Rio de Couros",1421
+142113,Seiça,1421
+142114,Urqueira,1421
+142115,"N Sra da Piedade",1421
+142116,Matas,1421
+142117,Cercal,1421
+142118,"Ribeira de Fárrio",1421
+150101,"AS Sta Maria Castelo",1501
+150102,"Santa Susana",1501
+150103,"AS Santiago",1501
+150104,Torrão,1501
+150105,"São Martinho",1501
+150106,Comporta,1501
+150201,Alcochete,1502
+150202,Samouco,1502
+150203,"São Francisco",1502
+150301,Almada,1503
+150302,Caparica,1503
+150303,"Costa da Caparica",1503
+150304,"Cova da Piedade",1503
+150305,Trafaria,1503
+150306,Cacilhas,1503
+150307,Pragal,1503
+150308,Sobreda,1503
+150309,"Charneca de Caparica",1503
+150310,Laranjeiro,1503
+150311,Feijó,1503
+150401,Barreiro,1504
+150402,Lavradio,1504
+150403,Palhais,1504
+150404,"Santo André",1504
+150405,Verderena,1504
+150406,"Alto do Seixalinho",1504
+150407,"Santo António da Charneca",1504
+150408,Coina,1504
+150501,"Azinheira Barros e S Mamede S.",1505
+150502,Grandola,1505
+150503,Melides,1505
+150504,"Santa Margarida da Serra",1505
+150505,Carvalhal,1505
+150601,"Alhos Vedros",1506
+150602,"Baixa da Banheira",1506
+150603,Moita,1506
+150604,Gaio-Rosário,1506
+150605,"Sarilhos Pequenos",1506
+150606,"Vale da Amoreira",1506
+150701,Canha,1507
+150702,Montijo,1507
+150703,"Santo Isidro de Pegões",1507
+150704,"Sarilhos Grandes",1507
+150705,Alto-Estanqueiro-Jardia,1507
+150706,Pegões,1507
+150707,Atalaia,1507
+150708,Afonsoeiro,1507
+150801,Marateca,1508
+150802,Palmela,1508
+150803,"Pinhal Novo",1508
+150804,"Quinta do Anjo",1508
+150805,Poceirão,1508
+150901,Abela,1509
+150902,Alvalade,1509
+150903,Cercal,1509
+150904,Ermidas-Sado,1509
+150905,"Santa Cruz",1509
+150906,"Santiago do Cacém",1509
+150907,"Santo André",1509
+150908,"São Bartolomeu da Serra",1509
+150909,"São Domingos",1509
+150910,"São Francisco da Serra",1509
+150911,"Vale de Água",1509
+151001,"Aldeia de Paio Pires",1510
+151002,Amora,1510
+151003,Arrentela,1510
+151004,Seixal,1510
+151005,Corroios,1510
+151006,"Fernão Ferro",1510
+151101,"S Castelo",1511
+151102,"S Santiago",1511
+151103,"Quinta do Conde",1511
+151201,"S N Sra da Anunciada",1512
+151202,"S Sta Maria da Graça",1512
+151203,"S S Julião",1512
+151204,"São Lourenço",1512
+151205,"S S Sebastião",1512
+151206,"São Simão",1512
+151207,"Gambia-Pontes-Alto da Guerra",1512
+151208,Sado,1512
+151301,Sines,1513
+151302,"Porto Covo",1513
+160101,"Aboim das Choças",1601
+160102,Aguiã,1601
+160103,Alvora,1601
+160104,Ázere,1601
+160105,"Cabana Maior",1601
+160106,Cabreiro,1601
+160107,Carralcova,1601
+160108,Cendufe,1601
+160109,Couto,1601
+160110,Eiras,1601
+160111,Ermelo,1601
+160112,Extremo,1601
+160113,Gavieira,1601
+160114,Giela,1601
+160115,Gondoriz,1601
+160116,Grade,1601
+160117,Guilhadeses,1601
+160118,Loureda,1601
+160119,"Jolda (Madalena)",1601
+160120,Mei,1601
+160121,Miranda,1601
+160122,"Monte Redondo",1601
+160123,Oliveira,1601
+160124,Paço,1601
+160125,Padroso,1601
+160126,Parada,1601
+160127,Portela,1601
+160128,Prozelo,1601
+160129,"Rio Cabrão",1601
+160130,"Rio Frio",1601
+160131,"Rio de Moinhos",1601
+160132,Sá,1601
+160133,Sabadim,1601
+160134,"AV Salvador",1601
+160135,"Padreiro (Salvador)",1601
+160136,"Padreiro (Sta Cristina)",1601
+160137,"Tavora (Sta Maria)",1601
+160138,Santar,1601
+160139,"São Cosme e São Damião",1601
+160140,"São Jorge",1601
+160141,"AV S Paio",1601
+160142,"Jolda (S Paio)",1601
+160143,"Távora (S Vicente)",1601
+160144,Senharei,1601
+160145,Sistelo,1601
+160146,Soajo,1601
+160147,Souto,1601
+160148,Tabaço,1601
+160149,Vale,1601
+160150,"Vila Fonche",1601
+160151,Vilela,1601
+160201,Ancora,1602
+160202,"Arga de Baixo",1602
+160203,"Arga de Cima",1602
+160204,"Arga de São João",1602
+160205,Argela,1602
+160206,Azevedo,1602
+160207,"C Matriz",1602
+160208,Cristelo,1602
+160209,Dem,1602
+160210,Gondar,1602
+160211,Lanhelas,1602
+160212,Moledo,1602
+160213,Orbacém,1602
+160214,"Riba de Ancora",1602
+160215,Seixas,1602
+160216,Venade,1602
+160217,"Vila Praia de Ancora",1602
+160218,"Vilar de Mouros",1602
+160219,Vilarelho,1602
+160220,Vile,1602
+160301,Alvaredo,1603
+160302,"Castro Laboreiro",1603
+160303,Chaviães,1603
+160304,Cousso,1603
+160305,Cristoval,1603
+160306,Cubalhão,1603
+160307,Fiães,1603
+160308,Gave,1603
+160309,"Lamas de Mouro",1603
+160310,Paços,1603
+160311,Paderne,1603
+160312,"Parada do Monte",1603
+160313,Penso,1603
+160314,Prado,1603
+160315,Remoães,1603
+160316,Roussas,1603
+160317,"São Paio",1603
+160318,Vila,1603
+160401,Abedim,1604
+160402,Anhões,1604
+160403,Badim,1604
+160404,Barbeita,1604
+160405,"Barroças e Taias",1604
+160406,Bela,1604
+160407,Cambeses,1604
+160408,Ceivães,1604
+160409,Lapela,1604
+160410,Lara,1604
+160411,"Longos Vales",1604
+160412,Lordelo,1604
+160413,Luzio,1604
+160414,Mazedo,1604
+160415,Merufe,1604
+160416,Messagães,1604
+160417,Monção,1604
+160418,Moreira,1604
+160419,Parada,1604
+160420,Pias,1604
+160421,Pinheiros,1604
+160422,Podame,1604
+160423,Portela,1604
+160424,"Riba de Mouro",1604
+160425,Sá,1604
+160426,Sago,1604
+160427,Segude,1604
+160428,Tangil,1604
+160429,Troporiz,1604
+160430,Troviscoso,1604
+160431,Trute,1604
+160432,Valadares,1604
+160433,Cortes,1604
+160501,Agualonga,1605
+160502,Bico,1605
+160503,Castanheira,1605
+160504,Cossourado,1605
+160505,Coura,1605
+160506,Cristelo,1605
+160507,Cunha,1605
+160508,Ferreira,1605
+160509,Formariz,1605
+160510,Infesta,1605
+160511,Insalde,1605
+160512,Linhares,1605
+160513,Mozelos,1605
+160514,Padornelo,1605
+160515,Parada,1605
+160516,"Paredes de Coura",1605
+160517,Porreiras,1605
+160518,Resende,1605
+160519,Romarigães,1605
+160520,Rubiães,1605
+160521,Vascões,1605
+160601,Azias,1606
+160602,Boivães,1606
+160603,Bravães,1606
+160604,Britelo,1606
+160605,Crasto,1606
+160606,"Cuide de Vila Verde",1606
+160607,"Entre Ambos-os-Rios",1606
+160608,Ermida,1606
+160609,Germil,1606
+160610,Grovelas,1606
+160611,Lavradas,1606
+160612,Lindoso,1606
+160613,Nogueira,1606
+160614,Oleiros,1606
+160615,"Paço Vedro de Magalhães",1606
+160616,"Ponte da Barca",1606
+160617,Ruivos,1606
+160618,"Touvedo (Salvador)",1606
+160619,Sampriz,1606
+160620,"Vila Chã (Santiago)",1606
+160621,"Vila Chã (S João Baptista)",1606
+160622,"Touvedo (S Lourenço)",1606
+160623,"Vade (S Pedro)",1606
+160624,"Vade (S Tomé)",1606
+160625,"Vila Nova de Muía",1606
+160701,Anais,1607
+160702,Arca,1607
+160703,Arcos,1607
+160704,Arcozelo,1607
+160705,Ardegão,1607
+160706,Barrio,1607
+160707,"Beiral do Lima",1607
+160708,Bertiandos,1607
+160709,Boalhosa,1607
+160710,Brandara,1607
+160711,Cabaços,1607
+160712,Cabração,1607
+160713,Calheiros,1607
+160714,Calvelo,1607
+160715,Cepões,1607
+160716,Correlhã,1607
+160717,Estorãos,1607
+160718,Facha,1607
+160719,Feitosa,1607
+160720,"Fojo Lobal",1607
+160721,Fontão,1607
+160722,Fornelos,1607
+160723,Freixo,1607
+160724,Friastelas,1607
+160725,Gaifar,1607
+160726,Gandra,1607
+160727,Gemieira,1607
+160728,Gondufe,1607
+160729,Labruja,1607
+160730,Labrujó,1607
+160731,Mato,1607
+160732,"Moreira do Lima",1607
+160733,Navió,1607
+160734,Poiares,1607
+160735,"Ponte de Lima",1607
+160736,Queijada,1607
+160737,"Refoios do Lima",1607
+160738,Rendufe,1607
+160739,Ribeira,1607
+160740,Sá,1607
+160741,Sandiães,1607
+160742,"Santa Comba",1607
+160743,"Santa Cruz do Lima",1607
+160744,"Rebordões (Sta Maria)",1607
+160745,Seara,1607
+160746,Serdedelo,1607
+160747,"Rebordões (Souto)",1607
+160748,"Vilar das Almas",1607
+160749,"Vilar do Monte",1607
+160750,"Vitorino das Donas",1607
+160751,"Vitorino dos Piães",1607
+160801,Arão,1608
+160802,Boivão,1608
+160803,Cerdal,1608
+160804,"Cristelo Covo",1608
+160805,Fontoura,1608
+160806,Friestas,1608
+160807,Gandra,1608
+160808,Ganfei,1608
+160809,Gondomil,1608
+160810,Sanfins,1608
+160811,"São Julião",1608
+160812,"São Pedro da Torre",1608
+160813,Silva,1608
+160814,Taião,1608
+160815,Valença,1608
+160816,Verdoejo,1608
+160901,Afife,1609
+160902,Alvarães,1609
+160903,Amonde,1609
+160904,"Vila Nova de Anha",1609
+160905,Areosa,1609
+160906,Barroselas,1609
+160907,Cardielos,1609
+160908,Carreço,1609
+160909,Carvoeiro,1609
+160910,"Castelo do Neiva",1609
+160911,Darque,1609
+160912,Deão,1609
+160913,Deocriste,1609
+160914,"Freixieiro de Soutelo",1609
+160915,Lanheses,1609
+160916,Mazarefes,1609
+160917,Meadela,1609
+160918,Meixedo,1609
+160919,"VC Monserrate",1609
+160920,Montaria,1609
+160921,"Moreira de Geraz do Lima",1609
+160922,Mujães,1609
+160923,Neiva,1609
+160924,Nogueira,1609
+160925,Outeiro,1609
+160926,Perre,1609
+160927,"Portela Susã",1609
+160928,Portuzelo,1609
+160929,"Geraz do Lima (Sta Leocádia)",1609
+160930,"Geraz do Lima (Sta Maria)",1609
+160931,"VC Sta Maria Maior",1609
+160932,Serreleis,1609
+160933,Subportela,1609
+160934,Torre,1609
+160935,"Vila Franca",1609
+160936,"Vila Fria",1609
+160937,"Vila Mou",1609
+160938,"Vila de Punhe",1609
+160939,"Vilar de Murteda",1609
+160940,Chafé,1609
+161001,Campos,1610
+161002,Candemil,1610
+161003,Cornes,1610
+161004,Covas,1610
+161005,Gondar,1610
+161006,Gondarém,1610
+161007,Loivo,1610
+161008,Lovelhe,1610
+161009,Mentrestido,1610
+161010,Nogueira,1610
+161011,Reboreda,1610
+161012,Sapardos,1610
+161013,Sopo,1610
+161014,"Vila Meã",1610
+161015,"Vila Nova de Cerveira",1610
+170101,Alijó,1701
+170102,Amieiro,1701
+170103,Carlão,1701
+170104,"Casal de Loivos",1701
+170105,Castedo,1701
+170106,Cotas,1701
+170107,Favaios,1701
+170108,Pegarinhos,1701
+170109,Pinhão,1701
+170110,Pópulo,1701
+170111,Ribalonga,1701
+170112,"Sanfins do Douro",1701
+170113,"Santa Eugénia",1701
+170114,"São Mamede de Ribatua",1701
+170115,"Vale de Mendiz",1701
+170116,"Vila Chã",1701
+170117,"Vila Verde",1701
+170118,"Vilar de Maçada",1701
+170119,"Vilarinho de Cotas",1701
+170201,"Alturas de Barroso",1702
+170202,Ardãos,1702
+170203,Beça,1702
+170204,Bobadela,1702
+170205,Boticas,1702
+170206,Cerdedo,1702
+170207,Codessoso,1702
+170208,"Covas do Barroso",1702
+170209,Curros,1702
+170210,Dornelas,1702
+170211,"Fiães do Tamega",1702
+170212,Granja,1702
+170213,Pinho,1702
+170214,"São Salvador de Viveiro",1702
+170215,Sapiãos,1702
+170216,Vilar,1702
+170301,"Águas Frias",1703
+170302,Anelhe,1703
+170303,Arcossó,1703
+170304,Bobadela,1703
+170305,Bustelo,1703
+170306,Calvão,1703
+170307,Cela,1703
+170309,"Cimo de Vila de Castanheira",1703
+170310,Curalha,1703
+170311,Eiras,1703
+170312,Ervededo,1703
+170313,Faiões,1703
+170314,"Lama de Arcos",1703
+170315,Loivos,1703
+170316,Mairos,1703
+170317,Moreiras,1703
+170318,"Nogueira da Montanha",1703
+170319,Oucidres,1703
+170320,Oura,1703
+170321,"Outeiro Seco",1703
+170322,Paradela,1703
+170323,"Povoa de Agrações",1703
+170324,Redondelo,1703
+170325,Roriz,1703
+170326,Samaiões,1703
+170327,Sanfins,1703
+170328,Sanjurge,1703
+170329,"Santa Leocádia",1703
+170330,"Santo António de Monforte",1703
+170331,"Santo Estevão",1703
+170332,"São Julião de Montenegro",1703
+170333,"São Pedro de Agostém",1703
+170334,"São Vicente",1703
+170335,"Seara Velha",1703
+170336,Selhariz,1703
+170337,"Soutelinho da Raia",1703
+170338,Soutelo,1703
+170339,Travancas,1703
+170340,Tronco,1703
+170341,"Vale de Anta",1703
+170342,Vidago,1703
+170343,"Vila Verde da Raia",1703
+170344,"Vilar de Nantes",1703
+170345,"Vilarelho da Raia",1703
+170346,"Vilarinho das Paranheiras",1703
+170347,"Vilas Boas",1703
+170348,"Vilela Seca",1703
+170349,"Vilela do Tamega",1703
+170350,"Santa Maria Maior",1703
+170351,Madalena,1703
+170401,Barqueiros,1704
+170402,Cidadelhe,1704
+170403,Oliveira,1704
+170404,"MF Sta Cristina",1704
+170405,"MF S Nicolau",1704
+170406,"Vila Jusã",1704
+170407,"Vila Marim",1704
+170501,Atei,1705
+170502,Bilhó,1705
+170503,Campanhó,1705
+170504,Ermelo,1705
+170505,"Mondim de Basto",1705
+170506,Paradança,1705
+170507,Pardelhas,1705
+170508,"Vilar de Ferreiros",1705
+170601,Cabril,1706
+170602,"Cambeses do Rio",1706
+170603,Cervos,1706
+170604,Chã,1706
+170605,Contim,1706
+170606,Covelães,1706
+170607,"Covelo do Geres",1706
+170608,Donões,1706
+170609,Ferral,1706
+170610,Fervidelas,1706
+170611,"Fiães do Rio",1706
+170612,Gralhas,1706
+170613,Meixedo,1706
+170614,Meixide,1706
+170615,Montalegre,1706
+170616,Morgade,1706
+170617,Mourilhe,1706
+170618,Negrões,1706
+170619,Outeiro,1706
+170620,Padornelos,1706
+170621,Padroso,1706
+170622,Paradela,1706
+170623,"Pitões das Junias",1706
+170624,Pondras,1706
+170625,Reigoso,1706
+170626,Salto,1706
+170627,"Santo André",1706
+170628,"Vilar de Perdizes (S Miguel)",1706
+170629,Sarraquinhos,1706
+170630,Sezelhe,1706
+170631,Solveira,1706
+170632,Tourém,1706
+170633,"Venda Nova",1706
+170634,"Viade de Baixo",1706
+170635,"Vila da Ponte",1706
+170701,Candedo,1707
+170702,Carva,1707
+170703,Fiolhoso,1707
+170704,Jou,1707
+170705,Murça,1707
+170706,Noura,1707
+170707,Palheiros,1707
+170708,"Valongo de Milhais",1707
+170709,Vilares,1707
+170801,Covelinhas,1708
+170802,Fontelas,1708
+170803,Galafura,1708
+170804,Godim,1708
+170805,Loureiro,1708
+170806,"Moura Morta",1708
+170807,"Peso da Régua",1708
+170808,Poiares,1708
+170809,Sedielos,1708
+170810,"Vilarinho dos Freires",1708
+170811,Vinhós,1708
+170812,Canelas,1708
+170901,Alvadia,1709
+170902,Canedo,1709
+170903,Cerva,1709
+170904,Limões,1709
+170905,"RP Salvador",1709
+170906,"Santa Marinha",1709
+170907,"Santo Aleixo de Além-Tamega",1709
+171001,Celeiros,1710
+171002,"Covas do Douro",1710
+171003,"Gouvães do Douro",1710
+171004,Gouvinhas,1710
+171005,"Parada de Pinhão",1710
+171006,"Paradela de Guiães",1710
+171007,Passos,1710
+171008,Provesende,1710
+171009,Sabrosa,1710
+171010,"São Cristovão do Douro",1710
+171011,"São Lourenço de Ribapinhão",1710
+171012,"São Martinho de Antas",1710
+171013,"Souto Maior",1710
+171014,"Torre de Pinhão",1710
+171015,"Vilarinho de São Romão",1710
+171101,"Alvações do Corgo",1711
+171102,Cumeeira,1711
+171103,Fontes,1711
+171104,Fornelos,1711
+171105,Louredo,1711
+171106,Medrões,1711
+171107,Sanhoane,1711
+171108,"Lobrigos (S João Baptista)",1711
+171109,"Lobrigos (S Miguel)",1711
+171110,Sever,1711
+171201,"Água Revés e Castro",1712
+171202,Alvarelhos,1712
+171203,Argeriz,1712
+171204,Barreiros,1712
+171205,Bouçoães,1712
+171206,Canaveses,1712
+171207,"Carrazedo de Montenegro",1712
+171208,Curros,1712
+171209,Ervões,1712
+171210,Fiães,1712
+171211,"Fornos do Pinhal",1712
+171212,Friões,1712
+171213,Lebução,1712
+171214,Nozelos,1712
+171215,"Padrela e Tazém",1712
+171216,Possacos,1712
+171217,"Rio Torto",1712
+171218,Sanfins,1712
+171219,"Santa Maria de Emeres",1712
+171220,"Santa Valha",1712
+171221,"Santiago de Ribeira de Alhariz",1712
+171222,"São João da Corveira",1712
+171223,"São Pedro de Veiga de Lila",1712
+171224,Serapicos,1712
+171225,Sonim,1712
+171226,Tinhela,1712
+171227,Vales,1712
+171228,Valpaços,1712
+171229,Vassal,1712
+171230,"Veiga de Lila",1712
+171231,Vilarandelo,1712
+171301,Afonsim,1713
+171302,"Alfarela de Jales",1713
+171303,"Bornes de Aguiar",1713
+171304,Bragado,1713
+171305,Capeludos,1713
+171306,"Gouvães da Serra",1713
+171307,"Parada de Monteiros",1713
+171308,Pensalvos,1713
+171309,"Santa Marta da Montanha",1713
+171310,"Soutelo de Aguiar",1713
+171311,Telões,1713
+171312,Tresminas,1713
+171313,Valoura,1713
+171314,"Vila Pouca de Aguiar",1713
+171315,"Vreia de Bornes",1713
+171316,"Vreia de Jales",1713
+171317,"Sabroso de Aguiar",1713
+171401,Abaçãs,1714
+171402,Adoufe,1714
+171403,Andrães,1714
+171404,Arroios,1714
+171405,Borbela,1714
+171406,Campeã,1714
+171407,Constantim,1714
+171408,Ermida,1714
+171409,Folhadela,1714
+171410,Guiães,1714
+171411,Justes,1714
+171412,Lamares,1714
+171413,"Lamas de Olo",1714
+171414,Lordelo,1714
+171415,Mateus,1714
+171416,Mondrões,1714
+171417,Mouçós,1714
+171418,Nogueira,1714
+171419,"VR N Sra da Conceição",1714
+171420,"Parada de Cunhos",1714
+171421,Pena,1714
+171422,Quintã,1714
+171423,"VR S Dinis",1714
+171424,"VR S Pedro",1714
+171425,"São Tomé do Castelo",1714
+171426,Torgueda,1714
+171427,"Vale de Nogueiras",1714
+171428,"Vila Cova",1714
+171429,"Vila Marim",1714
+171430,"Vilarinho de Samardã",1714
+180101,Aldeias,1801
+180102,Aricera,1801
+180103,Armamar,1801
+180104,Cimbres,1801
+180105,Coura,1801
+180106,Folgosa,1801
+180107,Fontelo,1801
+180108,Goujoim,1801
+180109,Queimada,1801
+180110,Queimadela,1801
+180111,"Santa Cruz",1801
+180112,Santiago,1801
+180113,"Santo Adrião",1801
+180114,"São Cosmado",1801
+180115,"São Martinho das Chãs",1801
+180116,"São Romão",1801
+180117,Tões,1801
+180118,Vacalar,1801
+180119,"Vila Seca",1801
+180201,Beijos,1802
+180202,"Cabanas de Viriato",1802
+180203,Currelos,1802
+180204,"Oliveira do Conde",1802
+180205,Papizios,1802
+180206,Parada,1802
+180207,Sobral,1802
+180301,Almofala,1803
+180302,Alva,1803
+180303,Cabril,1803
+180304,"Castro Daire",1803
+180305,Cujó,1803
+180306,Ermida,1803
+180307,Ester,1803
+180308,Gafanhão,1803
+180309,Gosende,1803
+180310,Mamouros,1803
+180311,Mezio,1803
+180312,Mões,1803
+180313,Moledo,1803
+180314,Monteiras,1803
+180315,"Moura Morta",1803
+180316,"Parada de Ester",1803
+180317,Pepim,1803
+180318,Picão,1803
+180319,Pinheiro,1803
+180320,Reriz,1803
+180321,Ribolhos,1803
+180322,"São Joaninho",1803
+180401,Alhões,1804
+180402,Bustelo,1804
+180403,Cinfães,1804
+180404,Espadanedo,1804
+180405,"Ferreiros de Tendais",1804
+180406,Fornelos,1804
+180407,Gralheira,1804
+180408,Moimenta,1804
+180409,Nespereira,1804
+180410,"Oliveira do Douro",1804
+180411,Ramires,1804
+180412,"Santiago de Piães",1804
+180413,"São Cristovão de Nogueira",1804
+180414,Souselo,1804
+180415,Tarouquela,1804
+180416,Tendais,1804
+180417,Travanca,1804
+180501,"L Almacave",1805
+180502,Avões,1805
+180503,Bigorne,1805
+180504,Britiande,1805
+180505,Cambres,1805
+180506,Cepões,1805
+180507,Ferreirim,1805
+180508,"Ferreiros de Avões",1805
+180509,Figueira,1805
+180510,Lalim,1805
+180511,Lazarim,1805
+180512,Magueija,1805
+180513,Meijinhos,1805
+180514,Melcões,1805
+180515,"Parada do Bispo",1805
+180516,Penajoia,1805
+180517,Penude,1805
+180518,Pretarouca,1805
+180519,Samodães,1805
+180520,Sande,1805
+180521,"L Sé",1805
+180522,Valdigem,1805
+180523,"Várzea de Abrunhais",1805
+180524,"Vila Nova de Souto D¿El-Rei",1805
+180601,Abrunhosa-a-Velha,1806
+180602,Alcafache,1806
+180603,"Chãs de Tavares",1806
+180604,"Cunha Alta",1806
+180605,"Cunha Baixa",1806
+180606,Espinho,1806
+180607,"Fornos de Maceira Dão",1806
+180608,Freixiosa,1806
+180609,"Lobelhe do Mato",1806
+180610,Mangualde,1806
+180611,Mesquitela,1806
+180612,"Moimenta de Maceira Dão",1806
+180613,"Povoa de Cervães",1806
+180614,"Quintela de Azurara",1806
+180615,"Santiago de Cassurrães",1806
+180616,"São João da Fresta",1806
+180617,"Travanca de Tavares",1806
+180618,"Várzea de Tavares",1806
+180701,"Aldeia de Nacomba",1807
+180702,Alvite,1807
+180703,Arcozelos,1807
+180704,Ariz,1807
+180705,Baldos,1807
+180706,Cabaços,1807
+180707,Caria,1807
+180708,Castelo,1807
+180709,Leomil,1807
+180710,"Moimenta da Beira",1807
+180711,Nagosa,1807
+180712,Paradinha,1807
+180713,Passo,1807
+180714,"Pera Velha",1807
+180715,Peva,1807
+180716,Rua,1807
+180717,Sarzedo,1807
+180718,Segões,1807
+180719,Sever,1807
+180720,Vilar,1807
+180801,Almaça,1808
+180802,Cercosa,1808
+180803,Cortegaça,1808
+180804,Espinho,1808
+180805,Marmeleira,1808
+180806,Mortágua,1808
+180807,Pala,1808
+180808,Sobral,1808
+180809,Trezoi,1808
+180810,"Vale de Remigio",1808
+180901,"Canas de Senhorim",1809
+180902,"Carvalhal Redondo",1809
+180903,Nelas,1809
+180904,Santar,1809
+180905,Senhorim,1809
+180906,"Vilar Seco",1809
+180907,Aguieira,1809
+180908,"Lapa do Lobo",1809
+180909,Moreira,1809
+181001,Arca,1810
+181002,"Arcozelo das Maias",1810
+181003,Destriz,1810
+181004,"Oliveira de Frades",1810
+181005,Pinheiro,1810
+181006,Reigoso,1810
+181007,Ribeiradio,1810
+181008,"São João da Serra",1810
+181009,"São Vicente de Lafões",1810
+181010,Sejães,1810
+181011,"Souto de Lafões",1810
+181012,Varzielas,1810
+181101,Antas,1811
+181102,"Castelo de Penalva",1811
+181103,Esmolfe,1811
+181104,Germil,1811
+181105,Insua,1811
+181106,Lusinde,1811
+181107,Mareco,1811
+181108,Matela,1811
+181109,Pindo,1811
+181110,Real,1811
+181111,Sezures,1811
+181112,Trancozelos,1811
+181113,"Vila Cova do Covelo",1811
+181201,Antas,1812
+181202,Beselga,1812
+181203,Castainço,1812
+181204,Granja,1812
+181205,Ourozinho,1812
+181206,Penedono,1812
+181207,"Penela da Beira",1812
+181208,"Póvoa de Penela",1812
+181209,Souto,1812
+181301,Anreade,1813
+181302,Barro,1813
+181303,Carquere,1813
+181304,Feirão,1813
+181305,Felgueiras,1813
+181306,Freigil,1813
+181307,Miomães,1813
+181308,Ovadas,1813
+181309,Panchorra,1813
+181310,Paus,1813
+181311,Resende,1813
+181312,"São Cipriano",1813
+181313,"São João de Fontoura",1813
+181314,"São Martinho de Mouros",1813
+181315,"São Romão de Aregos",1813
+181401,"Couto do Mosteiro",1814
+181402,Óvoa,1814
+181403,"Pinheiro de Ázere",1814
+181404,"Santa Comba Dão",1814
+181405,"São Joaninho",1814
+181406,"São João de Areias",1814
+181407,Treixedo,1814
+181408,Vimieiro,1814
+181409,Nagosela,1814
+181501,"Castanheira do Sul",1815
+181502,"Ervedosa do Douro",1815
+181503,Espinhosa,1815
+181504,"Nagoselo do Douro",1815
+181505,"Paredes da Beira",1815
+181506,Pereiros,1815
+181507,Riodades,1815
+181508,"São João da Pesqueira",1815
+181509,"Soutelo do Douro",1815
+181510,Trevões,1815
+181511,"Vale da Figueira",1815
+181512,"Valongo dos Azeites",1815
+181513,"Várzea de Trevões",1815
+181514,Vilarouco,1815
+181601,Baiões,1816
+181602,Bordonhos,1816
+181603,Candal,1816
+181604,Carvalhais,1816
+181605,"Covas do Rio",1816
+181606,"Figueiredo de Alva",1816
+181607,Manhouce,1816
+181608,"Pindelo dos Milagres",1816
+181609,Pinho,1816
+181610,"Santa Cruz da Trapa",1816
+181611,"São Cristovão de Lafões",1816
+181612,"São Felix",1816
+181613,"São Martinho das Moitas",1816
+181614,"São Pedro do Sul",1816
+181615,Serrazes,1816
+181616,Sul,1816
+181617,Valadares,1816
+181618,Várzea,1816
+181619,"Vila Maior",1816
+181701,"Águas Boas",1817
+181702,Avelal,1817
+181703,Decermilo,1817
+181704,"Ferreira de Aves",1817
+181705,Forles,1817
+181706,Mioma,1817
+181707,"Rio de Moinhos",1817
+181708,Romãs,1817
+181709,"São Miguel de Vila Boa",1817
+181710,Satão,1817
+181711,"Silvã de Cima",1817
+181712,"Vila Longa",1817
+181801,Arnas,1818
+181802,Carregal,1818
+181803,Chosendo,1818
+181804,Cunha,1818
+181805,Escurquela,1818
+181806,Faia,1818
+181807,Ferreirim,1818
+181808,"Fonte Arcada",1818
+181809,Freixinho,1818
+181810,Granjal,1818
+181811,Lamosa,1818
+181812,Macieira,1818
+181813,Penso,1818
+181814,Quintela,1818
+181815,Sarzeda,1818
+181816,Sernancelhe,1818
+181817,"Vila da Ponte",1818
+181901,Adorigo,1819
+181902,Arcos,1819
+181903,Barcos,1819
+181904,Chavães,1819
+181905,Desejosa,1819
+181906,"Granja do Tedo",1819
+181907,Granjinha,1819
+181908,Longa,1819
+181909,Paradela,1819
+181910,Pereiro,1819
+181911,Pinheiros,1819
+181912,"Santa Leocadia",1819
+181913,Sendim,1819
+181914,Tabuaço,1819
+181915,Távora,1819
+181916,"Vale de Figueira",1819
+181917,"Valença do Douro",1819
+182001,Dalvares,1820
+182002,Gouviães,1820
+182003,"Granja Nova",1820
+182004,"Mondim da Beira",1820
+182005,Salzedas,1820
+182006,"São João de Tarouca",1820
+182007,Tarouca,1820
+182008,Ucanha,1820
+182009,"Várzea da Serra",1820
+182010,"Vila Chã da Beira",1820
+182101,"Barreiro de Besteiros",1821
+182102,"Campo de Besteiros",1821
+182103,"Canas de Santa Maria",1821
+182104,Caparrosa,1821
+182105,Castelões,1821
+182106,Dardavaz,1821
+182107,"Ferreiros do Dão",1821
+182108,Guardão,1821
+182109,Lajeosa,1821
+182110,"Lobão da Beira",1821
+182111,Molelos,1821
+182112,Mosteirinho,1821
+182113,"Mosteiro de Fráguas",1821
+182114,Mouraz,1821
+182115,Nandufe,1821
+182116,"Parada de Gonta",1821
+182117,Sabugosa,1821
+182118,"Santiago de Besteiros",1821
+182119,"São João do Monte",1821
+182120,"São Miguel do Outeiro",1821
+182121,Silvares,1821
+182122,Tonda,1821
+182123,Tondela,1821
+182124,"Vila Nova da Rainha",1821
+182125,"Vilar de Besteiros",1821
+182126,Tourigo,1821
+182201,Alhais,1822
+182202,Fráguas,1822
+182203,Pendilhe,1822
+182204,Queiriga,1822
+182205,Touro,1822
+182206,"Vila Cova a Coelheira",1822
+182207,"Vila Nova de Paiva",1822
+182301,Abraveses,1823
+182302,Barreiros,1823
+182303,"Boa Aldeia",1823
+182304,Bodiosa,1823
+182305,Calde,1823
+182306,Campo,1823
+182307,Cavernães,1823
+182308,Cepões,1823
+182309,"Coração de Jesus",1823
+182310,Cota,1823
+182311,"Couto de Baixo",1823
+182312,"Couto de Cima",1823
+182313,Fail,1823
+182314,Farminhão,1823
+182315,Fragosela,1823
+182316,Lordosa,1823
+182317,Silgueiros,1823
+182318,Mundão,1823
+182319,Orgens,1823
+182320,Povolide,1823
+182321,Ranhados,1823
+182322,Ribafeita,1823
+182323,"Rio de Loba",1823
+182324,"Santa Maria",1823
+182325,"Santos Evos",1823
+182326,"São Cipriano",1823
+182327,"São João de Lourosa",1823
+182328,"São José",1823
+182329,"São Pedro de France",1823
+182330,"São Salvador",1823
+182331,Torredeita,1823
+182332,"Vil de Souto",1823
+182333,"Vila Chã de Sá",1823
+182334,Repeses,1823
+182401,Alcofra,1824
+182402,Cambra,1824
+182403,Campia,1824
+182404,"Carvalhal de Vermilhas",1824
+182405,Fataunços,1824
+182406,"Figueiredo das Donas",1824
+182407,"Fornelo do Monte",1824
+182408,"Paços de Vilharigues",1824
+182409,Queirã,1824
+182410,"São Miguel do Mato",1824
+182411,Ventosa,1824
+182412,Vouzela,1824
+310101,"Arco da Calheta",3101
+310102,Calheta,3101
+310103,"Estreito da Calheta",3101
+310104,"Fajã da Ovelha",3101
+310105,"Jardim do Mar",3101
+310106,"Paúl do Mar",3101
+310107,"Ponta do Pargo",3101
+310108,Prazeres,3101
+310201,"Câmara de Lobos",3102
+310202,"Curral das Freiras",3102
+310203,"Estreito de Câmara de Lobos",3102
+310204,"Quinta Grande",3102
+310205,"Jardim da Serra",3102
+310301,"Imaculado Coração de Maria",3103
+310302,Monte,3103
+310303,"F Sta Luzia",3103
+310304,"F Sta Maria Maior",3103
+310305,"Santo António",3103
+310306,"São Gonçalo",3103
+310307,"São Martinho",3103
+310308,"F S Pedro",3103
+310309,"São Roque",3103
+310310,"F Sé",3103
+310401,"Água de Pena",3104
+310402,Caniçal,3104
+310403,Machico,3104
+310404,"Porto da Cruz",3104
+310405,"Santo António da Serra",3104
+310501,Canhas,3105
+310502,"Madalena do Mar",3105
+310503,"Ponta do Sol",3105
+310601,"Achadas da Cruz",3106
+310602,"Porto Moniz",3106
+310603,"Ribeira da Janela",3106
+310604,Seixal,3106
+310701,Campanário,3107
+310702,"Ribeira Brava",3107
+310703,"Serra de Água",3107
+310704,Tábua,3107
+310802,Camacha,3108
+310803,Caniço,3108
+310804,Gaula,3108
+310805,"Santa Cruz",3108
+310806,"Santo António da Serra",3108
+310901,"Arco de São Jorge",3109
+310902,Faial,3109
+310903,Santana,3109
+310904,"São Jorge",3109
+310905,"São Roque do Faial",3109
+310906,Ilha,3109
+311001,"Boa Ventura",3110
+311002,"Ponta Delgada",3110
+311003,"São Vicente",3110
+320101,"Porto Santo",3201
+410101,Almagreira,4101
+410102,"Santa Bárbara",4101
+410103,"Santo Espirito",4101
+410104,"São Pedro",4101
+410105,"Vila do Porto",4101
+420101,"Água de Pau",4201
+420102,Cabouco,4201
+420103,"L N Sra do Rosário",4201
+420104,"L Sta Cruz",4201
+420105,"Ribeira Chã",4201
+420201,Achada,4202
+420202,Achadinha,4202
+420203,"Lomba da Fazenda",4202
+420204,Nordeste,4202
+420205,Nordestinho,4202
+420206,Salga,4202
+420207,Santana,4202
+420301,Arrifes,4203
+420302,Bretanha,4203
+420303,Candelaria,4203
+420304,Capelas,4203
+420305,Covoada,4203
+420306,"Fajã de Baixo",4203
+420307,"Fajã de Cima",4203
+420308,"Fenais da Luz",4203
+420309,Feteiras,4203
+420310,Ginetes,4203
+420311,Mosteiros,4203
+420312,"PD Matriz",4203
+420313,"PD S José",4203
+420314,"PD S Pedro",4203
+420315,Relva,4203
+420316,Remédios,4203
+420317,"Rosto do Cão (Livramento)",4203
+420318,"Rosto do Cão (S Roque)",4203
+420319,"Santa Bárbara",4203
+420320,"Santo António",4203
+420321,"São Vicente Ferreira",4203
+420322,"Sete Cidades",4203
+420401,"Água Retorta",4204
+420402,"Faial da Terra",4204
+420403,Furnas,4204
+420404,"N Sra dos Remédios",4204
+420405,Povoação,4204
+420406,"Ribeira Quente",4204
+420501,Calhetas,4205
+420502,"Fenais da Ajuda",4205
+420503,"Lomba da Maia",4205
+420504,"Lomba de São Pedro",4205
+420505,Maia,4205
+420506,"Pico da Pedra",4205
+420507,"Porto Formoso",4205
+420508,"Rabo de Peixe",4205
+420509,"RG Conceição",4205
+420510,"RG Matriz",4205
+420511,"Ribeira Seca",4205
+420512,Ribeirinha,4205
+420513,"Santa Bárbara",4205
+420514,"São Brás",4205
+420601,"Água de Alto",4206
+420602,"Ponta Garça",4206
+420603,"Ribeira das Tainhas",4206
+420604,"VFC S Miguel",4206
+420605,"VFC S Pedro",4206
+430101,Altares,4301
+430102,"Angra (N Sra da Conceição)",4301
+430103,"Angra (Sta Luzia)",4301
+430104,"Angra (S Pedro)",4301
+430105,"Angra (Sé)",4301
+430106,"Cinco Ribeiras",4301
+430107,"Doze Ribeiras",4301
+430108,Feteira,4301
+430109,"Porto Judeu",4301
+430110,"Posto Santo",4301
+430111,Raminho,4301
+430112,Ribeirinha,4301
+430113,"Santa Bárbara",4301
+430114,"São Bartolomeu de Regatos",4301
+430115,"São Bento",4301
+430116,"São Mateus da Calheta",4301
+430117,Serreta,4301
+430118,"Terra Chã",4301
+430119,"Vila de São Sebastião",4301
+430201,Agualva,4302
+430202,Biscoitos,4302
+430203,"Cabo da Praia",4302
+430204,"Fonte do Bastardo",4302
+430205,Fontinhas,4302
+430206,Lajes,4302
+430207,"Praia da Vitória (Sta Cruz)",4302
+430208,"Quatro Ribeiras",4302
+430209,"São Brás",4302
+430210,"Vila Nova",4302
+440101,Guadalupe,4401
+440102,Luz,4401
+440103,"São Mateus",4401
+440104,"Santa Cruz da Graciosa",4401
+450101,Calheta,4501
+450102,"Norte Pequeno",4501
+450103,"Ribeira Seca",4501
+450104,"Santo Antão",4501
+450105,"Topo (N Sra do Rosário)",4501
+450201,"Manadas (Sta Bárbara)",4502
+450202,"Norte Grande (Neves)",4502
+450203,Rosais,4502
+450204,"Santo Amaro",4502
+450205,"Urzelina (S Mateus)",4502
+450206,"V S Jorge",4502
+460101,"Calheta de Nesquim",4601
+460102,"Lajes do Pico",4601
+460103,Piedade,4601
+460104,Ribeiras,4601
+460105,Ribeirinha,4601
+460106,"São João",4601
+460201,Bandeiras,4602
+460202,Candelaria,4602
+460203,"Criação Velha",4602
+460204,Madalena,4602
+460205,"São Caetano",4602
+460206,"São Mateus",4602
+460301,Prainha,4603
+460302,"Santa Luzia",4603
+460303,"Santo Amaro",4603
+460304,"Santo António",4603
+460305,"São Roque do Pico",4603
+470101,Capelo,4701
+470102,"Castelo Branco",4701
+470103,Cedros,4701
+470104,Feteira,4701
+470105,Flamengos,4701
+470106,"H Angústias",4701
+470107,"H Conceição",4701
+470108,"H Matriz",4701
+470109,"Pedro Miguel",4701
+470110,"Praia do Almoxarife",4701
+470111,"Praia do Norte",4701
+470112,Ribeirinha,4701
+470113,Salão,4701
+480101,"Fajã Grande",4801
+480102,Fajãzinha,4801
+480103,Fazenda,4801
+480104,Lajedo,4801
+480105,"Lajes das Flores",4801
+480106,Lomba,4801
+480107,Mosteiro,4801
+480201,Caveira,4802
+480202,Cedros,4802
+480203,"Ponta Delgada",4802
+480204,"Santa Cruz das Flores",4802
+490101,Corvo,4901
