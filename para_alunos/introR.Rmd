@@ -63,6 +63,12 @@ Exercício
 2) Crie uma variável com o nome "perimetro" (fórmula do perimetro: 2 vezes pi vezes o raio) e calcule usando a variável raio
 3) Faça o mesmo da alínea anterior com a área do circulo (pi vezes raio ao quadrado)
 4) Arredondar o perimetro com uma casa decimal
+```{r}
+r <- 10
+perimetro <- 2*pi*r
+area <- pi*r**2
+perimetro <- round(perimetro, 1)
+```
 
 Packages
 https://r4ds.had.co.nz/
@@ -91,6 +97,10 @@ Exercício
 1) Crie uma variável com o nome "palavra" com o valor Mae
 2) Crie a frase "Com X letras apenas, se escreve a palavra Y", cujo o valor de X é o número de letras da variável palavra e Y o valor da variável palavra
 
+```{r}
+palavra = 'Mae'
+frase = paste("Com ", nchar(palavra),  
+```
 
 
 Booleanos

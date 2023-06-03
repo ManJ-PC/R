@@ -432,13 +432,16 @@ shapiro.test(mtcars$mpg) # não devemos rejeitar RH0 .., 5% definido (não há u
 
 # não gosta de ir por teste estatísticos, modelo e vê a que nível (multivariável)
 #ciência de medir parâmetros .., modelo é mau .. previsão falha.. e não tano os p values!
-esta disponível , mas não .. recomenda para análise de dados!
-  quando ñ mto baixo, não é igual..
 
-não é tudo difenrete, mas uma será...!
-  este gráfico que vimos..,
-2^-16 são iguaus os tamnho para as dif. especies (sepal length) com ANOVAS
-Post Doc, anovas 2 a 2.. (aov) otil ~ é igual, + e 2 waves aova (species e outra coisa qq) dentro da espécie ter outra variável.
+# esta disponível , mas não .. recomenda para análise de dados!
+#   quando ñ mto baixo, não é igual..
+# 
+# não é tudo difenrete, mas uma será...!
+#   este gráfico que vimos..,
+# 2^-16 são iguaus os tamnho para as dif. especies (sepal length) com ANOVAS
+# Post Doc, anovas 2 a 2.. (aov) otil ~ é igual, + e 2 waves aova (species e outra coisa qq) dentro da espécie ter outra variável.
+
+
 #e o valor de 3..
 ```
 

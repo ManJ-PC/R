@@ -32,6 +32,180 @@ Declaração de intenções
 Outro tipo de visualiações que não são gráficos propriamente
 4 a 5 semanas para fazer o trabalho prático
 texto um conjunto de arg. e a favor e contra 
+
+arfiguei@fc.up.pt
+senão usurbuado de trabalho, responde logo.
+Não usar o chat moodle
+
+- Slides
+- Datasets
+- Fichas de Exercícios
+- atividades online
+- outros recursos
+ver avisos que já lá estão e fórum semanal...
+posit.com/download/rstudio-desktop
+
+Slides bonitos.. usa o quê ..
+4 paineis tipicamente
+
+4 conj. de áreas, visual analytics
+Informática e Estatística <- ciência dos Dados
+(compreender o que acontece), contas fazem-se e altera-se parâmetros.
+Machine Learning
+90 e 2000 e 2010..
+
+noção de Visual Analytics
+
+mostrar a clientes.., (carros .. sacar dados.. texto)
+metaBarCoding, ferramentas de análise mais dada é R
+Qtdd de Dados , Sequenciação
+Comparar propostas (crédito.. comparar propostas)
+
+
+- Uma imagem vale mais que 1000 palavras (ler de forma sequencial... com texto)
+a imagem não depende da linguagem (aprender.. padrões mais rapidamente!)
+
+olha para um gráfico, padrão, que é interessante e que origina nova descoberta. (m cascata, fazendo filtro e aumentado dimensões 
+apresentação, confirmação, exploração,
+
+Correlação != causalidade
+
+DataLeaks, PowerBI , coleção de dados, buscar dados e chegamos a uma coleção de dados.
+Estruturas visuais, 
+
+O utiliador consiga manipular todas estas fases, mapeamentoque pretende e (transformações)
+Grau de Visualização de dadosAutomatização, de data collections para visualizações...
+
+gráfico de barras, só queremos aqueles dados com os sistemas de dados tal, tal...
+
+Dados de Input, inserados num formato retagular
+
+Pré-Processamento
+NA <- Not available (constante)
+
+identificar valores ausentes por intertpolação (linear)
+Identificar valores incorretos -1
+, 40 anos epeso de 8kg
+
+Reduzir o lolumen dos dados (amostragem e filtragem do que não interessa ou agregação de valores).. quando tempos 4G Ram
+
+Análise visual
+Boas e más práticas na visualização de dados
+
+
+A área... proporcional à área seria muito mais ...sensato que o raio para circunferência...
+
+Violin Plots em vez de box plot ...
+representam muito melhor as densidades dos pontos!
+acesso a essa bibliotecas, sempre que haja.
+
+->Histogramas versus... ( vez na aula de R da semana passada!)
+
+Livro fantástico, freakconomics
+"How to lie with data"
+ñ nos enganarmos e condenarmos estas práticas!
+
+Qdo gráficos dramatizam, é ...à uma intenção por trás
+
+
+gráficos de pizaa  (horrível)
+os dados tem 3 dimensões, errado!
+e induzem em erros!
+ser humano , não está habituado a 3D
+
+
+Spaghetti plots, problemáticos, é díficil seguir as linhas!!!
+
+destacar ao carregar linhas de gráficos!
+
+gráfico com 2 escalas..,  palavra técnica.. são manhosos..
+
+
+manipulam o início do gráfico....
+
+Uma cresceu cerca de 80% e outra 40%, gráficos complicados, pricipalmente quando são... de linhas
+
+colunas e linhas.. atenua a diferença--
+
+Pode - se fazer mto bem que se entender...
+
+1<- (espúrias), induzur em erro as pessoas!
+
+
+eixo dos y's passa a ser a percentagem de ...aumento, a diferença-se começa a notar..
+# gráfico 2
+
+barras em espirais...
+o que interessa é o ângulo...
+ter cuidado com este tipo de gráficos... trabalho prático!
+
+vem mal nisso ... e faz nas aulas tmb
+
+
+Aula 2--- 3/06
+
+ <- Comunicação 
+ 
+ <- Confirmação 
+  
+ <- Investigação <. Trab. Prático
+ 
+ Dashboards
+- Conj. de Gráficos (vários tipos?)
+para um propósito
+Painel(éis) (afinar) de controlo...
+
+PowerBI, já conseguimos fazer
+
+Ir para o R e depois voltar para  os slides...
+
+Perspectiva do Curso e VD do Mestrado... 2 semanas para falar do gráfico de barras..
+Meter logo a mão na massa!
+
+read_Excel só vai até 250mil < 1*10^6 e até 60 mil colunas
+csv vai laém disso
+
+dataframes pode ser tipos diferentes..
+ordinais
+
+
+Dados Nominais são fatores ..) (sem ordenação)
+
+Pessoas do R que criaram bibliotecar, criaram uma série de dados para converter coisas
+
+dataset, já embutidos no próprio R e suas bibliotecas!
+
+tudo devido a este Senhor...
+
+
+x e y, tamanho da bola e cor..
+
+Gráficos de densidade são meljor histogramaas
+qq plot!, aproximação de distribuições, ver se uma distribuição é parecido com outro.
+
+Curva ROC não são gráficos cumulativos.
+
+GGplot(Dataset a ser utilizado)
+
+....
+
+
+No R não utilizamos ciclos
+
+ ir ao yoga
+ 
+ teste de hipoteses , clustering, visualizações, correlações e ... exploração dosdados 
+ _
+| For
+|
+|_Next
+
+IF -> THEN
+
+
+Plot do R era incompatível cm boa prática de criação de gráficos
+
+pastebin, gitHub 
 ----
 
 Matemática associar-se a dados.
