@@ -1,0 +1,498 @@
+---
+title: "test regression house prices"
+output: html_document
+date: "2023-06-30"
+---
+
+---
+title: "House Prices India Notebook"
+output: html_notebook
+---
+#LIBRARIES
+```{r}
+
+library("readr")
+library("scales")
+library("dplyr")
+library("corrplot")
+library("vioplot")
+library("tidyr")
+library("factoextra")
+library("GGally")
+library("dplyr")
+#library("ggplot")
+library("qwraps2")
+library("lubridate")
+library("dbscan")
+library("ggplot2")
+library("gdtools")
+library("Cairo")
+library("stringr")
+library("data.table")
+library("modelr")
+library("DataExplorer")
+library("corrplot")
+library("plotly")
+library("nortest")
+library("ggrepel")
+library("raster")
+library("sp")
+#library("rgeos")
+#library("spTransform")
+library("dplyr")
+library("caret")
+library("rpart")
+#library("ggmap")
+library("tidyr")
+library("vioplot")
+```
+
+Column	Description
+POSTED_BY	Category marking who has listed the property
+UNDER_CONSTRUCTION	Under Construction or Not
+RERA	Rera approved or Not. Note: RERA stands for Real Estate Regulatory Authority. It is a regulatory body established in many countries to oversee and regulate the real estate sector
+BHK_NO	Number of Rooms
+BHK_OR_RK	Type of property. Note: BHK: BHK stands for Bedroom, Hall, and Kitchen; K stands for Room Kitchen. It is used to describe smaller residential unit
+SQUARE_FT	Total area of the house in square feet
+READY_TO_MOVE	Category marking Ready to move or Not
+RESALE	Category marking Resale or not
+ADDRESS	Address of the property
+LONGITUDE	Longitude of the property            
+LATITUDE	Latitude of the property                 
+price_LACs Target price of the property         
+
+
+#READ FILE / DATAFRAME
+```{r}
+setwd("C:/Users/manue/Downloads/House Price Prediction Challenge/dataset")
+house_prices = read_csv('./train.csv')
+DataExplorer::create_report(house_prices)
+
+dim(house_prices)    #12 features
+str(house_prices)
+summary(house_prices)
+```
+
+#Missing values?
+```{r}
+sum(is.na(house_prices))
+
+```
+```{r}
+# Define the exchange rate (example value)
+exchange_rate <- 1116.32#1113.69#0.011
+
+# Create a new column with the target price in euros
+#house_prices$target_price_eur <- house_prices$TARGET(PRICE_IN_LACS) * exchange_rate
+house_prices$target_price_eur <- house_prices$`TARGET(PRICE_IN_LACS)` * exchange_rate
+```
+
+#LATITUDE/LONGITUDE - Negative values outside range of India territory (?!)
+```{r}
+
+# Create price categories based on ranges
+house_prices$price_category <- cut(house_prices$TARGET.PRICE_IN_LACS,
+                                   breaks = c(0, 5000, 10000, 20000, Inf),include.lowest = T, right = TRUE, dig.lab = 3,
+    ordered_result = FALSE,
+                                   labels = c(">5000", ">10000", ">20000",">30000"))
+
+ggplot(house_prices, aes(x = LONGITUDE, y = LATITUDE, color = price_category)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal()
+
+house_prices$LATITUDE <- NULL
+house_prices$LONGITUDE <- NULL
+house_prices$price_category <- NULL
+str(house_prices)
+```
+# BINARY FEATURES
+```{r}
+
+proportions <- prop.table(table(house_prices$UNDER_CONSTRUCTION))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", scales::percent(proportions), ")")
+pie(proportions, labels = labels, main = "Under Construction or Not")
+
+proportions <- prop.table(table(house_prices$RERA))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Rera approved or No")
+
+proportions <- prop.table(table(house_prices$READY_TO_MOVE))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Ready to move")
+
+proportions <- prop.table(table(house_prices$RESALE))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Resale property")
+
+house_prices$RESALE <- as.numeric(house_prices$RESALE)
+house_prices$READY_TO_MOVE <- as.numeric(house_prices$READY_TO_MOVE)
+house_prices$RERA <- as.numeric(house_prices$RERA)
+house_prices$UNDER_CONSTRUCTION <- as.numeric(house_prices$UNDER_CONSTRUCTION)
+```
+
+#NUMBER OF ROOMS - CHANGE OF VARIABLE TO NUMERIC
+```{r}
+house_prices$BHK_NO. <- as.numeric(house_prices$BHK_NO.)
+```
+
+
+#Advertised by "Builder" = 1, "Owner" = 2 "Dealer" = 3 -change of variables            (nota: não correr 2 vezes, gera uma coluna de NA's)
+```{r}
+summary(house_prices$POSTED_BY)
+summary_posted1 <- house_prices %>%
+  count(POSTED_BY, name = "count_postedby") %>%
+  arrange(desc(count_postedby))
+summary_posted1
+
+house_prices$POSTED_BY <- trimws(house_prices$POSTED_BY)
+house_prices <- house_prices %>%
+  mutate(POSTED_BY  = if_else(POSTED_BY  == "Builder", 1, if_else(POSTED_BY == "Owner", 3, 2)))
+
+
+
+summary_posted2<- house_prices%>%
+  count(POSTED_BY, name = "count_posts") %>%
+  arrange(desc(count_posts))
+summary_posted2
+
+house_prices$POSTED_BY <- as.numeric(house_prices$POSTED_BY)
+class(house_prices$POSTED_BY )
+str(house_prices$POSTED_BY)
+summary(house_prices$POSTED_BY)
+
+
+```
+
+#ADDRESS
+```{r}
+table(house_prices$ADDRESS)
+house_prices$ADDRESS<- gsub(",","",house_prices$ADDRESS)
+house_prices$ADDRESS<- gsub(" ","",house_prices$ADDRESS)
+
+summary_street <- house_prices %>%
+  count(ADDRESS, name = "count_adress") %>%
+  arrange(desc(count_adress))
+summary_street
+str(summary_street)
+
+addresses <- unique(house_prices$ADDRESS)
+numeric_addresses <- numeric(length(house_prices$ADDRESS))
+
+for (i in 1:length(addresses)) {
+  numeric_addresses[house_prices$ADDRESS == addresses[i]] <- i
+}
+house_prices$ADDRESS <- numeric_addresses
+#View(house_prices)
+```
+
+#Type of house - change to numeric variables - BHK = 1   RK = 0
+```{r}
+table(house_prices$BHK_OR_RK)  # BHK    RK  29427    24 
+
+house_prices$BHK_OR_RK <- trimws(house_prices$BHK_OR_RK)
+house_prices <- house_prices %>%
+  mutate(BHK_OR_RK  = if_else(BHK_OR_RK  == "BHK", 1, 0))
+colnames(house_prices)
+```
+
+# Create a new column with the target price in euros
+```{r}
+
+exchange_rate <- 1 /0.011  #0.011
+exchange_rate
+
+house_prices$target_price_eur <- house_prices$`TARGET.PRICE_IN_LACS.`* exchange_rate
+
+house_prices$TARGET.PRICE_IN_LACS.<- NULL
+View(house_prices)
+```
+# TRANSFORM SQUARE Feet TO SQUARe METER (1 -> 0.09290303997)
+```{r}
+
+house_prices$SQUARE_MT <- house_prices$SQUARE_FT * 0.09290303997
+house_prices$SQUARE_FT <- NULL
+  
+```
+
+```{r}
+house_prices_regression <- house_prices[, !(names(house_prices) %in% c("POSTED_BY", "BHK_OR_RK", "ADDRESS", "TARGET(PRICE_IN_LACS)"))]
+# Convert the entire data frame to numeric
+house_prices_regression <- as.data.frame(lapply(house_prices_regression, as.numeric))
+
+# Check the data types
+str(house_prices_regression)
+
+
+
+
+
+```
+
+
+
+```{r}
+# Display column names and data types
+str(house_prices_regression)
+
+# Calculate non-null counts
+non_null_counts <- sapply(house_prices_regression, function(x) sum(!is.na(x)))
+print(non_null_counts)
+
+# Calculate summary statistics
+summary_stats <- sapply(house_prices_regression, summary)
+print(summary_stats)
+
+```
+
+
+```{r}
+# Assign the target_price_eur column to y
+y <- house_prices_regression$target_price_eur
+
+# Create X by dropping the target_price_eur column
+X <- house_prices_regression[, !(names(house_prices_regression) %in% c("target_price_eur"))]
+
+# Display the head of X
+head(X)
+
+```
+
+```{r}
+# Load the caret package
+library(caret)
+
+# Split the data into training and testing sets
+set.seed(123)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression), 0.7 * nrow(house_prices_regression))
+train <- house_prices_regression[train_indices, ]
+test <- house_prices_regression[-train_indices, ]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - test$target_price_eur)^2)
+
+# Print the mean squared error (MSE)
+print(linear_mse)
+
+```
+Removing LAT and LONG
+
+```{r}
+house_prices_regression2 <- house_prices[, !(names(house_prices) %in% c("POSTED_BY", "BHK_OR_RK", "ADDRESS", "TARGET(PRICE_IN_LACS)", "LONGITUDE", "LATITUDE"))]
+# Convert the entire data frame to numeric
+house_prices_regression2 <- as.data.frame(lapply(house_prices_regression2, as.numeric))
+
+# Check the data types
+str(house_prices_regression2)
+```
+```{r}
+# Display column names and data types
+str(house_prices_regression2)
+
+# Calculate non-null counts
+non_null_counts <- sapply(house_prices_regression2, function(x) sum(!is.na(x)))
+print(non_null_counts)
+
+# Calculate summary statistics
+summary_stats <- sapply(house_prices_regression2, summary)
+print(summary_stats)
+
+
+```
+```{r}
+# Assign the target_price_eur column to y
+y <- house_prices_regression2$target_price_eur
+
+# Create X by dropping the target_price_eur column
+X <- house_prices_regression2[, !(names(house_prices_regression2) %in% c("target_price_eur"))]
+
+# Display the head of X
+head(X)
+```
+```{r}
+# Load the caret package
+library(caret)
+
+# Split the data into training and testing sets
+set.seed(123)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression2), 0.7 * nrow(house_prices_regression2))
+train <- house_prices_regression2[train_indices, ]
+test <- house_prices_regression2[-train_indices, ]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - test$target_price_eur)^2)
+
+# Print the mean squared error (MSE)
+print(linear_mse)
+```
+```{r}
+colnames(house_prices_regression2)
+
+feats <- c("UNDER_CONSTRUCTION","RERA","BHK_NO.","READY_TO_MOVE","RESALE","SQUARE_MT")
+target <- "target_price_eur"
+```
+```{r}
+# Split the data into features (X) and target variable (y)
+X <- house_prices_regression2[, feats]  # Exclude the last column if it represents the target variable
+y <- house_prices_regression2[, target]   # Select the last column as the target variable
+
+# Split the data into training and testing sets
+set.seed(42)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression2), 0.7 * nrow(house_prices_regression2))
+train <- house_prices_regression2[train_indices, c(feats,target) ]
+test <- house_prices_regression2[-train_indices,  c(feats,target)]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Train a regression tree model
+#tree_model <- rpart(popularity ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - unlist(test[,target]))^2)
+print(linear_mse)
+```
+```{r}
+colnames(house_prices_regression)
+
+feats <- c("UNDER_CONSTRUCTION","RERA","BHK_NO.","READY_TO_MOVE","RESALE","LONGITUDE","LATITUDE","SQUARE_MT")
+target <- "target_price_eur"
+```
+```{r}
+# Split the data into features (X) and target variable (y)
+X <- house_prices_regression[, feats]  # Exclude the last column if it represents the target variable
+y <- house_prices_regression[, target]   # Select the last column as the target variable
+
+# Split the data into training and testing sets
+set.seed(42)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression), 0.7 * nrow(house_prices_regression))
+train <- house_prices_regression[train_indices, c(feats,target) ]
+test <- house_prices_regression[-train_indices,  c(feats,target)]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Train a regression tree model
+#tree_model <- rpart(popularity ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - unlist(test[,target]))^2)
+print(linear_mse)
+```
+```{r}
+# Split the data into features (X) and target variable (y)
+X <- house_prices_regression[, feats]  # Exclude the last column if it represents the target variable
+y <- house_prices_regression[, target]   # Select the last column as the target variable
+
+# Split the data into training and testing sets
+set.seed(42)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression), 0.7 * nrow(house_prices_regression))
+train <- house_prices_regression[train_indices, c(feats,target) ]
+test <- house_prices_regression[-train_indices,  c(feats,target)]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Train a regression tree model
+tree_model <- rpart(target_price_eur ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - unlist(test[,target]))^2)
+
+tree_predictions <- predict(tree_model, newdata = test)
+tree_mse <- mean((tree_predictions - unlist(test[,target]))^2)
+#print(linear_mse)
+
+summary(linear_model) # ver as feature_importance
+
+baseline <-mean(unlist(y))# ver a baseline para o erro
+paste("Media Baseline: ", baseline)
+
+baseline_mse <- mean((baseline - unlist(test[,target]))^2)
+paste("MSE Baseline", baseline_mse)
+paste("SQRT: MSE Baseline", sqrt(baseline_mse))
+
+paste("__________\n\n\ MSE Linear: ", linear_mse)
+paste("SQRT: MSE Baseline:", sqrt(linear_mse))
+
+paste("__________\n\n\ MSE Linear: ", tree_mse)
+paste("SQRT: MSE Baseline:", sqrt(tree_mse))
+
+
+```
+
+```{r}
+library(knitr)
+
+# Create a data frame with the data
+data <- data.frame(
+  Metric = c("MSE Baseline", "SQRT: MSE Baseline", "MSE Linear", "SQRT: MSE Linear", "MSE Tree", "SQRT: MSE Tree"),
+  Value = c(baseline_mse, sqrt(baseline_mse), linear_mse, sqrt(linear_mse), tree_mse, sqrt(tree_mse))
+)
+
+# Print the table
+paste(kable(data))
+
+```
+```{r}
+library(knitr)
+
+# Create a data frame with the data
+data <- data.frame(
+  Metric = c("MSE Baseline", "SQRT: MSE Baseline", "MSE Linear", "SQRT: MSE Linear", "MSE Tree", "SQRT: MSE Tree"),
+  Value = c(baseline_mse, sqrt(baseline_mse), linear_mse, sqrt(linear_mse), tree_mse, sqrt(tree_mse))
+)
+
+# Print the table
+paste(kable(data))
+```
+
+
+
+```{r}
+# Split the data into features (X) and target variable (y)
+X <- house_prices_regression[, feats]  # Exclude the last column if it represents the target variable
+y <- house_prices_regression[, target]   # Select the last column as the target variable
+
+# Split the data into training and testing sets
+set.seed(42)  # For reproducibility
+train_indices <- sample(1:nrow(house_prices_regression), 0.7 * nrow(house_prices_regression))
+train <- house_prices_regression[train_indices, c(feats,target) ]
+test <- house_prices_regression[-train_indices,  c(feats,target)]
+
+# Train a linear regression model
+linear_model <- lm(target_price_eur ~ ., data = train)
+
+# Train a regression tree model
+#tree_model <- rpart(target_price_eur ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(tree_model, newdata = test)
+linear_mse <- mean((linear_predictions - unlist(test[,target]))^2)
+print(linear_mse)
+
+summary(linear_model) # ver as feature_importance
+baseline <-mean(unlist(y))# ver a baseline para o erro
+baseline_mse <- mean((baseline - unlist(test[,target]))^2)
+```
+```{r}
+baseline
+```
+```{r}
+baseline_mse
+```
+
