@@ -1,0 +1,806 @@
+---
+title: "House Prices India Notebook"
+output: html_notebook
+---
+#LIBRARIES
+```{r}
+
+library("readr")
+library("scales")
+library("dplyr")
+library("corrplot")
+library("vioplot")
+library("tidyr")
+library("factoextra")
+library("GGally")
+library("dplyr")
+#library("ggplot")
+library("qwraps2")
+library("lubridate")
+library("dbscan")
+library("ggplot2")
+library("gdtools")
+library("Cairo")
+library("stringr")
+library("data.table")
+library("modelr")
+library("DataExplorer")
+library("corrplot")
+library("plotly")
+library("nortest")
+library("ggrepel")
+library("raster")
+library("sp")
+library("rgeos")
+#library("spTransform")
+library("dplyr")
+library("caret")
+library("rpart")
+library("ggmap")
+library("tidyr")
+library("vioplot")
+```
+
+Column	Description
+POSTED_BY	Category marking who has listed the property
+UNDER_CONSTRUCTION	Under Construction or Not
+RERA	Rera approved or Not. Note: RERA stands for Real Estate Regulatory Authority. It is a regulatory body established in many countries to oversee and regulate the real estate sector
+BHK_NO	Number of Rooms
+BHK_OR_RK	Type of property. Note: BHK: BHK stands for Bedroom, Hall, and Kitchen; K stands for Room Kitchen. It is used to describe smaller residential unit
+SQUARE_FT	Total area of the house in square feet
+READY_TO_MOVE	Category marking Ready to move or Not
+RESALE	Category marking Resale or not
+ADDRESS	Address of the property
+LONGITUDE	Longitude of the property            
+LATITUDE	Latitude of the property                 
+price_LACs Target price of the property         
+
+
+#READ FILE / DATAFRAME
+```{r}
+setwd("C:/Users/manue/Downloads/House Price Prediction Challenge/dataset")
+house_prices = read_csv('./train.csv')
+
+dim(house_prices)    #12 features
+str(house_prices)
+summary(house_prices)
+```
+
+#Missing values?
+```{r}
+sum(is.na(house_prices))
+
+```
+
+# BINARY FEATURES
+```{r}
+
+proportions <- prop.table(table(house_prices$UNDER_CONSTRUCTION))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", scales::percent(proportions), ")")
+pie(proportions, labels = labels, main = "Under Construction or Not")
+
+proportions <- prop.table(table(house_prices$RERA))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Rera approved or No")
+
+proportions <- prop.table(table(house_prices$READY_TO_MOVE))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Ready to move")
+
+proportions <- prop.table(table(house_prices$RESALE))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", sprintf("%.1f%%", proportions*100), ")")
+pie(proportions, labels = labels, main = "Resale property")
+
+house_prices$RESALE <- as.numeric(house_prices$RESALE)
+house_prices$READY_TO_MOVE <- as.numeric(house_prices$READY_TO_MOVE)
+house_prices$RERA <- as.numeric(house_prices$RERA)
+house_prices$UNDER_CONSTRUCTION <- as.numeric(house_prices$UNDER_CONSTRUCTION)
+```
+
+#NUMBER OF ROOMS - CHANGE OF VARIABLE TO NUMERIC
+```{r}
+house_prices$BHK_NO. <- as.numeric(house_prices$BHK_NO.)
+head(house_prices)
+```
+
+
+#Advertised by "Builder" = 1, "Owner" = 2 "Dealer" = 3 -change of variables            (nota: não correr 2 vezes, gera uma coluna de NA's)
+```{r}
+summary(house_prices$POSTED_BY)
+summary_posted1 <- house_prices %>%
+  count(POSTED_BY, name = "count_postedby") %>%
+  arrange(desc(count_postedby))
+summary_posted1
+
+house_prices$POSTED_BY <- trimws(house_prices$POSTED_BY)
+house_prices <- house_prices %>%
+  mutate(POSTED_BY  = if_else(POSTED_BY  == "Builder", 1, if_else(POSTED_BY == "Owner", 2, 3)))
+
+
+
+summary_posted2<- house_prices%>%
+  count(POSTED_BY, name = "count_posts") %>%
+  arrange(desc(count_posts))
+summary_posted2
+
+house_prices$POSTED_BY <- as.numeric(house_prices$POSTED_BY)
+class(house_prices$POSTED_BY )
+str(house_prices$POSTED_BY)
+summary(house_prices$POSTED_BY)
+
+
+```
+
+#ADDRESS
+```{r}
+table(house_prices$ADDRESS)
+house_prices$ADDRESS<- gsub(",","",house_prices$ADDRESS)
+house_prices$ADDRESS<- gsub(" ","",house_prices$ADDRESS)
+
+summary_street <- house_prices %>%
+  count(ADDRESS, name = "count_adress") %>%
+  arrange(desc(count_adress))
+summary_street
+str(summary_street)
+
+addresses <- unique(house_prices$ADDRESS)
+numeric_addresses <- numeric(length(house_prices$ADDRESS))
+
+for (i in 1:length(addresses)) {
+  numeric_addresses[house_prices$ADDRESS == addresses[i]] <- i
+}
+house_prices$ADDRESS <- numeric_addresses
+#View(house_prices)
+```
+
+#Type of house - change to numeric variables - BHK = 1   RK = 0
+```{r}
+table(house_prices$BHK_OR_RK)  # BHK    RK  29427    24 
+
+house_prices$BHK_OR_RK <- trimws(house_prices$BHK_OR_RK)
+house_prices <- house_prices %>%
+  mutate(BHK_OR_RK  = if_else(BHK_OR_RK  == "BHK", 1, 0))
+
+```
+
+# Create a new column with the target price in euros 1 lac = 100000 rupees = 1116.48eur
+
+```{r}
+# Define the exchange rate (example value)
+exchange_rate <- 1116.32#1113.69#0.011
+
+# Create a new column with the target price in euros
+#house_prices$target_price_eur <- house_prices$TARGET(PRICE_IN_LACS) * exchange_rate
+house_prices$target_price_eur <- house_prices$`TARGET(PRICE_IN_LACS)` * exchange_rate
+```
+
+
+#LATITUDE/LONGITUDE - Negative values outside range of India territory (?!)
+```{r}
+
+# Create price categories based on ranges
+house_prices$price_category <- cut(house_prices$target_price_eur,
+                                   breaks = c(0, 5000, 10000, 20000, Inf),include.lowest = T, right = TRUE, dig.lab = 3,
+    ordered_result = FALSE,
+                                   labels = c(">5000", ">10000", ">20000",">30000"))
+
+ggplot(house_prices, aes(x = LONGITUDE, y = LATITUDE, color = price_category)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal()
+
+#house_prices$LATITUDE <- NULL
+#house_prices$LONGITUDE <- NULL
+house_prices$price_category <- NULL
+str(house_prices)
+```
+####################################################################################################################################################################################
+####################################################################################################################################################################################
+
+
+#CLUSTER LAT E LONG 
+```{r}
+house_prices_physical_structure <- house_prices[10:11]
+summary(house_prices_physical_structure)
+```
+```{r}
+ggplot(house_prices_physical_structure) +
+  aes(x = LONGITUDE, y = LATITUDE) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+
+house_prices_physical_structure
+```
+```{r}
+clean_house_prices_physical_structure <-
+  house_prices_physical_structure%>%
+  drop_na()
+```
+```{r}
+house_prices_physical_structure_featured <- 
+  clean_house_prices_physical_structure%>%
+  mutate(zscore_LONGITUDE = (LONGITUDE - mean(LONGITUDE, na.rm = T))/sd(LONGITUDE, na.rm = T),
+         zscore_LATITUDE = (LATITUDE - mean(LATITUDE, na.rm = T))/sd(LATITUDE, na.rm = T)) 
+  
+
+house_prices_physical_structure_featured 
+```
+Clustering algorithm - first glitchs
+```{r}
+resultado_kmeans <- kmeans(house_prices_physical_structure_featured , centers = 4)
+clean_house_prices_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_house_prices_physical_structure ) +
+  aes(x = LONGITUDE, y = LATITUDE, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+Clustering algorithm - first glitchs
+```{r}
+
+centers <- as.data.frame(resultado_kmeans$centers)
+centers$cluster <- rownames(resultado_kmeans$centers)
+
+ggparcoord(centers, columns = 1:2, groupColumn = 3) 
+```
+
+Find better hyper-parameters
+```{r}
+fviz_nbclust(clean_house_prices_physical_structure, kmeans, method = "wss", k.max = 5)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# TRANSFORM SQUARE Feet TO SQUARe METER (1 -> 0.09290303997)
+```{r}
+
+house_prices$SQUARE_MT <- house_prices$SQUARE_FT * 0.09290303997
+house_prices$SQUARE_FT <- NULL
+  
+```
+
+```{r}
+house_prices_regression <- house_prices
+DataExplorer::create_report(house_prices_regression)
+```
+
+#TRANSFORMED DATA SET FOR scaling and outliers
+```{r}
+summary(house_prices)
+str(house_prices)
+View(house_prices)
+```
+```{r}
+DataExplorer::create_report(house_prices)
+```
+
+#TEST DISTRIBUTION OF Target Price
+```{r}
+
+hp_sample <- house_prices %>% sample_n(4999)   
+shapiro.test(hp_sample$target_price_eur)
+
+
+house_prices %>%
+  filter(target_price_eur >= 0L & target_price_eur <= 500000L) %>%
+  ggplot() +
+  aes(x = target_price_eur) +
+  geom_histogram(bins = 45L, fill = "#112446") +
+  theme_minimal()
+
+
+```
+#SCALING FEATURES - POSTED_BY 
+```{r} 
+#POSTED_BY
+
+summary(house_prices$POSTED_BY)
+table(house_prices$POSTED_BY)
+
+scaled_house_prices <- house_prices %>%
+  mutate(POSTED_BY  = if_else(POSTED_BY  == "1", 622/29451 , if_else(POSTED_BY == "2", 10538/29451, 18291/29451)))
+head(scaled_house_prices)
+
+head(scaled_house_prices, 20)
+table(scaled_house_prices$POSTED_BY)
+
+```
+
+#ALL OTHER CONTINUOS FEATURES - as distribussion are Poisson we use min-max scaling
+```{r}
+View(scaled_house_prices)
+
+scaled_house_prices$BHK_NO. = (scaled_house_prices$BHK_NO. - min(scaled_house_prices$BHK_NO.))/(max(scaled_house_prices$BHK_NO.) - min(scaled_house_prices$BHK_NO.))
+scaled_house_prices$ADDRESS<- (scaled_house_prices$ADDRESS-min(scaled_house_prices$ADDRESS))/(max(scaled_house_prices$ADDRESS)-min(scaled_house_prices$ADDRESS))
+scaled_house_prices$target_price_eur<- (scaled_house_prices$target_price_eur-min(scaled_house_prices$target_price_eur))/(max(scaled_house_prices$target_price_eur)-min(scaled_house_prices$target_price_eur))
+scaled_house_prices$SQUARE_MT = (scaled_house_prices$SQUARE_MT - min(scaled_house_prices$SQUARE_MT))/(max(scaled_house_prices$SQUARE_MT) - min(scaled_house_prices$SQUARE_MT))
+
+```
+
+#CLUSTERING: without scaling
+```{r}
+resultado_kmeans <- kmeans(house_prices_regression, centers = 4)
+house_prices_regression$cluster <- as.character(resultado_kmeans$cluster)
+
+
+ggplot(scaled_house_prices) +
+    aes(y = house_prices_regression$target_price_eur, x = house_prices_regression$SQUARE_MT  , colour = cluster) +
+    geom_point(shape = "circle", size = 1.5) +
+    scale_color_hue(direction = 1) +
+    theme_minimal() +
+    coord_cartesian(xlim = c(0, 25000), ylim = c(0, 15000000))
+
+head(house_prices_regression)
+```
+
+```{r}
+
+centers <- as.data.frame(resultado_kmeans$centers)
+centers$cluster <- rownames(resultado_kmeans$centers)
+
+colnames(house_prices_regression)
+ggparcoord(centers, columns = c(10,9) , groupColumn = 11)
+
+
+```
+Find better hyper-parameters
+```{r}
+house:_prices
+
+fviz_nbclust(house_prices_regression, kmeans, method = "wss", k.max = 10)
+```
+```{r}
+house_prices_structure <- 
+  shouse_prices_regression %>%
+  select(SQUARE_MT,target_prices_eur)
+
+summary(starwars_physical_structure)
+```
+
+starwars_physical_structure <- 
+  starwars %>%
+  select(mass,height)
+
+summary(starwars_physical_structure)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+ggplot(house_prices_regression) +
+  aes(
+    x = "Number of rooms",
+    y = target_price_eur,
+    colour = target_price_eur,
+    group = BHK_NO.
+  ) +
+  geom_boxplot(fill = "#0C4C8A") +
+  scale_color_gradient(low = "#132B43", high = "#56B1F7") +
+  theme_minimal()+
+  coord_cartesian(ylim = c(0, 2200000))
+
+
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+zscore_price <- (house_prices_regression$target_price_eur-mean(house_prices_regression$target_price_eur))/sd(house_prices_regression$target_price_eur)
+zscore_area <- (house_prices_regression$SQUARE_MT-mean(house_prices_regression$SQUARE_MT))/sd(house_prices_regression$SQUARE_MT)
+
+zscore_house_prices <- house_prices_regression
+zscore_house_prices$target_price_eur <- zscore_price 
+zscore_house_prices$SQUARE_MT <- zscore_area
+
+resultado_kmeans2 <- kmeans(zscore_house_prices, centers = 3)
+zscore_house_prices$cluster <- as.character(resultado_kmeans2$cluster)
+
+ggplot(zscore_house_prices) +
+    aes(y = zscore_house_prices$target_price_eur, x = zscore_house_prices$SQUARE_MT  , colour = cluster) +
+    geom_point(shape = "circle", size = 1.5) +
+    scale_color_hue(direction = 1) +
+    theme_minimal() +
+    coord_cartesian(xlim = c(0, 0.5),ylim = c(0, 20))
+
+
+```
+
+
+
+```{r}
+resultado_kmeans <- kmeans(scaled_house_prices, centers = 3)
+scaled_house_prices$cluster <- as.character(resultado_kmeans$cluster)
+
+
+ggplot(scaled_house_prices) +
+    aes(y = scaled_house_prices$target_price_eur, x = scaled_house_prices$SQUARE_MT  , colour = cluster) +
+    geom_point(shape = "circle", size = 1.5) +
+    scale_color_hue(direction = 1) +
+    theme_minimal() +
+    coord_cartesian(ylim = c(0, 0.4),xlim = c(0.00025, 0.001))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+#BHK.NO
+
+table(house_prices$BHK_NO.)
+
+#Visualization
+
+ggplot(house_prices) +
+ aes(x = "", y = BHK_NO.) +
+ geom_boxplot(fill = "#112446") +
+ labs(x = "Box plot", 
+ y = "Number of rooms") +
+ theme_bw()
+
+ggplot(house_prices) +
+ aes(x = BHK_NO.) +
+ geom_density(adjust = 6L, fill = "#112446") +
+ labs(x = "Box plot", 
+ y = "Number of rooms") +
+ theme_bw()
+
+ggplot(house_prices) +
+ aes(x = BHK_NO., y = target_price_eur) +
+ geom_point(shape = "circle", size = 1.5, 
+ colour = "#112446") +
+ labs(x = "Number of rooms", y = "Price (Eur)") +
+ theme_bw()
+#######################################################################################
+
+
+#shapiro test
+
+hp_sample <- house_prices %>% sample_n(4999)   
+
+scaled_house_prices <- house_prices %>% 
+  mutate(BHK_NO. = (BHK_NO. - min(BHK_NO.))/(max(BHK_NO.) - min(BHK_NO.)))
+
+
+df <- data.frame(table(scaled_house_prices$BHK_NO.))
+df
+View(scaled_house_prices)
+
+```
+
+```{r}
+#SQUARE_MT
+
+hp_sample_featured <- hp_sample %>%
+  filter(SQUARE_MT >= 1L & SQUARE_MT <= 500 | is.na(SQUARE_MT))
+
+da <- hp_sample_featured %>%
+  group_by(SQUARE_MT) %>%
+  arrange(hp_sample_featured) 
+ 
+
+ggplot(hp_sample_featured) +
+  
+  aes(x = SQUARE_MT) +
+  geom_histogram(bins = 37L, fill = "#112446") +
+  labs(
+    title = "Distrubiton of Square_MT in random sample (N=4999)"
+  ) +
+  theme_bw()
+
+
+
+
+min(house_prices$SQUARE_MT)
+max(house_prices$SQUARE_MT)
+
+scaled_house_prices3 <- scaled_house_prices2 %>% 
+  mutate(SQUARE_MT = (SQUARE_MT - min(SQUARE_MT))/(max(SQUARE_MT) - min(SQUARE_MT)))
+
+View(scaled_house_prices3)
+
+#ADDRESS
+################################################################
+mean(scaled_house_prices2$ADDRESS)
+sd(hscaled_house_prices2$ADDRESS)
+zscore_address <- (scaled_house_prices2$ADDRESS - mean(scaled_house_prices2$ADDRESS))/sd(scaled_house_prices2$ADDRESS)
+zscore_address %>%
+  .[1:100]
+
+mean(zscore_address)
+test=sample(scaled_house_prices3$ADDRESS,4999)
+View(scaled_house_prices3)
+#################################################################
+View(scaled_house_prices3)
+View(scaled_house_prices2)
+View(scaled_house_prices1)
+View(house_prices)
+
+scaled_house_prices3 <- house_prices %>%
+  mutate(POSTED_BY  = if_else(POSTED_BY  == "1", 622/29451 , if_else(POSTED_BY == "2", 10538/29451, 18291/29451)))
+View(scaled_house_prices3)
+
+summary(scaled_house_prices3)
+
+scaled_house_prices3 <- house_prices %>% 
+  mutate(BHK_NO. = (BHK_NO. - min(BHK_NO.))/(max(BHK_NO.) - min(BHK_NO.)))
+
+scaled_house_prices3$ADDRESS<- (scaled_house_prices3$ADDRESS-min(scaled_house_prices3$ADDRESS))/(max(scaled_house_prices3$ADDRESS)-min(scaled_house_prices3$ADDRESS))
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#VER O QUE É CROSS VALIDATION??
+```{r}
+#ADDRESS
+starwars_cut <-
+  starwars %>%
+  select(name,height)%>%
+  .[1,10]%>%
+  mutate(kfold=sample(rep(1:3,10),nrow(.)))
+
+mse<-NULL
+for(i in 1:3)
+{
+  teste<- starwars_cut%>%filter(kfold==i)
+  treino <- starwars_cut%%filter(kfold!=i)
+  
+  mes[i]<-runif(1)
+}
+```
+
+
+#VISUALIZATION
+```{r}
+str(house_prices$target_price_eur)
+
+house_prices + ggplot(geom_violin(aes(group=target_price_eur)))
+
+boxplot(house_prices$target_price_eur, main = "Prices Distribution Plot", ylab = "Values")
+```
+```{r}
+# Install and load the vioplot package
+install.packages("vioplot")
+library(vioplot)
+```
+
+# Assuming you have a dataset named 'df' and want to plot the quartile distribution of the column 'column_name'
+```{r}
+
+vioplot(house_prices$target_price_eur, col = "skyblue", main = "Prices Distribution Plot", ylab = "Values")
+
+# Assuming you have a dataset named 'house_prices' and want to create a violin plot for the 'target_price_eur' column
+vioplot(house_prices$target_price_eur, col = "skyblue", main = "Prices Distribution Plot", ylab = "Values")
+
+# Remove scientific notation from the y-axis
+options(scipen = 999)
+
+# Plot the violin plot again
+vioplot(house_prices$target_price_eur, col = "skyblue", main = "Prices Distribution Plot", ylab = "Values", yaxt = "n")
+
+
+
+# Assuming you have a dataset named 'house_prices' and want to create a bar plot for the 'target_price_eur' column
+barplot(house_prices$target_price_eur, col = "skyblue", main = "Prices Distribution Plot", ylab = "Values")
+
+# Remove scientific notation from the y-axis
+options(scipen = 999)
+
+# Get the y-axis labels without scientific notation
+y_labels <- formatC(house_prices$target_price_eur, format = "f", digits = 0)
+
+# Plot the bar plot again with adjusted y-axis labels
+barplot(house_prices$target_price_eur, col = "skyblue", main = "Prices Distribution Plot", ylab = "Values", names.arg = y_labels)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+str(house_prices)
+
+library(ggplot2)
+
+
+
+
+# Assuming you have a dataset named 'house_prices' and want to create a violin plot for the 'target_price_eur' column
+ggplot(house_prices, aes(x = "", y = target_price_eur)) +
+  geom_violin(fill = "skyblue", color = "black") +
+  labs(title = "Prices Distribution Plot", y = "Values") +
+  theme_minimal()
+
+
+numeric_columns <- house_prices[, sapply(house_prices, is.numeric)]
+correlation <- cor(numeric_columns, use = "pairwise.complete.obs")
+
+# Create the heatmap
+heatmap(correlation, main = "Correlation Heatmap")
+
+# Create the correlation plot with diagonal values only
+corrplot(correlation, type = "lower", order = "hclust")
+
+
+shapiro.test(sample(house_prices$target_price_eur,4999))
+
+
+#view(dataset)
+library(tidyverse)
+#na
+library(GGally)
+library(dbscan)
+# resume select columns
+#filter
+#
+#str_detect
+# res_aov , curva normaç
+# curva da Anova
+
+# correlação revenue e score
+#profit em percentagem
+
+# normalizar..
+
+# sales tipo 3
+
+
+# Create the table of frequencies
+table_posted_by <- table(house_prices$POSTED_BY)
+
+# Create the barplot
+barplot(table_posted_by)
+
+# Calculate the percentages
+percentages <- round((table_posted_by / sum(table_posted_by)) * 100, 1)
+
+# Add percentage labels to the bars
+text(x = barplot(table_posted_by),main = "Category marking who has listed the property", y = table_posted_by, labels = paste0(percentages, "%"), pos = 3)
+
+
+
+# cluster segundo dois métodos...
+# análisar cluster, relacionar com as features..
+
+#usaram revenue and the budget, relações entre observações e não variáveis...Encontrar perfis tipo coisas em comum
+# profits
+
+
+```
+
+

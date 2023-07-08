@@ -1,0 +1,219 @@
+---
+title: "Data Frames"
+output:
+  html_document:
+    df_print: paged
+---
+
+Instalar no Tools > Install packages
+tidyr  
+
+```{r}
+#install.packages("tidyr")
+```
+
+
+
+<h1>Manipulação de data.frames com tidyverse</h1>
+```{r}
+library("tidyr")
+```
+
+<h2>Select</h2>
+```{r}
+just_three_col_iris <- 
+  iris %>%
+  select(Sepal.Length,Petal.Length,col_3 = Species) 
+
+colunas_selecionar <- c("Petal.Length","col_3")
+
+just_two_col_iris <- 
+  just_three_col_iris %>%
+  select(all_of(colunas_selecionar))
+
+sem_uma_coluna <- 
+  just_two_col_iris %>%
+  select(-Petal.Length)
+
+just_three_col_iris
+just_two_col_iris
+sem_uma_coluna
+```
+
+Exercicio
+a) Criar um data.frame, apartir do data.frame mtcars, com as colunas mpg, carb e gear
+b) Criar um data.frame, apartir do data.frame mtcars, sem as colunas disp e hp
+
+
+<h2>Mutate</h2>
+```{r}
+nova_variavel_iris <- 
+  iris %>%
+  mutate(nova_variavel = Sepal.Length + 1,
+         outra_nova_variavel = log(Petal.Length))
+
+nova_variavel_iris
+```
+
+Exercicio
+a) Adicionar uma coluna à data.frame iris, usando o mutate, com o valor ao quadrado da Petal.Length
+b) Criar um id incremental (criar uma coluna com o index da linha, ou seja, uma sequencia incremental de 1 em 1)  no data.frame mtcars 
+      Dica: numero de linhas de um data.frame usar o nrow
+
+
+<h2>Filter</h2>
+<h3>Exemplo 1</h3>
+```{r}
+iris_filtered <- 
+  iris %>%
+  filter(Sepal.Length > 7.5 | Sepal.Width < 3.5 & Species == "setosa")
+
+iris_filtered
+```
+
+Exercicio
+1) Criar um data.frame mtcars só com entradas mpg menor que 20 ou hp maior que 180
+
+
+
+<h2>Group by</h2>
+<h3>Summarize</h3>
+```{r}
+
+
+notas <- data.frame(aluno_id = c(1, 2, 1,1,2,2,1, 2, 1,1,2,2),
+                    anoletivo = c("2021/22", "2021/22","2021/22" ,"2021/22", "2021/22","2021/22","2022/23", "2022/23","2022/23" ,"2022/23", "2022/23","2022/23" ),
+                    disciplina= c("Matematica","Matematica","Portugues","Ingles","Portugues","Ingles","Matematica","Matematica","Portugues","Ingles","Portugues","Ingles"),
+                    notas = c(15,14,12,10,9,16,17,15,14,13,13,18),
+                      stringsAsFactors = F)
+
+
+
+summarize_aluno_anoletivo <- 
+  notas %>% 
+  group_by(aluno_id,anoletivo) %>%
+  summarize(media_notas = mean(notas),
+            max_notas = max(notas) ) %>%
+  ungroup
+
+summarize_aluno_anoletivo
+```
+
+
+
+Exercicios
+1) Calcule a media e o a standard deviation por cada disciplina e anoletivo
+
+
+<h3>Mutate</h3>
+
+```{r}
+df1 <- data.frame(x = c("a", "a", "a","b","b","b","b"), y = c(34,57,12,87,34,1,6),
+                         stringsAsFactors = F)
+
+
+exemplo_groupby_mutate <- 
+  df1 %>% 
+  group_by(x) %>%
+  mutate(media_x = mean(y),
+            rank_x = rank(y)) %>%
+  ungroup
+
+exemplo_groupby_mutate
+```
+
+```{r}
+notas_with_agg_disciplina_info <- 
+  notas %>% 
+  group_by(disciplina,anoletivo) %>%
+  mutate(media_notas = mean(notas),
+            rank_notas = rank(notas)) %>%
+  ungroup
+
+notas_with_agg_disciplina_info
+```
+
+Exericios
+1) Para uma variavel, calcular a magnitude maxima e minima e o desvio padrao do (função sd) depth  por stations no data.frame quakes
+2) Para uma variavel, calcular o intervalo (maximo - minimo) dos valores de magnitude por station
+  Dica: usar o exercicio 1)
+
+<h2>Arrange</h2>
+<h3>Exemplo 1</h3>
+```{r}
+arrange_by_sepal_length <- 
+  iris %>%
+  arrange(Sepal.Length,desc(Sepal.Width))
+
+arrange_by_sepal_length
+```
+
+<h2>Rename</h2>
+<h3>Exemplo 1</h3>
+```{r}
+ iris %>%
+  rename(col_3 = Species) 
+```
+
+
+
+<h2>Pipeline no dplyr</h2>
+
+
+```{r}
+todos <-
+  iris %>% 
+  select(Sepal.Length,Sepal.Width,Species) %>%
+  filter(Sepal.Length > 5) %>%
+  group_by(Species) %>%
+  mutate(media_sepal_length_per_species = mean(Sepal.Length),
+            sd_sepal_width_per_species = sd(Sepal.Width)) %>%
+  ungroup %>%
+  mutate(media_sepal_length = mean(Sepal.Length),
+            sd_sepal_width = sd(Sepal.Width)) 
+
+todos
+```
+
+
+Exercicio
+1) Juntar numa pipeline, as transformações feitas nas duas alineas, do Exercicios do Group By
+
+<h1>Joins</h1>
+  
+Joins
+```{r}
+
+alunos <- data.frame(aluno_id = c(1, 2),
+                    nome = c("Joao", "Antonio")) 
+
+
+notas_alunos <-
+  notas %>%
+  left_join(alunos, by = "aluno_id")
+
+notas_alunos
+```
+
+
+
+```{r}
+alunos_anoletivo <- data.frame(aluno_id = c(1, 2,1,2),
+                     anoletivo = c("2021/22", "2021/22","2022/23", "2022/23"),
+                    nome = c("Joao", "Ana","Paula", "Antonio")) 
+
+
+notas_alunos_anoletivo <-
+  notas %>%
+  left_join(alunos_anoletivo, by = c("aluno_id","anoletivo"))
+
+notas_alunos_anoletivo
+
+```
+
+
+
+
+
+
+

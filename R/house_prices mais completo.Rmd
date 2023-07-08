@@ -1,0 +1,94 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(ggplot2)
+library(readr)
+library(scales)
+library(dplyr)
+library(corrplot)
+```
+```{r}
+setwd("C:/Users/manue/Downloads/archive/")
+hp = read_csv('./Housing.csv')
+
+```
+```{r}
+print(dim(hp))
+hp[sample(nrow(hp), 5), ]
+summary(hp)
+
+```
+```{r}
+# Checking number of unique rows in each column
+unique_counts <- sapply(hp, function(x) n_distinct(x))
+sorted_counts <- sort(unique_counts)
+
+print(sorted_counts)
+
+
+```
+
+
+```{r}
+#typeof(hp$area <)
+variable_type <- class(hp$area)
+print(variable_type)
+
+
+```
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+summary(hp)
+
+
+```
+```{r}
+
+
+```
+```{r}
+# Calculate proportions
+proportions <- prop.table(table(hp$furnishingstatus))
+
+# Sort the proportions in descending order
+proportions <- proportions[order(proportions, decreasing = TRUE)]
+
+# Create labels for the bar plot with accurate percentages
+percent_labels <- paste0(round(proportions * 100, 2), "%")
+
+# Assign distinct colors to each categorical value
+bar_colors <- c("lightblue", "lightgreen", "lightyellow")  # Add more colors if needed
+
+# Plot bar plot with distinct colors
+barplot(proportions, main = "Furnishing Status", xlab = "Furnishing Status", ylab = "Proportion", names.arg = percent_labels, col = bar_colors)
+
+# Create legend
+legend("topright", legend = names(proportions), fill = bar_colors)
+
+
+
+```
+table_furnishing <- table(hp$furnishingstatus)
+barplot(table_furnishing)
+
+proportions <- prop.table(table(hp$furnishingstatus))
+proportions <- as.numeric(proportions)
+labels <- paste0(c("0", "1"), " (", scales::percent(proportions), ")")
+pie(proportions, labels = labels)
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+print(colnames(hp))
+
+```
+
++

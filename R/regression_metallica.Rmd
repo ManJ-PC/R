@@ -1,0 +1,119 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(dplyr)
+library(caret)
+library(rpart)
+library(ggplot2)
+library(tidyr)
+library(lubridate)
+setwd("C:/Users/manue/Downloads")
+# Read the CSV file
+data <- read.csv("./datasets/metallica_spotify.csv")
+
+data <- 
+  data %>%
+  select(-spotify_id,-spotify_uri)
+
+
+```
+
+
+```{r}
+colnames(data)
+```
+```{r}
+str(data)
+```
+
+
+
+```{r}
+data$release_date <- ymd(data$release_date)
+```
+
+
+```{r}
+data %>%
+ ggplot() +
+  aes(x = release_date, y = popularity) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+```
+
+
+
+```{r}
+data %>%
+ ggplot() +
+  aes(x = energy, y = popularity) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+```
+
+
+Assuming that popularity is already know from previous album
+```{r}
+data$release_year <- year(data$release_date) 
+
+ds <- 
+  data %>% 
+  group_by(release_year) %>%
+  summarise(max_popularity = max(popularity)) %>%
+  ungroup %>% 
+  arrange(release_year) %>%
+  mutate(prev_popularity = lag(max_popularity)) %>% # primeiro ordenar 
+  select(release_year, prev_popularity) %>%
+  inner_join(data, by = "release_year") 
+```
+```{r}
+ds <-
+  ds %>%
+  replace_na(list(prev_popularity = 0))
+  
+summary(ds)
+```
+```{r}
+feats <- c("prev_popularity","track_number","danceability","energy", "speechiness","acousticness","instrumentalness","liveness",
+           "valence","tempo","duration_ms","time_signature")
+target <- "popularity"
+```
+
+
+```{r}
+# Split the data into features (X) and target variable (y)
+X <- ds[, feats]  # Exclude the last column if it represents the target variable
+y <- ds[, target]   # Select the last column as the target variable
+
+# Split the data into training and testing sets
+set.seed(42)  # For reproducibility
+train_indices <- sample(1:nrow(ds), 0.7 * nrow(ds))
+train <- ds[train_indices, c(feats,target) ]
+test <- ds[-train_indices,  c(feats,target)]
+
+# Train a linear regression model
+linear_model <- lm(popularity ~ ., data = train)
+
+# Train a regression tree model
+#tree_model <- rpart(popularity ~ ., data = train)
+
+# Evaluate the models using split validation
+linear_predictions <- predict(linear_model, newdata = test)
+linear_mse <- mean((linear_predictions - unlist(test[,target]))^2)
+```
+
+
+Exercicios
+1) Criar o modelo rpart 
+2) avaliar MSE, RMSE para o rpart no treino e teste
+3) Visualizar a arvore
+
+
+
+
+

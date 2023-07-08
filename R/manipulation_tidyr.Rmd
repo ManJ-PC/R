@@ -1,0 +1,91 @@
+---
+title: "Manipulação de data.frames com tidyr"
+output:
+  html_document:
+    df_print: paged
+---
+
+Instalar no Tools > Install packages
+tidyr  
+
+```{r}
+#install.packages("tidyr")
+```
+
+
+
+#Load tidyr
+```{r}
+library("tidyr")
+```
+
+
+#Dealing with missing values
+##Drop lines
+```{r}
+df_with_na <- data.frame(x = c(1, 2, 3), y = c("a", NA, "b"),
+                         stringsAsFactors = F)
+ 
+print(df_with_na)
+
+df_without_na <- 
+  df_with_na %>% 
+  drop_na
+
+print(df_without_na)
+```
+
+Exercicio
+a) Com summary, verificar as colunas com valores em falta ( missing values) no dataset airquality
+b) Remover as linhas com missing values
+
+
+
+##Replace missing values
+```{r}
+df_with_na <- data.frame(x = c(1, 2, NA), y = c("a", NA, "b"),
+                         stringsAsFactors = F)
+ 
+print(df_with_na)
+
+df_without_na <- 
+  df_with_na %>% 
+  replace_na(list(x = 0, y = "unknown"))
+
+print(df_without_na)
+```
+
+Exercicio
+a) Com summary, verificar as colunas com valores em falta ( missing values) no dataset airquality
+b) Substituir os missing values da colunas com a média de cada uma 
+  Dica: Quando o vector tem NAs, temos de por um argumento na.rm = T
+
+
+#Deal categorical attributes
+##Pivot
+```{r}
+df_with_na <- data.frame(id = c(1,  2,  3), 
+                         cor_cabelo = c("loiro", "castanho","preto"),
+                         stringsAsFactors = F)
+ 
+print(df_with_na)
+
+df_without_na <- 
+  df_with_na %>% 
+  mutate(dummy = 1) %>%
+  pivot_wider(id_cols = c("id"), 
+              names_from = "cor_cabelo", 
+              values_from = "dummy", 
+              values_fill = 0)
+
+print(df_without_na)
+```
+
+
+
+
+
+
+
+
+

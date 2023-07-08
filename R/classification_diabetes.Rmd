@@ -1,0 +1,254 @@
+---
+title: "Diabetes"
+output: html_notebook
+---
+
+
+
+```{r}
+# Load libraries
+library(Metrics)
+library(e1071)
+library(randomForest)
+library(caret)
+library(mlbench)
+library(rpart)
+library(rpart.plot)
+
+
+data(PimaIndiansDiabetes)
+
+# Load the 'pROC' package
+library(pROC)```
+
+
+```{r}
+# Split data into training and testing sets
+train_indices <- sample(1:nrow(PimaIndiansDiabetes), 0.7 * nrow(PimaIndiansDiabetes)) #indices de treino
+train_data <- PimaIndiansDiabetes[train_indices, ]
+test_data <- PimaIndiansDiabetes[-train_indices, ] #sem estas linhas, as restantes
+dim(train_data)
+dim(test_data)
+
+
+data(PimaIndiansDiabetes)
+sample(1:10)
+sample(1:10,6)
+#train_indices <-sample(1:row(PrimaIndiansDiabetes), 0.7
+# cross validation divide em vários ciclos... repetição da experiência...
+#previsão de compra de papel higiénico 2000 - 2022, divido 2000 a 2020, depois calculo de mês a mês. testo em 2020, veio o Covid e testo, com a pandemia, errado ... cada pessoa enganou-se!. modelo é bom mais u.. a ideia é fazer vários cortes e testar de 5 em 5 anos, amostra tirar os dados aleatórios...
+# não faz bem a previsão e anos... para o passado, isso é uma interpolação, quando fazem pontos no meio
+# preços de cabos elécticos e dados de compra que eles fizeram, todos os meses.. uma veaz por ano
+# tentar ver de meses diferentes e fez interpolação para ver os dados no meio...
+# ponto para munir à frente é previsão , para trás é interpolação, se faltar
+# fazer um cluster mais complexo
+# terça e 5a das 18 horas a 21h
+```
+
+
+```{r}
+predictors <- c("pregnant","glucose","pressure","triceps","insulin", "mass","pedigree", "age")
+target <- "diabetes"             # Target variable
+
+
+
+```
+
+
+
+```{r}
+set.seed(123) # aleatório
+sample(1:5)
+
+
+# Prepare predictors and target variable
+
+#predict tree
+tree_model <- rpart(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data) # faz a árvore, as.formula foi para não dar trabalho. Aproxima a variável... variáveis que nós temos.. dou ao modelo os dados que temos
+tree_pred <- predict(tree_model, test_data, type="class") # quando vê o til ~ considera uma fórmula!
+
+# diabetes~pregnant
+# class(diabetes~pregnant)
+# predictors <- c("pregnant", "glucose", "pressure", "triceps", "insulin", "mass", "pedrigree", "age")
+# para as árvores é este o nome que se lhe dá ..!
+
+tree_confusion <- caret::confusionMatrix(tree_pred, test_data[, target], positive="pos") #teste
+
+rpart.plot::rpart.plot(tree_model)
+
+cat("RPART Confusion Matrix:\n")
+print(tree_confusion$table)
+cat("\n")
+```
+```{r}
+tree_pred_train <- predict(tree_model, train_data, type="class") # quando vê o til ~ considera uma fórmula!
+tree_confusion_train <- caret::confusionMatrix(tree_pred_train, train_data[, target], positive="pos")
+tree_confusion_train #train/treino
+```
+```{r}
+# Perform kNN
+knn_model <- gknn(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data, k = 3)
+gknn_pred <- predict(knn_model, test_data, type="class")
+knn_confusion <- caret::confusionMatrix(gknn_pred, test_data[, target], positive="pos", mode="prec_recall")
+baseline_pred <- rep("no", nrow(test_data))
+knn_confusion <- caret::confusionMatrix(gknn_pred, test_data[, target], positive="pos", mode="prec_recall")
+
+# Perform Naive Bayes
+nb_model <- naiveBayes(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+nb_pred <- predict(nb_model, test_data)
+nb_confusion <- caret::confusionMatrix(nb_pred, test_data[, target], positive="pos", mode="prec_recall")
+
+# Perform SVM
+svm_model <- svm(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+svm_pred <- predict(svm_model, test_data)
+svm_confusion <- caret::confusionMatrix(svm_pred, test_data[, target], positive="pos", mode="prec_recall")
+
+# Perform Random Forest
+rf_model <- randomForest(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+rf_pred <- predict(rf_model, test_data)
+rf_confusion <- caret::confusionMatrix(rf_pred, test_data[, target], positive="pos")#, mode="prec_recall")
+# com este mode ele mude sensitibity, Specificity  para precision e recall
+
+
+cat("kNN Confusion Matrix:\n")
+print(knn_confusion)#$table)
+cat("\n")
+
+cat("Naive Bayes Confusion Matrix:\n")
+print(nb_confusion)#$table)
+cat("\n")
+
+cat("SVM Confusion Matrix:\n")
+print(svm_confusion)#$table)
+cat("\n")
+
+cat("Random Forest Confusion Matrix:\n")
+print(rf_confusion)#$table)
+cat("\n")
+
+```
+
+```{r}
+# Perform SVM
+svm_model2 <- svm(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data,probability = T, kernel = "sigmoid")
+svm_pred2 <- predict(svm_model2, test_data, probability=T)
+svm_confusion2 <- caret::confusionMatrix(svm_pred2, test_data[, target], positive="pos")
+
+cat("SVM Confusion Matrix:\n")
+print(svm_confusion2)#$table)
+cat("\n")
+```
+```{r}
+# Perform Random Forest
+rf_model2 <- randomForest(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+rf_pred2 <- predict(rf_model2, test_data)
+rf_confusion2 <- caret::confusionMatrix(rf_pred2, test_data[, target], positive="pos")#, mode="prec_recall")
+# com este mode ele mude sensitibity, Specificity  para precision e recall
+
+
+cat("Random Forest Confusion Matrix:\n")
+print(rf_confusion2)#$table)
+cat("\n")
+
+```
+
+
+```{r}
+# baseline_pred <- rep("no", nrow(test_data))
+# 
+# # Install the 'class' package (if not already installed)
+# install.packages("class")
+# 
+# # Load the 'class' package
+# library(class)
+# 
+# 
+# 
+# # Perform kNN
+# knn_model <- gknn(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data, k = 3)
+# gknn_pred <- predict(knn_model, test_data, type="class")
+# knn_confusion <- caret::confusionMatrix(knn_pred, test_data[, target], positive="pos")
+# 
+# 
+# knn_confusion <- caret::confusionMatrix(knn_pred, test_data[, target], positive="pos")
+# 
+# 
+# # Perform Naive Bayes
+# nb_model <- naiveBayes(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+# nb_pred <- predict(nb_model, test_data)
+# nb_confusion <- caret::confusionMatrix(nb_pred, test_data[, target], positive="pos")
+# 
+# # Perform SVM
+# svm_model <- svm(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+# svm_pred <- predict(svm_model, test_data)
+# svm_confusion <- caret::confusionMatrix(svm_pred, test_data[, target], positive="pos")
+# 
+# # Perform Random Forest
+# rf_model <- randomForest(as.formula(paste(target, "~", paste(predictors, collapse = "+"))), data = train_data)
+# rf_pred <- predict(rf_model, test_data)
+# rf_confusion <- caret::confusionMatrix(rf_pred, test_data[, target], positive="pos")
+# 
+# 
+# 
+# cat("kNN Confusion Matrix:\n")
+# print(knn_confusion$table)
+# cat("\n")
+# 
+# cat("Naive Bayes Confusion Matrix:\n")
+# print(nb_confusion$table)
+# cat("\n")
+# 
+# cat("SVM Confusion Matrix:\n")
+# print(svm_confusion$table)
+# cat("\n")
+# 
+# cat("Random Forest Confusion Matrix:\n")
+# print(rf_confusion$table)
+# cat("\n")
+# 
+
+```
+ROC e AUC
+```{r}
+
+# ifelse(c(TRUE, FALSE, TRUE, TRUE), 1, 0) # 1 0 1 1
+# ifelse(c(TRUE, FALSE, TRUE, TRUE), 0, 1) # 0 1 0 0
+# 
+# ifelse(c("CAO", "GATO", "CAO") =="GATO", "miaumiau", "auau") # SÓ FUNCIONA EM VETOR DE BOOLEANOS, AQUI TRANSFORMOU ESSE VETOR NUMA COISA QQ)
+# 
+# ifelse(c("CAO", "GATO", "CAO") == "GATO", "miau", "auau")
+
+
+
+prob <- predict(knn_model, test_data, type="prob")
+head(prob)
+
+threshold_1 <- 0.2
+threshold_2 <- 0.8
+
+
+prediction_1  <- as.factor(ifelse(prob[,2] > threshold_1,"pos","neg"))
+prediction_2  <- as.factor(ifelse(prob[,2] > threshold_2,"pos","neg"))
+
+confusionMatrix(prediction_1, test_data[, target])
+confusionMatrix(prediction_2, test_data[, target])
+```
+
+
+```{r}
+
+
+prediction <- prob[,2]
+
+
+roc_object <- roc( test_data[,target], prediction)
+
+# calculate area under curve
+auc(roc_object)
+
+plot(roc_object)
+```
+```{r}
+caret::precision(rf_pred, test_data[,target], relevant="pos")
+```
+

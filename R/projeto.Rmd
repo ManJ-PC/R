@@ -1,0 +1,17 @@
+---
+title: "Data Frames"
+output:
+  html_document:
+    df_print: paged
+---
+
+Input data CSV
+
+
+
+```{r}
+hasRated <- read.csv("Stars.csv")
+head(hasRated)
+```
+
+

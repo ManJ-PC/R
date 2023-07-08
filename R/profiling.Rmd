@@ -1,0 +1,67 @@
+---
+title: "Data Frames"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+<h1>Exploração de data.frame</h1>
+<h2>Size</h2>
+```{r}
+dim(iris)
+nrow(iris)
+ncol(iris)
+```
+
+
+
+<h2>Nome das colunas</h2>
+```{r}
+colnames(iris)
+```
+
+<h2>Summary</h2>
+```{r}
+summary(iris)
+```
+
+<h2>Str</h2>
+```{r}
+str(iris)
+```
+
+<h2>head</h2>
+```{r}
+head(iris)
+```
+
+<h2>View</h2>
+```{r,eval=FALSE}
+View(iris)
+```
+
+
+Exercicio
+1) Execute as funções colnames, summary, str, head e View para o data.frame mtcars
+
+
+
+<h2>Count values</h2>
+```{r,eval=FALSE}
+table(iris[,"Species"])
+```
+
+
+Exercicio
+1) Discover which variables of data.frame esoph is categorical and count each element of one of the discovered variable
+
+
+
+
+
+
+
+
+

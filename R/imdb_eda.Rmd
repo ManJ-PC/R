@@ -1,0 +1,737 @@
++```{r}
+library("tidyr")
+library("factoextra")
+library("GGally")
+library("dplyr")
+#library("ggplot")
+library("qwraps2")
+library("lubridate")
+library("dbscan")
+library("ggplot2")
+library("gdtools")
+library("Cairo")
+library("stringr")
+library("data.table")
+library("modelr")
+library("DataExplorer")
+library("corrplot")
+library("plotly")
+library("nortest")
+library("ggrepel")
+```
+
+#TRAZER OS DADOS
+```{r}
+imdb <- read.csv("C:/Users/manue/Downloads/archive/imdb_movies.csv")
+#DataExplorer::create_report(imdb)
+dim(imdb)
+```
+#TRANSFORMAR A DATA
+```{r}
+
+imdb$date_x <- mdy(imdb$date_x)
+imdb$date_x <- year(imdb$date_x)
+str(imdb_cluster)
+```
+#SEPARAR OS CARACTERES ESPECIAIS DOS GENRE
+```{r}
+unlist(gsub(",[^A-Za-z]",",",imdb$genre))
+
+imdb$genre <- unlist(gsub(",[^A-Za-z]",",",imdb$genre))
+```
+#ELIMINAR COLUNAS DESNECESSÁRIAS - OVERVIEW, CREW, ORIG_TITLE
+```{r}
+imdb <- imdb %>%
+  select(-overview, -crew, -orig_title)
+```
+#FAZER ONE HOT ENCODE NO GENRE
+```{r}
+imdb <- 
+  imdb %>%
+  mutate(id=1:nrow(imdb))
+
+
+res<- NULL
+for(i in 1:nrow(imdb))
+{
+  
+  genres <- unlist(strsplit(imdb[i,"genre"],","))
+  
+ res <- rbind(res, 
+  data.frame(genero=genres,
+             id = rep(imdb[i,"id"],length(genres))
+             ))
+  
+  
+}
+
+res_pivot <-
+res %>% 
+  mutate(dummy=1) %>% 
+  pivot_wider(id_cols = "id",names_from = "genero",values_from = "dummy")
+
+res_pivot <- res_pivot %>%
+  mutate_all(~ replace(., is.na(.), 0))
+```
+#JUNTAMOS IMDB COM RES_PIVOT (eliminando as linhas que tinham genre em branco = 85)
+```{r}
+imdb <- imdb %>%
+  inner_join(res_pivot, by = "id")
+```
+#EXCLUIR COLUNA ORIGINAL DO GENRE
+```{r}
+
+imdb <- imdb %>%
+  select(-genre) %>%
+  ungroup()
+```
+
+#CONTAGEM POR ANO
+```{r}
+summary_imdb1 <- imdb %>%
+  count(date_x, name = "count_years") %>%
+  arrange(desc(count_years))
+summary_imdb1
+
+############################################################## C.A
+#Hipotesis test
+summary(summary_imdb1)    
+mean(summary_imdb1$count_years)
+sd(summary_imdb1$count_years)
+
+a <- summary_imdb1
+a$count_years <- (a$count_years-mean(a$count_years))/sd(a$count_years)
+shapiro.test(a$count_years)   #failed Shapiro
+
+############################################################## C.A
+
+#Observa-se um pico de registos neste século
+
+ggplot(summary_imdb1) +
+ aes(x = date_x, y = count_years) +
+ geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+ labs(x = "Number films registered", subtitle = "Número de filmes registados") +
+ theme_minimal()
+
+
+#Histograma mostra que muitos anos não têm registo de filmes (início do século)
+
+ggplot(summary_imdb1) +
+  aes(x = count_years) +
+  geom_histogram(bins = 30L, fill = "#112446") +
+  labs(x = "films registered on IMDB", y = "frequência" , caption = "Histogram films registered in each year"
+  ) +
+  theme_bw()
+```
+# i.e. contagem de géneros
+
+```{r}
+genre_df <- res_pivot
+action_movies <- table(genre_df[,"Action"])
+action_movies #1565 filmes de ação
+
+#gerar uma contagem de filmes por género:
+
+b<- c(colnames(genre_df))
+c<-b[2:length(b)]                    #vector de géneros
+
+
+list<-c(0)                           #lista de contagens vazia
+
+for(i in 1:length(c))               #ciclo que seleciona categoria do vetor de géneros e faz uma contagem de ocorrências
+    {
+     soma <- sum(genre_df[,c[i]])
+     list[[length(list) + 1]] = soma
+     list
+}
+
+dfcount<-data.frame(c,list[-1])
+dfcount                    #estatística de distribuição de géneros
+
+
+library(ggplot2)
+
+ggplot(dfcount) +
+ aes(x = c, y = list..1.) +
+ geom_col(fill = "#112446") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+ theme_minimal()
+
+```
+
+
+
+#SCORE FREQUENCY
+```{r}
+
+countz <- 
+  imdb %>% 
+  group_by(country,score) %>%
+  summarize(media_score = mean(score),
+            max_score = max(score) ) %>%
+  ungroup()
+countz
+table(countz)
+
+#Filtrar filmes com score nulo
+
+ggplot(countz) +
+  aes(x = country, y = score) +
+  geom_boxplot(fill = "#112446", las=2) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme_minimal()
+
+countz_filtered <- 
+  countz %>%
+  filter(score > 0)
+
+countz_filtered
+mean(countz_filtered$score)
+
+library(ggplot2)
+
+ggplot(countz_filtered) +
+ aes(x = country, y = score) +
+ geom_col(fill = "#112446") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+ theme_minimal()
+
+
+```
+
+#Transformar missing values (NA) em valores nulos (0):
+```{r}
+
+  genre_df <- res_pivot %>% 
+  replace(is.na(.), 0)
+head(genre_df)
+summary(genre_df)
+```
+#SEPARANDO AS LINHAS QUE TEM POST PRODUCTION E IN PRODUCTION PARA VER SE TEM SCORE RELEVANTE
+```{r}
+post_production <- imdb %>%
+  filter(grepl("Post Production", status, ignore.case = TRUE))
+View(post_production)
+
+in_production <- imdb %>%
+  filter(grepl("In Production", status))
+View(in_production)
+```
+#ALTERAÇÂO DO STATUS PARA FACTOR E Released = 1, Post Production = 2 e In Production = 3
+```{r}
+#antes da alteraçãõ
+summary_imdb3 <- imdb %>%
+  count(status, name = "count_status") %>%
+  arrange(desc(count_status))
+summary_imdb3
+
+imdb$status <- trimws(imdb$status)
+imdb <- imdb %>%
+  mutate(status = if_else(status == "Released", 1, if_else(status == "Post Production", 2, 3)))
+
+#depois da alteração
+summary_imdb4 <- imdb %>%
+  count(status, name = "count_status") %>%
+  arrange(desc(count_status))
+summary_imdb4
+```
+
+#FILMES COM SCORE = 0  OUTLIERS 
+```{r}
+
+imdb_filtrado <-  imdb %>% filter( status == 3 | status == 2)
+
+library(ggplot2)
+
+
+head(imdb_filtrado,100)
+count_imdb <- imdb %>% count(score ==0)          
+count_imdb
+```
+
+#CONTAGEM POR LINGUAGEM / TRANSFORMAR A LINGUAGEM EM NÚMERO / EXCLUIR COLUNA LIGUAGEM ORIGINAL
+```{r}
+View(imdb)
+summary_imdb5 <- imdb %>%
+  count(orig_lang, name = "count_lang") %>%
+  arrange(desc(count_lang))
+summary_imdb5
+
+linguagens <- unique(imdb$orig_lang)
+linguagens_numericas <- numeric(length(imdb$orig_lang))
+
+for (i in 1:length(linguagens)) {
+  linguagens_numericas[imdb$orig_lang == linguagens[i]] <- i
+}
+imdb$lang_vetor <- linguagens_numericas
+linguagens_numericas
+
+imdb <- imdb %>%
+  #select(-orig_lang)
+
+
+library(ggplot2)
+
+ggplot(imdb) +
+ aes(x = lang_vetor, y = score) +
+ geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+ theme_minimal()
+
+ggplot(imdb) +
+ aes(x = date_x, y = country) +
+ geom_boxplot(fill = "#112446") +
+ theme_minimal()
+
+```
+#Repetir para Países
+```{r}
+summary_country <- imdb %>%
+  count(country, name = "count_country") %>%
+  arrange(desc(count_country))
+summary_country
+
+paises <- unique(imdb$country)
+paises_numericos <- numeric(length(imdb$country))
+
+for (i in 1:length(imdb$country)) {
+  paises_numericos[imdb$country == paises[i]] <- i
+}
+imdb$country_vector <- paises_numericos 
+paises_numericos
+imdb$country_vector
+
+imdb <- imdb %>%
+  select(-country)
+str(imdb)                          
+```
+
+#VERIFICAR VALORES NAs E INFINITOS / EXCLUIR NOME DO FILME / CRIAR COLUNA PROFIT / (possível) ELIMINAR BUDGET E PROFIT 
+```{r}
+sum(is.na(imdb))
+str(imdb)
+imdb_cluster <- imdb #%>%
+  #select(-names)
+
+imdb_cluster
+
+str(imdb)
+str(imdb_cluster)                      
+
+imdb_cluster_profit <- imdb_cluster %>%
+  mutate(profit = imdb_cluster$revenue - imdb_cluster$budget)
+  #select(-budget,-revenue)
+imdb_cluster<-imdb_cluster_profit                                        #------------------------->  IMDB_MOVIES
+
+dim(imdb_cluster)
+```
+
+#remove names
+```{r}
+fig1 <- plot_ly (x=imdb_cluster$date_x, histfunc='count', type = "histogram")
+fig1 <- fig1 %>% layout(yaxis=list(type='linear'))
+fig1
+
+str(imdb_cluster)
+data1 <- imdb_cluster %>% 
+  mutate(profit = revenue - budget_x,
+         return_on_investment_perc = (profit/budget_x)*100)
+data1 %>%
+  filter(date_x %in% c(2000:2023)) %>%
+  arrange(desc(profit)) %>%
+  top_n(10, profit) %>%
+  ggplot(aes(x=budget_x, y=profit)) +
+  geom_point() +
+  geom_smooth() + 
+  geom_text_repel(aes(label=names)) +
+  labs(x = "Budget $million", y = "Profit $million", title = "Top 10 Profitable Movies") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+imdb_cluster <- subset(imdb_cluster, select = -names)
+
+```
+
+#REMOVE VALUED ZEROS FOR SCORE AND REVENUE  (NÃO CORRER JÁ!)
+```{r}
+dim(imdb_cluster)
+imdb_cluster <- imdb_cluster %>% filter(revenue != 0 & score != 0)
+str(imdb_cluster)
+
+```
+
+#DATA REPORT
+```{r}
+DataExplorer::create_report(imdb_cluster)
+DataExplorer::create_report(res_pivot)
+```
+
+#SHAPIRO-WIlK -SCORE
+
+```{r}
+sample_score <- sample((imdb_cluster$score),4999)
+shapiro.test(sample_score)
+sum(sample_score)
+sample_score<-sample_score/sum(sample_score)
+shapiro.test(sample_score)
+sum(sample_score)
+
+#null-hipotesis although W indicates possible appr. do normal distribution
+
+```
+
+#SHAPIRO-WIlK - budget revenue profit
+```{r}
+sample_budget <- sample((imdb_cluster$budget_x),4999)
+shapiro.test(sample_budget)
+
+sample_revenue <- sample((imdb_cluster$revenue),4999)
+shapiro.test(sample_revenue)
+
+sample_profit <- sample((imdb_cluster$profit),4999)
+shapiro.test(sample_profit)
+```
+
+
+```{r}
+View(imdb_cluster)
+imdb_cluster[9211,]
+imdb[9211,]
+```
+
+
+#CORRELATION
+```{r}
+
+cor(imdb_cluster$score, imdb_cluster$profit, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$profit, method = "spearman" )
+
+cor(imdb_cluster$score, imdb_cluster$budget_x, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$budget_x, method = "spearman" )
+
+cor(imdb_cluster$score, imdb_cluster$revenue, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$revenue, method = "spearman" )
+
+cor(imdb_cluster$score, imdb_cluster$lang_vetor, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$lang_vetor, method = "spearman" )
+
+cor(imdb_cluster$score, imdb_cluster$country_vector, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$country_vector, method = "spearman" )
+
+cor(imdb_cluster$score, imdb_cluster$Horror, method = "pearson" )
+cor(imdb_cluster$score, imdb_cluster$Horror, method = "spearman" )
+
+cor(imdb_cluster$budget_x, imdb_cluster$revenue, method = "spearman" )
+cor(imdb_cluster$budget_x, imdb_cluster$revenue, method = "pearson" )
+cor(imdb_cluster$profit, imdb_cluster$revenue, method = "spearman" )
+cor(imdb_cluster$profit, imdb_cluster$revenue, method = "pearson" )
+
+
+
+```
+
+
+```{r}
+
+correlation_matrix <- cor(imdb_cluster)
+corrplot(correlation_matrix, method = "color", type="upper")
+
+correlation_matrix2 <- cor(res_pivot)
+corrplot(correlation_matrix2, method = "color", type="upper")
+```
+
+#Visualization
+```{r}
+
+#************************ DATE ****************************
+ggplot(imdb_cluster) +
+ aes(x = date_x) +
+ geom_histogram(bins = 41L, fill = "#112446") +
+ labs(x = "Ano", 
+ y = "Número registos", title = "Histograma (date_x)") +
+ theme_bw()
+round(mean(imdb_cluster$date_x),0)
+round(sd(imdb_cluster$date_x),1)  #mean 2008 [1] 15.29872
+
+#************************ SCORE ****************************
+
+ggplot(imdb_cluster) +
+ aes(x = score) +
+ geom_density(adjust = 3.5, fill = "#112446") +
+ labs(x = "Score", 
+ title = "Frequency Distribution (score)") +
+ theme_bw()
+round(mean(imdb_cluster$score),1)
+round(sd(imdb_cluster$score),1)  # mean= 63.8 sd= 12.88
+
+
+
+ggplot(imdb) +
+  aes(x = revenue, y = score, caption = "score vs. revenue") +
+  geom_point(shape = "circle", size = 1, colour = "#112446") +
+  theme_minimal()
+
+ggplot(imdb) +
+  aes(x = budget_x, y = score , caption = "score vs. budget") +
+  geom_point(shape = "circle", size = 1, colour = "#112446") +
+  theme_minimal()
+
+#************************ STATUS ****************************
+
+
+ggplot(imdb_cluster) +
+ aes(x = "", y = status) +
+ geom_violin(adjust = 3.5, scale = "area", fill = "#112446") +
+ labs(title = "Violin plot (status, 1=Release, 2= In Production, 3= Post Production)") +
+ theme_bw()
+
+
+#************************ FINANTIAL ****************************
+
+
+#verificar outliers->
+
+imdb_cluster <- imdb_cluster %>% filter(budget_x > 0)
+
+ggplot(imdb_cluster) +
+ aes(x = budget_x, y = revenue) +
+ geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+ labs(x = "Budget (dls)", y = "Revenue (dls)", title = "Revenue vs. Budget") +
+ theme_bw()
+
+
+#como existem filmes com profit revenue??
+
+summary(imdb_cluster$profit)
+count_loss<- imdb_cluster %>%
+  filter(profit < 0) 
+nrow(count_loss)                          # 1992 filmes em perda financeira (19%)
+
+
+ggplot(imdb_cluster) +
+ aes(x = revenue, y = profit) +
+ geom_point(shape = "circle", size = 0.9, colour = "#112446") +
+ labs(x = "Revenue (dls)", y = "Profit (dls)", title = "Profit vs. Revenue") +
+ theme_bw()
+
+
+
+ggplot(imdb_cluster) +
+ aes(x = budget_x, y = profit) +
+ geom_point(shape = "circle", size = 1.2, colour = "#112446") +
+ theme_bw()
+
+
+
+ggplot(imdb_cluster) +
+ aes(x = profit) +
+ geom_density(adjust = 0.2, fill = "#112446") +
+ labs(title = "Profit Density") +
+ theme_bw()
+
+ggplot(imdb_cluster) +
+ aes(x = revenue) +
+ geom_density(adjust = 0.2, fill = "#112446") +
+ labs(title = "Profit Density (bandwidth adjustment 5.2)") +
+ theme_bw()
+
+ggplot(imdb_cluster) +
+ aes(x = revenue) +
+ geom_density(adjust = 5.2, fill = "#112446") +
+ labs(title = "Revenue Density (bandwidth adjustment 5.2)") +
+ theme_bw()
+
+ggplot(imdb_cluster) +
+ aes(x = revenue) +
+ geom_density(adjust = 0.2, fill = "#112446") +
+ labs(title = "Revenue Density ") +
+ theme_bw()
+
+
+```
+
+```{r}
+imdb_gross_structure <- 
+  imdb_cluster %>%
+  select(budget_x,revenue)
+
+imdb_gross_structure %>%
+ filter(revenue >= 120000000 & budget_x <= 199000000  | is.na(budget_x)) %>%
+ ggplot() +
+  aes(x = budget_x, y = revenue) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+
+clean_imdb_gross_structure <-
+  imdb_gross_structure %>%
+  drop_na()
+clean_imdb_gross_structure 
+
+imdb_gross_structure_featured <- 
+  clean_imdb_gross_structure  %>%
+  mutate(zscore_revenue = (revenue - mean(revenue, na.rm = T))/sd(revenue, na.rm = T),
+         zscore_budget = (budget_x - mean(budget_x, na.rm = T))/sd(budget_x, na.rm = T)) %>%
+  select(zscore_revenue, zscore_budget) 
+
+ggplot(imdb_gross_structure_featured) +
+  aes(x = zscore_budget, y = zscore_revenue) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  theme_minimal()
+
+resultado_kmeans <- kmeans(imdb_gross_structure_featured, centers = 5)
+
+clean_imdb_gross_structure <- as.character(resultado_kmeans$cluster)
+clean_imdb_gross_structure 
+
+
+###############################
+
+kmeans <- kmeans(imdb_gross_structure_featured, centers = 5)
+kmeans$cluster <- as.character(kmeans$cluster)
+
+
+kmeans <- data.frame(imdb_cluster, cluster = kmeans$cluster)
+
+# Gráfico
+
+ggplot(kmeans) +
+  
+  aes(x = revenue, y = budget_x, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+
+print("kmeans$centers:")
+print(kmeans$centers)
+
+centers <- as.data.frame(kmeans$centers)
+centers$cluster <- rownames(kmeans$centers)
+
+
+
+
+```
+
+
+
+
+
+#K-MEANS 
+
+```{r}
+resultado_kmeans <- kmeans(starwars_physical_structure_featured, centers = 3)
+clean_starwars_physical_structure$cluster <- as.character(resultado_kmeans$cluster)
+
+ggplot(clean_starwars_physical_structure) +
+  aes(x = mass, y = height, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+
+```{r}
+resultado_kmeans <- kmeans(imdb_cluster$score, centers =3)
+imdb
+```
+
+
+#Clustering algorithm - first glitchs
+```{r}
+
+centers <- as.data.frame(kmeans$centers)
+centers$cluster <- rownames(resultado_kmeans$centers)
+
+ggparcoord(centers, columns = 1:2, groupColumn = 3) 
+```
+
+```{r}
+library(corrplot)
+correlation_matrix<-cor(as.numeric(imdb_cluster[,-ncol(imdb_cluster)]))
+corrplot(correlation_matrix, method = "color", type ="upper")
+```
+
+
+
+```{r}
+kmeans <- kmeans(imdb_cluster, centers = 5)
+kmeans$cluster <- as.character(kmeans$cluster)
+
+if (length(kmeans$centers) == 0) {
+  stop("No cluster centers found. Check your input data and parameters.")
+}
+
+kmeans <- data.frame(imdb_cluster, cluster = kmeans$cluster)
+
+# Gráfico
+ggplot(kmeans) +
+  aes(x = revenue, y = budget_x, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+
+print("kmeans$centers:")
+print(kmeans$centers)
+
+centers <- as.data.frame(kmeans$centers)
+centers$cluster <- rownames(kmeans$centers)
+
+
+}
+
+ggparcoord(centers, columns = 3:4, groupColumn = "cluster")
+
+```
+
+```{r}
+centers <- as.data.frame(kmeans$centers)
+centers$cluster <- rownames(kmeans$centers)
+
+# Plot the parallel coordinates
+ggplot(centers, aes(x = 1:2, y = centers[,1:2], group = cluster, color = cluster)) +
+  geom_line() +
+  labs(x = "Variable", y = "Value") +
+  scale_color_discrete(name = "Cluster") +
+  theme_minimal()
+```
+
+
+#Find better hyper-parameters
+```{r}
+fviz_nbclust(kmeans1, kmeans, method = "wss", k.max = 10)
+```
+#K-MEANS 1 ajustado
+```{r}
+kmeans2 <- kmeans(imdb_cluster, centers = 2)
+kmeans2$cluster <- as.character(kmeans2$cluster)
+
+kmeans2 <- data.frame(imdb_cluster)
+kmeans2$cluster <- as.character(kmeans2$cluster)
+
+#gráfico
+ggplot(kmeans2) +
+  aes(x = date_x, y = revenue, colour = cluster) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_hue(direction = 1) +
+  theme_minimal()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
