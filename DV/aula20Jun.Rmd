@@ -1,0 +1,11 @@
+library(rpart)
+library(rpart.plot)
+
+data(PimaIndiansDiabetes)
+
+```{r}
+# Split data into training and testing sets
+train_indices <- sample(1:nrow(PimaIndiansDiabetes), 0.7 *
+                          nrow(Pima))
+```
+
