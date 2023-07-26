@@ -1,0 +1,65 @@
+
+# Remember:
+# a graph with plotly is powered by the Javascript library plotly.js
+# the plot_ly() function provides a direct interface to plotly.js
+
+library(ggplot2)
+library(plotly)
+
+# We will use the diamonds dataset
+# our main focus will be on variables carat, cut, color and clarity
+head(diamonds)
+
+# Bellow we use ~cut to refer to the variable 'cut' of the dataset
+plot_ly(diamonds, x=~cut) # o plotly adivinha qual é o mais adequado para visualizar , graficamente, ele escolhe por nós
+
+plot_ly(diamonds, x=~cut, y=~clarity) #tile ou tale, indicar qual o trave que quero, isto é simplificar e dá para alterar o gráfico, mas é complicar
+
+plot_ly(diamonds, x=~cut, color=~clarity)
+plot_ly(diamonds, x=~cut, color=~clarity, colors="Accent")
+
+
+# Now, let's try (and fail) to map colors to graph elements
+plot_ly(diamonds, x=~cut, color="black") # devido às aspas ...
+
+# use the "As Is" function to map colors directly, I()
+plot_ly(diamonds, x=~cut,
+       color=I("cyan"),
+       stroke=I("blue"),
+       span=I(2))
+# no ploty tem só haver com cores, a função As Is é representada com o I()
+
+# Insert a title
+layout(
+plot_ly(diamonds, x=~cut),
+title="An histogram"
+)
+
+# Check the economics dataset
+head(economics)
+
+# plot_ly can receive an input dataset from a pipeline
+p <- economics %>% ## envio diretamente para o plotly o dataframe e com as variáveis
+    plot_ly(x=~date, y=~psavert) #variáveis numéricas e não nominais com anteriormente
+p
+
+# Now, connecting the dots
+# usign row ordering to connect the dots
+add_paths(p)
+# using original ordering in the data
+add_lines(p)
+
+
+# let's add two columns (year and month)
+library(lubridate)
+econ <- economics %>% mutate(yr=year(date), mnth=month(date))
+head(econ) # extrtaindo o ano e o mês diretamente
+
+econ %>%
+    group_by(yr) %>%
+    plot_ly(x=~mnth, y=~uempmed) %>%
+    add_lines(text=~yr) # provide the label with the year, ligar as linhas desta maneira , indicações com o cursor
+
+plot_ly(econ, x=~mnth, y=~uempmed) %>%
+    add_lines(color=~ordered(yr)) # escala com duas páginas...
+
