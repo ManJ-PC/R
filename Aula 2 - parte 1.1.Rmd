@@ -1,0 +1,137 @@
+---
+title: |
+  <center> Incomplete Data Analysis </center>
+  <center> R and missing data and exploratory plots </center>
+author: "V. Inácio de Carvalho & M. de Carvalho"
+subtitle: School of Mathematics, University of Edinburgh
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+In \texttt{R} missing values are coded as \texttt{NA}, which stands for \emph{not available}, and which should not be confunsed with \texttt{NaN}, which stands for \emph{not a number}. Out of curiosity, in the popular Pima Indians Diabetes dataset, available in several \texttt{R} packages, missing values (in variables as such body mass index and blood pressure) were coded originally with the numerical value zero! Ouch! 
+
+Let us start inspecting how some of the most used built-in \texttt{R} functions handle data with missing values (i.e., with \texttt{NA} values). For example, suppose that the vector $y$ contains three numbers, e.g., $1$, $3$, and $5$. If we are to compute the mean of $y$, we simply do 
+```{r message=FALSE, include=TRUE}
+y <- c(1, 3, 5) #NA
+mean(y, na.rm = TRUE) # por default o r não cálcula a média quando comtém valores omissos
+# contrala a opção de remover ou não a opçã ode valores omissos!
+```
+Now, let us check what happens if the last number is missing.
+```{r, include = TRUE, message = FALSE}
+y <- c(1, 3, NA)
+mean(y)
+```
+The mean is now undefined. If we look at the help of the function \texttt{mean}, by typing \texttt{help(mean)}, we notice the extra argument \texttt{na.rm}, a logical value indicating whether \texttt{NA} values should be removed before the computation proceeds. The default value is set to \texttt{FALSE}. If we instead set it to true, the missing values will be removed before the computation of the mean.
+```{r, include = TRUE, message = FALSE}
+y <- c(1, 3, NA)
+mean(y, na.rm = TRUE)
+```
+This makes possible to compute a result but, of course, the set of observations on which the computations are based has changed. I reiterate that disregarding the missing values may cause problems when conducting statistical inference.
+
+Let us now investigate the popular \texttt{lm} function, where \texttt{lm} stands for linear model/modelling. Only for illustrative purposes, let us use the built-in dataset \texttt{airquality}, which contains $153$ observations on $6$ variables. Suppose we want to predict daily ozone concentration (measure in parts per billion) from wind speed (measured in miles per hour), that is, we will be considering the model
+\[
+\text{Ozone}_i=\beta_0 + \beta_1\text{Wind}_i+\varepsilon_i,\quad \varepsilon\overset{\text{iid}}\sim \text{N}(0,\sigma^2), \quad i=1,\ldots,153.
+\]
+We start by investigating whether each of the variables has any missing values.
+```{r, include = TRUE, message = FALSE}
+data(airquality)
+names(airquality)
+sum(is.na(airquality$Ozone))
+sum(is.na(airquality$Wind))
+```
+The variable ozone has $37$ missing values, whereas the variable wind does not have any missing values. We then fit the regression model
+```{r, include = TRUE, message = FALSE}
+fit <- lm(Ozone ~ Wind, data = airquality)
+fit
+```
+We got no error message. This is because the \texttt{lm} function, unlike the \texttt{mean} function, automatically excludes missing values before fitting the model. We can check this by typing
+```{r, include = TRUE, message = FALSE}
+deleted <- na.action(fit)
+naprint(deleted)
+```
+The main message from these two simple examples is that it is mandatory, before using any built-in function, to check how it handles missing values.
+
+As for any analysis, the first thing to do with missing values is to do some exploratory analyses, mainly descriptive statistics, including visualisations. Some basic statistics can be obtained via the command \texttt{summary}
+```{r, include = TRUE, message = FALSE}
+summary(airquality)
+```
+In particular \texttt{summary} gives us the number of missing values on each variable (we could have also used \texttt{summary} earlier when checking whether there were missing values for the variables ozone and wind). There are several packages that have very helpful functions to perform visualisations. In particular, I mention \texttt{VIM} and \texttt{naniar} (\texttt{mice} and \texttt{Amelia} have also a few functions for missing data exploration). First of all, we need to load the packages (if you have not the packages installed, you need to install them first). 
+```{r, include = TRUE, message = FALSE}
+require(VIM)
+require(naniar)
+require(mice)
+require(Amelia)
+```
+The aggregation plot (function \texttt{aggr}) in the \texttt{VIM} package is a good starting point.
+```{r, include = TRUE, message = FALSE, fig.align = 'center'}
+#from VIM
+v <- aggr(airquality, plot = FALSE)
+plot(v, prop = FALSE, numbers = TRUE)
+summary(v)
+```
+The plot in the left shows the number of missing values occurring in each variable, while the plot in the right shows the combinations of missing values in the different variables. For instance, we can see that there are $111$ observations with complete data on all variables, $35$ observations with missing values on the ozone variable, $5$ observations with missing values in the solar radiation variable and $2$ observations with missing values in both the ozone and solar radiation variable.
+
+The function \texttt{missmap} in the package \texttt{Amelia} provides similar information, showing the variables against the observations, with a different color for when missing values occur.
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+#from Amelia
+missmap(airquality, col = c("firebrick1", "dodgerblue"))
+```
+
+An almost similar plot can be obtained using the function \texttt{matrixplot} from the \texttt{VIM} package.
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+#from VIM
+matrixplot(airquality, col = c("firebrick1", "dodgerblue"))
+```
+
+The package \texttt{mice}, which we will be using later in the course when learning about multiple imputation contains the function \texttt{md.pattern} which provides insight about the pattern of missing values (the same can be obtained with the \texttt{aggr} function that we have illustrated before and which I think is more helpful).
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+#from mice
+md.pattern(airquality)
+```
+
+The function \texttt{marginplot} in \texttt{VIM} displays, in addition to a standard scatterplot, information about missing in the plot margins.
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+#from VIM
+names(airquality) 
+marginplot(airquality[c(1,3)])
+```
+
+The blue points in the `data area' correspond to observations for which both ozone and wind were observed. The red dots in the left margin correspond to
+the records for which wind is observed and ozone is missing. The points are drawn at the known values of wind. The bottom horizontal margin does not contain any red points because wind is fully observed. Furthermore, the left margin contains two boxplots, a blue and a red one. The blue boxplot in the left margin summarises the marginal distribution of wind observations for which the corresponding ozone value is observed, while the red boxplot summarises the marginal distribution of wind observations for which the corresponding ozone value is missing. Rememeber that if missing in ozone is MCAR these two distributions are expected to be identical. Obviously here we are constrained at plotting two variables at a time only, but nevertheless we can gather some interesting insights.
+
+The function \texttt{pbox}(from \texttt{VIM}) consists of several boxplots as shown below. 
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+#from VIM
+pbox(airquality, pos = 3)
+```
+
+This plot consists of several boxplots. First, a standard boxplot of the variable of interest, in this case and only for illustrative examples, wind (column 3 in the dataset \texttt{airquality}) is produced. Second, boxplots grouped by observed and missing values, induced by the two variables with missing values (ozone and solar radiation), in this variable are shown. This is extremely useful when trying to check MCAR against MAR.
+
+Finally, the package \texttt{naniar} has a variety of different plots to explore missing data. It is based on \texttt{ggplot2} and tidy data principles. This is not required in the course, but I am illustrating here some of the plots, so you know they exist! First, as a matter of caution, note that plain \texttt{ggplot} plots  do not handle missing values by default and automatically remove them, as illustrated below.
+
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+require(ggplot2)
+ggplot(airquality, 
+       aes(x = Solar.R, 
+           y = Ozone)) + 
+  geom_point() +
+  theme_bw()
+```
+
+There are several functions in \texttt{naniar} providing similar information to those from \texttt{VIM}.
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+vis_miss(airquality)
+
+gg_miss_var(airquality)
+```
+
+The package has also a function that allows to look at missingness when stratifying by another variable, as illustrated in the plot below
+```{r message=FALSE, include=TRUE, fig.align = 'center'}
+gg_miss_var(airquality, facet = Month)
+```
+
+The supporting articles for the \texttt{VIM} and \texttt{naniar} packages are on Learn. There is also a vignette, available in the link below, illustrating several of the plots that can be obtained with the \texttt{naniar} package.
+\begin{center}
+\texttt{https://naniar.njtierney.com/articles/naniar-visualisation.html}
+\end{center}
