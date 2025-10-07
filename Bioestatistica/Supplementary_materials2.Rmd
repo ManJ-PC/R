@@ -1,0 +1,45 @@
+---
+title: ""
+author: "V. Inácio de Carvalho & M. de Carvalho"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+In this document I show how to obtain the maximum likelihood estimates of $\beta_0$ and $\beta_1$ using both the \texttt{optim} function and the \texttt{glm} function with the argument \texttt{family} set to \texttt{binomial}. The dataset \texttt{wcgsdata} is also available on Learn and it has several (exposure) variables. For now, we will only use the weight and CHD variables.
+
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+require(readxl)
+data_wchs <- read_excel("wcgsdata.xls")
+names(data_wchs)
+head(data_wchs)
+
+#Log likelihood function logistic regression model (slide 12)
+log_like <- function(param, d, x){
+beta0 <- param[1]
+beta1 <- param[2]  
+sum((d*(beta0+beta1*x)) - log(1+exp(beta0+beta1*x)))
+}
+
+res_optim <- optim(c(0, 0), log_like, 
+                   d = data_wchs$Chd69, x = data_wchs$Weight0, 
+                   control = list(fnscale = -1), hessian = TRUE)
+res_optim
+
+#Inverse of the observed Fisher information matrix 
+# (the diagonal extract the standard errors of beta0 and beta1)
+sqrt(diag(solve(-1*res_optim$hessian)))
+
+#Results using the glm function
+res_glm <- glm(Chd69 ~ Weight0, family = "binomial",
+               data = data_wchs)
+out_glm <- summary(res_glm)
+out_glm
+exp(res_glm$coefficients)
+exp(confint.default(res_glm, level = 0.95))
+alpha <- 0.05
+exp(out_glm$coefficients[2, 1] - qnorm(1-(alpha/2))* out_glm$coefficients[2, 2]) 
+exp(out_glm$coefficients[2, 1] + qnorm(1-(alpha/2))* out_glm$coefficients[2, 2]) 
+```

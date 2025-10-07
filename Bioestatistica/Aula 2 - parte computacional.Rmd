@@ -1,0 +1,77 @@
+---
+title: "Biostatistics"
+author: "V. Inácio de Carvalho & M. de Carvalho"
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+We will start by reproducing the plots we have in slides 7 and 9 of the lectures (sampling distributions of $\widehat{\text{OR}}$ and $\log \widehat{\text{OR}}$). We will also make the corresponding plots for the sampling distributions of $\widehat{\text{RR}}$ and $\log \widehat{\text{RR}}$. The key is to remember that, under a cohort design, the entry $a$ in the $2\times 2$ contingency table (slide 3) follows a binomial distribution whose parameters are the number of exposed individuals and probability of disease given exposure. Similarly, the entry $c$ (in the same contingency table) also follows a binomial distribution whose parameters are, in turn, the number of individuals who are not exposed and the probability of disease given no exposure. We will be assuming that $p_1=\Pr(D\mid E) = 0.2$ and that $p_2=\Pr(D\mid \text{not } E) = 0.2$ and, further, that we have 50 individuals in the exposed group and another 50 individuals in the unexposed group. To make the results reproducible, I will be fixing the seed. The code is as follows.
+
+```{r, include = TRUE, message = FALSE, tidy.opts = list(width.cutoff = 60), fig.height = 6, fig.width = 6}
+n_exp <- 500 # com exposição
+n_unexp <- 50
+p1 <- 0.2
+p2 <- 0.2
+
+nsim <- 1000
+OR <- RR <- numeric(nsim)
+
+set.seed(123)
+for(i in 1:nsim){
+  a <- rbinom(1, n_exp, p1) # distribuição binomial, da contagem associada! a doença e exposição
+  c <- rbinom(1, n_unexp, p2)
+  b <- n_exp - a
+  d <- n_unexp - c # simular 1000 tabelas de contigência!
+  OR[i] <- (a*d)/(b*c)
+  RR[i] <- (a/(a+b))/(c/(c+d))
+}
+
+df_OR <- data.frame("Mean" = c(mean(OR), mean(log(OR))), 
+                 "Median" = c(median(OR), median(log(OR))),
+                 "Min" = c(min(OR), min(log(OR))),
+                 "Max" = c(max(OR), max(log(OR)))
+                 )
+
+rownames(df_OR) <- c("OR", "log OR") 
+knitr::kable(df_OR, escape = FALSE, digits = 3,
+             caption = "Summary statistics of the sampling distributions of the OR and log OR")
+
+hist(OR, nclass = 20, xlab = "Estimated odds ratio",
+     ylab = "Frequency", main = "Sampling distribution estimated OR")
+abline(v = 1, lwd = 2, col = "red")
+
+hist(log(OR), nclass = 20, xlab = "Estimated log odds ratio",
+     ylab = "Frequency", main = "Sampling distribution estimated log OR")
+abline(v = 0, lwd = 2, col = "red")
+
+df_RR <- data.frame("Mean" = c(mean(RR), mean(log(RR))), 
+                 "Median" = c(median(RR), median(log(RR))),
+                 "Min" = c(min(RR), min(log(RR))),
+                 "Max" = c(max(RR), max(log(RR)))
+                 )
+
+rownames(df_RR) <- c("RR", "log RR") 
+knitr::kable(df_RR, escape = FALSE, digits = 3,
+             caption = "Summary statistics of the sampling distributions of the RR and log RR")
+
+hist(RR, nclass = 20, xlab = "Estimated  relative risk", 
+     ylab = "Frequency", main = "Sampling distribution estimated RR")
+abline(v = 1, lwd = 2, col = "red")
+
+hist(log(RR), nclass = 20, xlab = "Estimated log relative risk ", 
+     ylab = "Frequency", main = "Sampling distribution estimated log RR")
+abline(v = 0, lwd = 2, col = "red")
+```
+ 
+\noindent I now illustrate the usage of the \texttt{epiR} and \texttt{epitools} packages which, among many things, have functions to compute estimates and CIs for different measures of association. We will use the data from the example in slide 17.
+```{r, include = TRUE, message = FALSE, tidy.opts = list(width.cutoff = 60)}
+require(epiR)
+data <- c(62, 76, 5, 55)
+epi.2by2(data, method = "case.control", conf.level = 0.95, units = 100,
+         interpret = TRUE, outcome = "as.columns")
+
+require(epitools)
+oddsratio(data, method = "wald", conf = 0.95, correct = FALSE)
+```

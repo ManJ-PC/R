@@ -1,0 +1,129 @@
+---
+title: 
+author: "V. Inácio de Carvalho & M. de Carvalho "
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+In this document we reproduce the results presented in the slides and illustrate some further calculations. We start wuith the pancreatic cancer example of slide 2 (and onwards). The data are available in the file \texttt{coffeedata\_2.xls}.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+require(readxl)
+data_coffee_2 <- read_excel("coffeedata_2.xls")
+data_coffee_2
+```
+
+Note that in the coffee column, $0$ denotes no coffee consumption, $1$ denotes $1-2$ cups of coffee per day, $2$ denotes $3-4$ cups of coffee per day and $3$ denotes $5$ or more cups coffee/day. In turn, in the column sex, $1$ stands for a female subject and $0$ for a male. I will start by coding these variables as factors and relabelling them so that they a have a more intuitive meaning (at least, to me!).  
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+data_coffee_2$sex <- factor(data_coffee_2$sex, levels = c(0, 1), 
+                            labels = c("Male", "Female"))
+data_coffee_2$coffee <- factor(data_coffee_2$coffee, levels = c(0, 1, 2, 3), 
+                               labels = c("0", "1-2", "3-4", "5+"))
+data_coffee_2
+```
+
+Note that the data are grouped (or in \emph{binomial} format), i.e., for each coffee consumption and gender levels combination, it is listed the number of cases and the number of controls (or, more generally, the number of successes and failures). This a popular way of presenting the data when all exposure variables are discrete.  We then need to pass the number of cases and controls for each exposure variables combination to the \texttt{glm} function.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+res_binom <- glm(cbind(cases, controls) ~ coffee + sex, family = "binomial",
+                 data = data_coffee_2)
+summary(res_binom)
+exp(res_binom$coefficient)[2:5]
+exp(confint.default(res_binom, level = 0.95))[2:5,]
+```
+
+You may see as well in the literature, the following use of the \texttt{glm} function with grouped/binomial data: instead of using the pairs of cases and controls, one passes to the function the proportion of cases and in this case the argument \texttt{weights} need to be specified as well (corresponding to the total of observations per category).
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+res_binom_alt <- glm(cases/(cases + controls) ~ coffee + sex, family = "binomial",
+                     weights = cases + controls, data = data_coffee_2)
+summary(res_binom_alt)
+```
+
+All output is obviously the same. Alternatively, we can rearrange the data in an ungrouped (or bernoulli) form and each individual is listed separately (i.e., observations that form say, an exposure class, with the same gender and coffee consumption, are not grouped). The data is stored in this format in the file \texttt{coffeedata\_1.xls}.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+data_coffee_1 <- read_excel("coffeedata_1.xls")
+data_coffee_1$sex <- factor(data_coffee_1$sex, levels = c(0, 1), 
+                            labels = c("Male", "Female"))
+data_coffee_1$coffee <- factor(data_coffee_1$coffee, levels = c(0, 1, 2, 3), 
+                               labels = c("0", "1-2", "3-4", "5+"))
+head(data_coffee_1)
+```
+
+We can now use the function \texttt{glm} just passing the response variable, \texttt{cancer\_status} in this case, which is either a 1 (for a case) or a 0 (for a control).
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+res_bern <- glm(cancer_status ~ coffee + sex, 
+               family = "binomial", data = data_coffee_1)
+summary(res_bern)
+```
+
+We see that all results but the deviances and AIC are the same. Still, the difference between the null and the residual deviances are the same under the two models. With respect
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+AIC(res_binom)
+AIC(res_bern)
+```
+
+The AIC as we will see later in the lecture slides is given by $-2\log \text{likelihood} (\widehat{\boldsymbol{\beta})} + (k+1)$, where $k+1$ is the total number of parameters in the model ($k$ regression coefficients and the intercept). The difference between the AIC comes from the difference between the bernoulli and binomial likelihoods. In particular, the AIC for the binomial case is is just equal to the AIC of the bernoulli model plus the following term: $-2\sum_{k=1}^{8} \log \binom{n_k}{y_k}$, where $n_k$ is the number of subjects (cases + controls) in category (as formed by the gender and coffee consumption levels combination) $k$, whereas $y_k$ is the number of cases (at category $k$).
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+AIC(res_bern) -2*(log(choose(60 + 82, 60)) + log(choose(53 + 74, 53)) + 
+                  log(choose(94 + 119, 94)) + log(choose(9 + 32, 9)) + 
+                  log(choose(28 + 48, 28)) + log(choose(53 + 80, 53)) +
+                  log(choose(59 + 152, 59)) + log(choose(11 + 56, 11)))
+```
+
+Let us now illustrate the likelihood ratio method using the CHD example we have analysed before. Just for the sake of illustration, we will be discretizing the weight variable in five categories.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+data_wchs <- read_excel("wcgsdata.xls")
+names(data_wchs)
+head(data_wchs)
+
+require(readxl)
+data_wchs <- read_excel("wcgsdata.xls")
+names(data_wchs)
+head(data_wchs)
+
+n <- nrow(data_wchs)
+data_wchs$weight_cat <- numeric(n)
+for(i in 1:n){
+data_wchs$weight_cat[i] <- ifelse(data_wchs$Weight0[i] <= 150, 1, 
+       ifelse(data_wchs$Weight0[i] > 150 & data_wchs$Weight0[i] <= 160, 2, 
+              ifelse(data_wchs$Weight0[i] > 160 & data_wchs$Weight0[i] <= 170, 3, 
+                     ifelse(data_wchs$Weight0[i] > 170 & data_wchs$Weight0[i] <= 180, 4, 5))))
+}
+
+data_wchs$weight_cat <- factor(data_wchs$weight_cat, levels = c(1, 2, 3, 4, 5),
+                               labels = c("<150", "150-160", "160-170", 
+                                          "170-180", ">180"))
+
+res_weight_cat <- glm(Chd69 ~ weight_cat, family = "binomial",
+                      data = data_wchs)
+summary(res_weight_cat)
+```
+
+We now test the hypothesis $H_0: \beta_1 =\beta_2 =\beta_3 =\beta_4 = 0$. From the slides, we know that all we need is the deviance from the model only containing $\beta_0$ and the deviance from the model containing all five parameters. The deviance of the model only containing the intercept is always given in the output of the \texttt{glm} function in the null deviance. The residual deviance is the deviance of the model we have fitted (in this case, the model containing the five parameters).
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+dif_deviance <- res_weight_cat$null.deviance - res_weight_cat$deviance
+dif_deviance
+```
+
+The values of the $\chi^{2}_1$ distribution can then be used to determine the probability of observing a value as large or larger than this difference of deviances, assuming the null hypothesis $H_0$ to be true. This probability is known as the p-value, associated with the null hypothesis $H_0$, generated by the observed data. As mentioned, the p-value is the right hand tail area of the $\chi^{2}_1$ distribution, greater than the observed value of the test statistic. 
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+pchisq(dif_deviance, df = 4, lower = FALSE)
+1 - pchisq(dif_deviance, df = 4, lower = TRUE)
+```
+
+At any significance level commonly used (e.g., 0.01, 0.05, 0.1) we reject the null hypothesis, i.e., we reject that all four coefficients are zero. 
+
+The Wald test statistic, $z_{\beta_{j}}$ as in the slides, is available in the \texttt{z value} column of the output. The corresponding p-value is given in the next (to the right) column. We do not need but we know how to obtain those p-values. For instance, for $\beta_1$
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+pchisq(0.262^2, df = 1, lower = FALSE)
+```
+
+The AIC is provided as part of the output of the \texttt{glm} function. There are also the functions \texttt{AIC} and \texttt{BIC}. 
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+#Below 5 is the number of parameters.
+BIC(res_weight_cat)
+res_weight_cat$deviance + 5*log(dim(data_wchs)[1])
+
+AIC(res_weight_cat)
+res_weight_cat$deviance + 5*2
+```

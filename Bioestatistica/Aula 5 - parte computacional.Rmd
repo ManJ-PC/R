@@ -1,0 +1,73 @@
+---
+title: 
+author: "V. Inácio & M. de Carvalho"
+output:
+  pdf_document: default
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+Here I reproduce the plots we have in the slides. They are easily obtained using the package \texttt{survival}. The crux is to create an object of class \texttt{Surv} containing the event times and whether or not they are censored.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+require(survival)
+times <- c(1, 3, 3, 6, 8, 9, 10)
+status <- c(1, 1, 1, 0, 0, 1, 0)
+S <- Surv(times, status)
+S
+class(S)
+```
+
+Note that when we print our object \texttt{S}, the censored times appear with a \texttt{+} symbol. We can then use the \texttt{survfit} function in order to obtain the Kaplan--Meier estimate of the survival function. Note that \texttt{conf.type = "plain"} implements the approach of slide 17 (based on Greenwood formula).
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60), figure.width = 5, figure.height = 5}
+fit <- survfit(S ~ 1, conf.type = "plain")
+fit
+summary(fit)
+plot(fit,
+     xlab = "Time (in months)", 
+     ylab = "Kaplan-Meier estimate of the survival curve")
+```
+
+From the output we can see that the estimated median survival time is 9 (months). Other type of (pointwise) confidence intervals for the survival function can be obtained by changing the argument \texttt{conf.type}. A popular approach is to set it to \texttt{log-log}. 
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60), figure.width = 5, figure.height = 5}
+fit_alt <- survfit(S ~ 1, conf.type = "log-log")
+summary(fit_alt)
+plot(fit_alt,
+     xlab = "Time (in months)", 
+     ylab = "Kaplan-Meier estimate of the survival curve")
+```
+
+With regard to the Nelson--Aalen estimate, we proceed exactly in the same way as for the Kaplan--Meier estimate, we just need to specify the following arguments \texttt{stype = 2} and \texttt{ctype = 1}. More information can be find here:
+\begin{center}
+\texttt{https://stat.ethz.ch/R-manual/R-devel/library/survival/html/survfit.formula.html}
+\end{center}
+
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60), figure.width = 5, figure.height = 5}
+fit_NA <- survfit(S ~ 1, stype = 2, ctype = 1)
+summary(fit_NA)
+plot(fit_NA, conf.int = FALSE,
+     xlab = "Time (in months)", 
+     ylab = "Nelson-Aalen estimate of the survival curve")
+```
+
+Let us visualise both the Kaplan--Meier and the Nelson--Aalen estimates in the same plot.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60), figure.width = 5, figure.height = 5}
+plot(fit_NA, conf.int = FALSE,
+     xlab = "Time (in months)", 
+     ylab = "Estimate of the survival curve")
+lines(fit, conf.int = FALSE, col = 2, lty = 2)
+legend("topright", lty = c(1, 2), col = c(1, 2),
+       c("Nelson-Aalen", "Kaplan-Meier"), bty = "n")
+```
+
+A recent package that produces very nice visualisations is \texttt{survminer}.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60), figure.width = 5, figure.height = 5}
+require(survminer)
+toy_data <- data.frame("times" = times, "status" = status)
+res_fit <- survfit(Surv(times, status) ~ 1, data = toy_data)
+ggsurvplot(res_fit, 
+           conf.int = 0.95,
+           ggtheme = theme_minimal(), 
+           data = toy_data,
+           risk.table = TRUE)
+```

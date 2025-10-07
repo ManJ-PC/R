@@ -1,0 +1,62 @@
+---
+title: ""
+author: "V. Inácio & M. de Carvalho"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+Here we reproduce the results for the larynx data.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+require(KMsurv) #for the larynx data
+require(survival)
+data(larynx)
+res_1 <- coxph(Surv(time, delta) ~ as.factor(stage) + age, data = larynx)
+res_1
+summary(res_1)
+```
+
+In order to apply the likelihood ratio test, let us fit a proportional hazards model that does not include the stage of the cancer as risk factor. Our null hypothesis is then: $H_0:\beta_1=\beta_2=\beta_3=0$ against the alternative that, at least, one of the coefficients is not zero.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+res_2 <- coxph(Surv(time, delta) ~ age, data = larynx)
+res_2
+anova(res_1,res_2)
+```
+
+We can also obtain this value manually as follows.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+#the first is the log likelihood of a model that contains none of the risk factors,
+#so we need the second one
+res_1$loglik
+test_stat <- 2*(res_1$loglik[2] - res_2$loglik[2])
+pchisq(test_stat, df = 4 - 1, lower.tail = FALSE)
+```
+
+If we want to compare non nested models, we can use the AIC or the BIC. 
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+AIC(res_1)
+-2*res_1$loglik[2] + 2*4
+BIC(res_1)
+-2*res_1$loglik[2] + log(sum(larynx$delta))*4
+```
+
+Here we reproduce the results to obtain the adjusted survival curves (under a Cox model) presented in the last slide.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 60)}
+require(survival)
+require(KMsurv)
+data(larynx)
+res_1 <- coxph(Surv(time, delta) ~ as.factor(stage) + age, data = larynx)
+
+#adjusted survival curve for the mean age
+newdf <- data.frame("stage" = levels(as.factor(larynx$stage)), 
+                    "age" = rep(mean(larynx$age), 4)) 
+fit <- survfit(res_1, newdata = newdf)
+
+plot(fit, conf.int = FALSE, col = c(1:4),
+     ylab = "Estimated survival probability", 
+     xlab = "Time (in years)", 
+     main = "Age = 64.6 years (mean age)")
+legend("topright", legend = c("Stage I", "Stage II", "Stage III", "Stage IV"), 
+       col = c(1:4), lty = c(1,1,1,1), bty = "n")
+```
