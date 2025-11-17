@@ -1,0 +1,42 @@
+Aula 6 26/11
+Perder o tlm, dropout - dado omissos
+censura , pode vir terminar o estudo ou dropout
+
+evento de interesse é mote, probabilidade de morte no instante T, dado que a morte não ocorreu no instante T.
+Contexto de variáveis aleatórias contínuas.
+Pensar em termos do tempo do modo discreto.
+Dias, discretos, falar em termos de tempo contínuo
+1.56 etc por aí adiante!
+hazard mais abstrato que os anteriores, mais contínuo, uma vez que o tempo é discreto!
+Viver mais um período dado que se viveu até T1
+
+probabilidade de viver mais um perído sabendo que se viveu mais até T
+relaciona-se com a função de probabilidade e com a função de sobrevivência!
+dERIVAÇÃO DEMONSTRA-SE.. , função de  -.. e sobrevivência!
+Sò se acontece uma vez a morte..
+t como tempo de espera, tempo de vida, tempo de uma recuperação! Duração e análise de sobrevivência aplicasse a distintos domínios!
+Questão .., apontada pela Mónica!
+Funções de sobrevivência!
+Estimador que é mais conhecido no contexto da função de sobrevivência!
+Artigo que estima a função de sobrevivência!,
+1400 como referência, mtas vezes já não ... vão beber da fonte...
+
+rácio função de densidade / função de sobrevivência! (risco, qdo consultamos uma distribuição normal!)
+
+dnesidade pdf
+distribuição cdf  
+
+média é dada por um sobre lambda!
+
+constante entre o modelo  ... exponencial! NAS APLICAÇÕES ENCONTRADAS! PROBABLIDADE DECRESCENDO!
+ver se é contra - productivo ...
+t  =  10 , 99 anos , aprobabilidade é capaz de ser cada vez mais pequeno!
+elimina as limitações que apresentou!
+dlnom e plnorm, associadas à função de distribuição!
+
+média do f1
+máximo, mínimo, désvio padrão, diferença entre modelos, geral (média dos 3 agregração).
+v/ modelos, 
+re-treimo de um modelo capaz de incluir mconheci,mento, aproveitar conehcimento médico (protótipo)
+NLP, conhecimento profundo.., autoML
+escrever o código conforme a Rita descrebeu/pediu
