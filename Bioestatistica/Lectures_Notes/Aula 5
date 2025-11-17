@@ -1,0 +1,59 @@
+Aula 5
+
+1 de cada vezword ou tek é igual o trabalho , estes cálculos
+Ver se há variações por números de café e gênero
+como podemos estimar o Beta,..  através do oddVerosimilhança
+são doentes de controlo e casos
+risco, associada a este parâmetros.., e conjunto de dados. Pensar qual o modelo que vou ajustar!
+Em várias análises o analista acaba por ser envolvido mais tarde!
+Como enquadrar os dados dentro desse estudo!
+avaliar a variável tem alguma associação!
+Definir as hipóteses de interesse!
+ou o modelo mais natural para este contexto! e características que esse modelo tem!
+Gráficos análise de dados e contexto representado analisar possibilidade!. análise de valores omissos e qual a razão para a omissão desses dados etc!
+Condição de uma análise estatística!
+os Betas tem a alteração de uma das outras variáveis mantendo todas as variáveis constantes. EM todos os grupos tem de haver sub-grupos!?
+COmparação ao nível de homem e mulher mas mantendo o nível de grupos constantes!
+O B4 vai dar,, homens bebem mto cafe e mulheres mto café, alteração em termos de ricos homens que bebem mto e pouco café
+ 
+Betas associados a essa comparação!
+Mais que uma comparação que possamos fazer, 
+Mantendo o resto constante, fazendo um ... contexto em média!
+Fazendo comparações em sub-grupos distintos!
+e esta parte da matéria!
+Interpretação!,  Mónica  e  mais alguma questão!?
+Como fazer a estimação deste modelo no R...
+GLM, generalize minimal model , e obter estimativas de máxima verosimilhança.
+Conforme referido, valores dos parâmetros mais compatíveis com os dados observados.
+Qual o valor dos parâmetros que é mais compatível!
+Intervalo de confiança no R, tmb já vimos, matrix de Fixer, já ver!
+Conf , o que o comando GLM faz e obter as estimativas é díficil, interpretação, importantante pensar nos próprios dados!
+Risco, nas estimativas!
+Risco em relação ao Grupo de refer~encia!
+
+Risco e quase 3 vezes risco de cancro do pâncreas!
+há uma associação/correlação positiva OR > 1
+GLM  
+logaritmo do OR chapeús de B2
+ 
+ 
+O X NÃO É CONTINUO, SÓP ODE SER 1 OU ZERO, odd de doença para um homem que bebe café!
+
+
+Quais são as hipóteses de usar pre large models de imagem, é possivel usar multimodal e como usar para que serve?
+
+
+risco para o mesmo consumo nos homens é maior!
+Todas , risco associado mais uma unidade à variável à...
+COmo as variáveis foram condificadas! , 
+Por conveção termos consumos mais reduzidos ... neste caso café! Quais as unidades e imterpretações e unidades não tem um papel tão fundamental.
+Num contexto contínuo pode ter um contexto importante! 
+
+Esclarecimentos em relação as estimativas!
+Logaritmo do odds!
+Beta café 0, equação em ordem a P, probabilidade de doença, dado , os vários fatores de risco.., probabilidade etc!
+Ver o exemplo, pontos interessantes. e motivação para outros problemas!
+
+Conceitos e ideias associadas as estes modelos
+
+case control tem vies pois é o case control
