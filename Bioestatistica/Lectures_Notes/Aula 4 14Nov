@@ -1,0 +1,51 @@
+Aula 4 14/11
+
+Regressor a variável estatística!
+Modelo linear, probabilidade de doença dado X
+Pode ser maior que 1 ...
+Odd Ratio = 1 a doença e a exposição (doença e associação obtêm-se logaritmo de 1)
+que é 0
+
+exposição pode ser binária, porde ser contínua e v/ variáveis pode ter em si uma exposição!
+X <- variável aleatória
+tal como E, 0 ou 1
+os valores atribuídos à variável aleatória pode ser qualquer valor da reta real
+Diferentes níveis de exposição..., var. contínua e uma a ser discreta!
+Situação, mais natural para alguns problemas de dados reais!
+
+log(OD) (de quando aumentamos a exposição de uma unidade) + 1
+
+
+LogIn na dropbox para fazer download da aula completa!
+
+L <- function(p)
+
+  p^35 * (1 - p)^65
+
+l <- function(p)
+
+  -log(L(p))
+
+ 
+
+curve(L)
+
+abline(v = 0.35, col = "red")
+
+ 
+
+curve(l)
+
+abline(v = 0.35, col = "red")
+
+ 
+
+resultado <- optim(0.5, l, method = "BFGS")
+
+resultado$par
+
+função de verosemilhança
+
+técnicas númericas como o optim!
+
+entender o que os pacotes estão a fazer!
