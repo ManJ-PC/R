@@ -40,3 +40,50 @@ v/ modelos,
 re-treimo de um modelo capaz de incluir mconheci,mento, aproveitar conehcimento médico (protótipo)
 NLP, conhecimento profundo.., autoML
 escrever o código conforme a Rita descrebeu/pediu
+
+
+---
+
+
+variável factor (organizar os nossos dados), vai ter os nossos níveis. 0, 1, 2 e 3
+fator com 4 níveis referentes à várias categorias!
+tabela de acordo com os slides, .. nope!
+Modelo diretamente.., executar estes comandos ligados como factor. Ligados ao R como fatores"
+Utilizavamos este comando com o GLM!
+~aparece sempre como o contexto de execução no R, variável de resposta e o factor de risco!
+2 fatores de risco, variável coffe + variável sex, no R utilizamos a variável mais !, varias variáveis e vários regressos, no con texto deste modelo!
+é o valor 0 , Beta 0 igual ao valor estiamdo! R vai produzir este resultado , case control , estimular esta estimativa no contezto de OR.
+
+Variáveis coffe e sex, mais outro factor de risco e por aí adiante!
+idade x5 com idade de x até x, outras ariáveis pode adicionar, 
+
+~separa a variável resposta dos regressores. para os separar vai usar o symbol de mais!
+
+
+utilizando o comando GLM, na ordem que necessita os dados, R não vai entendet as variáveis enqanto factores, alguma 
+
+confint calcula os intervalos de confiança
+alguns pontos a abordar em trmos de metedologia...
+partilhar , uma vez os pontos que são, permitir o resto do sumário do GLM
+quantidades de interesse.
+Partes a pesentar, slides 
+
+média 0 e desvio padrão 1!. Vai reportar estes valores Z, distribuição Z e Qui^2, valores P e confusão , 
+
+rejeitar a hípotese nula se o P é elevado ou não!
+
+
+beta igual a zerohipotese nulavalor p é (executivos), é como pensar num salário , for baixo então rejeita-se a hípotese nula!) salário baixo!
+valores z apresentados anteriormente, estimativa reativamente pequena...
+quantis associados à distribuição normal e através dos valores P
+
+
+AULA 6 Dúvidas
+
+
+conceitos,
+formulas de estimação
+e tudo que necessitam tem disponível, não a memoização.
+
+conceitos e interpretação. notas provisórias e notas escritas à mão. As vossas notas pesoais. Não é necessário calculadora. 
+
