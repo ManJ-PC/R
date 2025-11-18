@@ -1,0 +1,41 @@
+---
+title: |
+  <center> Incomplete Data Analysis </center>
+  <center> Naive methods </center>
+author: "V. Inácio de Carvalho & M. de Carvalho"
+subtitle: School of Mathematics, University of Edinburgh
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+Here we will be exploring the use of \texttt{R} for computing the covariance matrix of the toy example in the slides. Firstly, I will  manually create the dataset. The command \texttt{cov} allows us to compute the covariance matrix and the option \texttt{use = "complete.obs"} means that only complete cases will enter the computation.  
+
+```{r, include = TRUE, message = FALSE, tidy = TRUE, fig.align = 'center'}
+y1 <- c(26, 25, 20, NA, 24, 20, NA, NA, 21, 25)
+y2 <- c(56, NA, 40, 49, NA, 43, 50, 48, NA, 53)
+y3 <- c(NA, 158, NA, 158, 164, 134, 161, NA, 134, 169)
+df <- data.frame("Y1" = y1, "Y2" = y2, "Y3" = y3)
+
+covcc <- cov(df, use = "complete")
+covcc
+```
+
+In turn, if we change the argument \texttt{use = "complete"} to \texttt{use = "pairwise.complete.obs"}, an available case analysis (or pairwise deletion!) will be followed.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, fig.align = 'center'}
+covac <- cov(df, use = "pairwise.complete.obs")
+covac
+```
+
+One of the problems that was mentioned about the available case analysis approach is that the resulting covariance matrix may not be positive semi definite. Let us check whether for this toy example this is the case or not. The package \texttt{matrixcalc} has a function that permits to check this.
+
+```{r, include = TRUE, message = FALSE, tidy = TRUE, fig.align = 'center'}
+require(matrixcalc)
+is.positive.semi.definite(covac, tol=1e-8)
+```
+So, it turns out that resulting covariance matrix is not positive semi definite. In contrast, the covariance matrix obtained under the complete case analysis approach is positive semi definite.
+```{r, include = TRUE, message = FALSE, tidy = TRUE, fig.align = 'center'}
+require(matrixcalc)
+is.positive.semi.definite(covcc, tol=1e-8)
+```
