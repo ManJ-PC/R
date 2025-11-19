@@ -1,0 +1,266 @@
+---
+title: |
+  <center> Incomplete Data Analysis </center>
+  <center> Multiple imputation and multivariate missingness: the \texttt{mice} package </center>
+author: "V. Inácio de Carvalho & M. de Carvalho"
+subtitle: School of Mathematics, University of Edinburgh
+output:
+  html_document:
+  df_print: paged
+  pdf_document: default
+---
+To illustrate how to perform multiple imputation with \texttt{mice} when several variables have missing values we will use a subset of the \emph{National Health and Nutrition Examination Survey} (NHANES), whose goal is to assess the health and nutritional status of adults and children in the United States and to track changes over time.
+
+The dataset is available in the file \texttt{NHANES.Rdata} in Learn. There are 18 variables available:
+
+* \texttt{race}: 5 unordered categories,
+* \texttt{DBP}: diastolic blood pressure in mmHg,
+* \texttt{bili}:  bilirubin concentration in mg/dL,
+* \texttt{smoke}: smoking status; 3 ordered categories,
+* \texttt{DM}: diabetes mellitus status; binary,
+* \texttt{gender}: \texttt{male} vs \texttt{female},
+* \texttt{chol}: total serum cholesterol in mg/dL,
+* \texttt{alc}: weekly alcohol consumption; 5 ordered categories,
+* \texttt{SBP}: systolic blood pressure in mmHg,
+* \texttt{wgt}: weight in kg,
+* \texttt{hypten}: hypertensive; binary,
+* \texttt{occup}: occupational status; 3 unordered categories,
+* \texttt{age}: in years,
+* \texttt{albu}: albumin concentration in g/dL,
+* \texttt{creat}: creatinine concentration in mg/dL,
+* \texttt{uricacid}: uric acid concentration in mg/dL,
+* \texttt{BMI}: body mass index in $\text{kg}/\text{m}^2$,
+* \texttt{hgt}: height in metres.
+
+Depending on the research question, for the NHANES data we might use
+
+* linear regression using the \texttt{lm()} function,
+* logistic regression using the \texttt{glm()} function with \texttt{family = binomial()}.
+
+For instance, we might be interested in  the following linear regression model
+\begin{equation}\label{substantivemodel}
+\text{SBP} = \beta_0 + \beta_1 \text{DM} + \beta_2 \text{age} + \beta_3\text{BMI} +\beta_4\text{hypten} +\varepsilon, \quad \varepsilon\sim\text{N}(0,\sigma^2).
+\end{equation}
+
+We start by taking a first look at the data, and by using the command \texttt{dim} we see that there are 1000 rows, which in this particular example represent individuals, and 18 variables.
+```{r, include = TRUE, message = FALSE}
+load("NHANES.RData")
+dim(NHANES)
+```
+
+We can further inspect the nature of our variables and check they are correctly coded.
+```{r, include = TRUE, message = FALSE}
+str(NHANES)
+```
+
+Also, by using the command summary we can have a quick idea about min/max/mean/quantiles of the observed data in each variable along with the number of missing values.
+```{r, include = TRUE, message = FALSE}
+summary(NHANES)
+```
+
+We should also inspect the missing data patterns. We can use, for instance, the \texttt{md.pattern} function from \texttt{mice}, although in this case due to the large number of variables, it becomes difficult to extract meaningful information from it. 
+```{r, include = TRUE, message = FALSE, results='hide'}
+require(mice)
+mdpat_mice <- md.pattern(NHANES)
+mdpat_mice
+```
+
+We have also seen the packages \texttt{VIM} and \texttt{naniar} in week 2. I will also introduce now the \texttt{JointAI} package, which performs (Bayesian) multiple imputation and has also very useful visualisation functions.
+```{r, include = TRUE, message = FALSE}
+require(JointAI)
+md_pattern(NHANES, pattern = FALSE, color = c('#34111b', '#e30f41'))
+```
+
+We can conclude, for instance, that there are 576 observations with observed values on all 18 variables. Also, 241 observations for which only the weekly alcohol consumption is missing, etc. As a further check, we can also look at the correlations between the different variables. 
+
+We know that predictive mean matching is the default of \texttt{mice} for continuous variables. In case we instead want for some reason to use a normal linear regression model for imputing the missing values, we should (informally) inspect whether the normality assumption is roughly met. The package \texttt{JointAI} allows us to visualise how the observed parts of the incomplete variables are distributed.
+
+```{r, include = TRUE, message = FALSE}
+par(mar = c(3, 3, 2, 1), mgp = c(2, 0.6, 0))
+plot_all(NHANES, breaks = 30, ncol = 4)
+```
+
+Having inspected the data, we are ready to start our imputation procedure. We will start by doing a setup or dry run of \texttt{mice()}, without any iterations, which will create the default versions of everything that needs to be specified. These default settings can then be adapted to our particular dataset.
+```{r, include = TRUE, message = FALSE}
+imp0 <- mice(NHANES, maxit = 0)
+imp0
+```
+
+As a matter of example, in the previous plot depicting the distribution of the observed data for the different variables, we could appreciate that using a normal distribution for the DBP variable is possibly not a completely unreasonable idea (the same would apply, e.g., to the albumin variable). Let us then change the default imputation method from \texttt{pmm} to \texttt{norm} for the variable DBP.
+```{r, include = TRUE, message = FALSE}
+meth <- imp0$method
+meth["DBP"] <- "norm"
+meth
+```
+
+However, we need to be careful, because we do not want to risk imputing  a negative value for the diastolic blood pressure! Fortunately, the function \texttt{mice()} has the argument \texttt{post()} that can be used to specify functions that modify the imputed values. With the below syntax all imputed values of DBP that are outside the interval $(0, 180)$ will be set to those limiting values. Note that I am unsure whether the DBP can be in the 10--40 range or above 160, but I just want to illustrate how to create bounds for the imputed values.
+```{r, include = TRUE, message = FALSE}
+post <- imp0$post
+post["DBP"] <- "imp[[j]][,i] <- squeeze(imp[[j]][,i], c(0, 180))"
+```
+
+Further, we should note that the BMI is a deterministic function of the height and weight, $\text{BMI}=\text{weight}/\texttt{height}^2$ and the three variables are in our dataset. If we impute the BMI directly, its values may be inconsistent with the imputed values of height and weight (none of the three variables is fully observed). Also, because there are cases where only one of these two variables is missing, to possibly gain some precision, we want to impute the height and the weight separately and BMI should then be calculated from the (imputed) values of these two variables. If BMI is not a relevant predictor in any of the other imputation models, we could just exclude BMI from the imputation and calculate it afterwards.  To use BMI as a predictor in the other imputation models, it has to be calculated in each iteration of the algorithm, which in \texttt{mice()} is possible through the so-called passive imputation strategy, which requires us to specify a formula to calculate BMI through the \texttt{I()} operator.
+```{r, include = TRUE, message = FALSE}
+meth["BMI"] <- "~I(wgt/(hgt^2))"
+meth
+```
+
+To prevent feedback from BMI in the imputation of height and weight, the predictor matrix needs to be modified.
+```{r, include = TRUE, message = FALSE}
+pred <- imp0$predictorMatrix
+# BMI will not be used as predictor of height and weight
+pred[c("hgt", "wgt"), "BMI"] <- 0
+```
+
+That is, BMI will not act as a predictor of in the height and weight imputation models. To avoid multicollinearity, which may lead to problems during imputation, imputation models should not include all the three variables as predictor variables.  In this example, we will use BMI to impute the other variables and so we do the following change in the \texttt{predictorMatrix}
+```{r, include = TRUE, message = FALSE}
+pred[, c("hgt", "wgt")] <- 0
+```
+
+However, we are not using the BMI to impute the height and the weight and so we want them to be included in the imputation model of each other.
+```{r, include = TRUE, message = FALSE}
+pred["hgt", "wgt"] <- 1
+pred["wgt", "hgt"] <- 1
+pred
+```
+
+Note that passive imputation overrules the selection of variables specified in the \texttt{predictorMatrix} argument. Now, the sequence in which weight, height, and BMI values are imputed is important. By default, \texttt{mice()} imputes incomplete columns in the data from left to right. To be sure that the imputed values of BMI match the imputed values of height and weight at each iteration, BMI needs to be imputed after height and weight. Because BMI in our dataset appears before than height, we know that this is not the case and should be changed. Rather then reordering the dataset itself, it is more convenient to change the visiting scheme of the algorithm by the \texttt{visitSequence} argument of the function \texttt{mice()}.
+```{r, include = TRUE, message = FALSE}
+visSeq <- imp0$visitSequence
+visSeq
+which_BMI <- match("BMI", visSeq)
+visSeq <- c(visSeq[-which_BMI], visSeq[which_BMI])
+visSeq
+```
+
+We are now good to go. I will be using $M=30$ but sensitivity of our estimates/conclusions to this value should be checked. We also need to specify \texttt{maxit}, which is the number of iterations (we should not forget that this is an iterative procedure!). By default \texttt{mice()} uses \texttt{maxit=5}. I will be on the conservative side and set \texttt{maxit=20} (this will make step1 to take a while longer to be executed), which also facilitates checking convergence of the chains of imputed values (or better stated, their mean and standard deviation).
+
+```{r, include = TRUE, message = FALSE}
+imp <- mice(NHANES, method = meth, predictorMatrix = pred, visitSequence = visSeq,
+            maxit = 20, m = 30, seed = 1, printFlag = FALSE)
+```
+
+We should be aware that \texttt{mice()} does some pre-processing and will remove incomplete variables that are not imputed but act as predictors in other imputation models, it will also remove constant variables and variables that are collinear. Checking the \texttt{loggedEvents} contained in our object \texttt{imp} allows us to know if \texttt{mice()} detected any problems during the imputation.
+```{r, include = TRUE, message = FALSE}
+imp$loggedEvents
+```
+
+We need to check whether the MICE algorithm has converged. as without convergence there is no guarantee that the results we  are obtaining are correct. The mean and variance of the imputed values per iteration and variable are stored in the elements \texttt{chainMean} and \texttt{chainVar} of the \texttt{mids} object \texttt{imp}. We can just plot our object and visualise the traceplots.
+
+```{r, include = TRUE, message = FALSE, fig.height=8, fig.width=8}
+plot(imp, layout = c(6,6))
+```
+
+Now that we know that the iterative algorithm appears to have converged for all variables that were imputed, we can compare the distribution of the imputed values against the distribution of the observed values. We start doing that for the continuous variables.
+```{r, include = TRUE, message = FALSE, fig.height=8, fig.width=8}
+densityplot(imp)
+```
+
+First note that we are using $M=30$ and because the density of the observed data (the one in blue) is possibly plotted first, we can barely see it. The most outstanding plots are the ones from SBP and height (which, by consequence, also affects the BMI). Although there is nothing here that we should be too worried about, let us investigate if such differences in the two distributions (observed versus imputed), can be explained by other variables. Specifically, let us check SBP conditional on the gender and hypertensive status and height conditional on gender.
+```{r, include = TRUE, message = FALSE, fig.height=6, fig.width=6}
+densityplot(imp, ~SBP|hypten + gender)
+densityplot(imp, ~hgt|gender)
+```
+
+It seems that gender and hypertensive status, to a certain extent, explain the differences between the observed and imputed values for SBP. That seems to be less the case for the variable height.
+
+With regard to binary/categorical variables, we can compare the proportion of values in each category. \texttt{mice} does not provide a function to do this, but there is a nice one, \texttt{propplot}, implemented by Nicole Erler and available on her github.
+```{r, include = TRUE, message = FALSE, warning = FALSE, fig.height=6, fig.width=6}
+require(devtools)
+require(reshape2)
+require(RColorBrewer)
+require(ggplot2)
+source_url("https://gist.githubusercontent.com/NErler/0d00375da460dd33839b98faeee2fdab/raw/c6f537ecf80eddcefd94992ec7926aa57d454536/propplot.R")
+
+propplot(imp)
+```
+
+We observe a large discrepancy between the observed and imputed data distributions for the smoke and occupational staus variable, but because the smoking status variable only has 2 missing values and the occupational status has 17 (out of 1000), we should not be too worried about this.
+
+The function \texttt{xyplot()} allows to visualise scatterplots of the imputed  and observed values for pairs of variables. 
+```{r, include = TRUE, message = FALSE, fig.height=6, fig.width=6}
+xyplot(imp, hgt ~ wgt | gender, pch = c(1, 20))
+```
+
+Having confirmed that our imputation step was successful, we can proceed to the analysis of the imputed data. For the sake of illustration we will assume that our substantive model of interest in the one in \eqref{substantivemodel}.
+
+```{r, include = TRUE, message = FALSE}
+fit <-  with(imp, lm(SBP ~ DM + age + BMI + hypten))
+```
+
+We can further explore the information contained in the object \texttt{fit}, which we already know is of class \texttt{mira}. For instance, we can look at the  summary of the fitted model in the first imputed dataset.
+```{r, include = TRUE, message = FALSE}
+summary(fit$analyses[[1]])
+```
+
+Also, to do model specification/validation, e.g., transformations, we can either look at the complete cases or use one of the completed/imputed datasets. Any transformations will have to apply to all the datasets, so we should not be too dataset-specific in our checks.  If we decide transformations are needed, we might reconsider the imputation models too and fit them with transformed values.
+
+```{r, include = TRUE, message = FALSE}
+comp1 <- complete(imp, 1)
+plot(fit$analyses[[1]]$fitted.values, residuals(fit$analyses[[1]]),
+     xlab = "Fitted values", ylab = "Residuals")
+```
+
+In this fitted values versus residuals plot we can observe two clusters. The residuals are symmetric about zero, and we can suspect that maybe the homoscedastic assumption is slightly violated, but nothing that we cannot live with. I was however curious and decided to plot the response variable, SBP, against the other variables. They seem to indicate that the major cause of the two clusters is the hypertensive status.
+
+```{r, include = TRUE, message = FALSE}
+plot(comp1$SBP ~ comp1$age, xlab = "Age", ylab = "SBP")
+plot(comp1$SBP ~ comp1$BMI, xlab = "BMI", ylab = "SBP")
+boxplot(comp1$SBP ~ comp1$DM, xlab = "Diabetes Mellitus status", ylab = "SBP")
+boxplot(comp1$SBP ~ comp1$hypten, xlab = "Hypertensive status", ylab = "SBP")
+```
+
+We can also do a QQplot and nothing looks suspicious.
+```{r, include = TRUE, message = FALSE}
+qqnorm(rstandard(fit$analyses[[1]]), xlim = c(-4, 4), ylim = c(-6, 6))
+qqline(rstandard(fit$analyses[[1]]), col = 2)
+```
+
+Pooling the results is no different from what we have done last week.
+```{r, include = TRUE, message = FALSE}
+pooled_ests <- pool(fit)
+summary(pooled_ests, conf.int = TRUE)
+```
+
+\texttt{mice} has some functions for evaluating model fit or to perform model comparison. Last week we have already seen the function \texttt{pool.r.squared} that calculates the pooled (adjusted) $R^2$.
+```{r, include = TRUE, message = FALSE}
+pool.r.squared(pooled_ests, adjusted = TRUE)
+```
+
+To compare nested models \texttt{mice} has the functions \texttt{D1()} and \texttt{D3()}, which implement a multivariate Wald test and a likelihood-ratio test statistic, respectively. The function \texttt{D2()} allows to pool test statistics when no variance-covariance matrix is available. It is out of the scope of this course to go into the details of these tests but more information can be found in the book by van Buuren (2018, Section 5.3). Just for the sake of illustrating their syntax, suppose that we want to test whether the diabetes mellitus variable has a relevant contribution for the SBP model. We should fit the model without DM and compare the two models.
+```{r, include = TRUE, message = FALSE}
+fit_no_DM <- with(imp, lm(SBP ~ age + BMI + hypten))
+D1(fit, fit_no_DM)
+```
+
+In this case the Wald test statistic is not significant, and therefore the DM has no relevant contribution to the SBP model. Let us now try check the contribution of the hypertensive status variable. Our common sense would dictate that this would be a relevant variable, and our former investigations already show us that this variable is the main reason behind the two clusters observed in the residuals plot.
+```{r, include = TRUE, message = FALSE}
+fit_no_hypten <- with(imp, lm(SBP ~ DM + age + BMI))
+D1(fit, fit_no_hypten)
+```
+
+We now have a significant Wald test and therefore we should keep this variable in our model. Of course, we should check if we increase $M=50$, say, if our conclusions remain the same. 
+
+To conclude and quite unrelated but because I would like to illustrate it, let us look at the trace plots we would have obtained in case we have not adjusted our \texttt{predictorMatrix} and BMI would be used to impute both height and weight. 
+```{r, include = TRUE, message = FALSE, fig.height=8, fig.width=8}
+imp_0_naive <- mice(NHANES, maxit = 0)
+meth_naive <- imp_0_naive$method
+meth_naive["BMI"] <- "~I(wgt/(hgt^2))"
+
+pred_naive <- imp_0_naive$predictorMatrix
+pred_naive[, c("hgt", "wgt")] <- 0
+pred_naive["hgt", "wgt"] <- 1
+pred_naive["wgt", "hgt"] <- 1
+
+visSeq_naive <- imp_0_naive$visitSequence
+which_BMI <- match("BMI", visSeq_naive)
+visSeq_naive <- c(visSeq_naive[-which_BMI], visSeq_naive[which_BMI])
+
+imp_naive <- mice(NHANES, method = meth_naive, predictorMatrix = pred_naive, 
+                  visitSequence = visSeq_naive, maxit = 20, m = 30, 
+                  seed = 1, printFlag = FALSE)
+
+plot(imp_naive, layout = c(6,6))
+```
+
+We can clearly see that the chains for BMI, height, and weight are not mixing well. Note that the only thing that we have changed is that now BMI is used as a predictor for height and weight. 

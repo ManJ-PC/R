@@ -1,0 +1,210 @@
+---
+title: |
+  <center> Incomplete Data Analysis </center>
+  <center> Multiple imputation of univariate missing data: the \texttt{mice} package </center>
+author: "V. Inácio de Carvalho & M. de Carvalho"
+subtitle: School of Mathematics, University of Edinburgh
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+Here we will learn how to use the \texttt{mice} package in practice. For now, we will only deal with univariate missingness, we will later expand the scope to the case of several variables with missing values. Before proceeding, I leave the reference to the manual of the package
+\begin{center}
+https://cran.r-project.org/web/packages/mice/index.html
+\end{center}
+
+I will start by simulating some data and then imposing MAR missingness. 
+```{r, include = TRUE, message = FALSE}
+set.seed(1)
+n <- 100
+x1 <- runif(n, 0, 5)
+x2 <- runif(n, 0, 10)
+beta0 <- 5
+beta1 <- 3
+beta2 <- 1
+y <- rnorm(n, beta0 + beta1*x1 + beta2*x2, 1)
+
+x2 <- ifelse(x1 > 4.2, NA, x2)
+#checking the percentage of missing values
+sum(is.na(x2))/n
+
+#constructing a dataframe with the 3 variables
+simdata <- data.frame("y" = y, "x1" = x1, "x2" = x2)
+```
+
+The package \texttt{mice} has the function \texttt{cc} that returns the complete cases. This function is useful when working with real data as it easily allows some exploratory analyses based on the complete cases.
+```{r, include = TRUE, message = FALSE, results='hide'}
+require(mice)
+cc(simdata) 
+nrow(cc(simdata))
+```
+
+As we have seen back in week 2, \texttt{mice} also has a function that allows visualising the missing data patterns.
+```{r, include = TRUE, message = FALSE, fig.height = 5, fig.width = 5}
+md.pattern(simdata)
+```
+
+Another function available in \texttt{mice} is \texttt{md.pairs}, which calculates the number of observations per patterns for all possible pairs of variables. For a pair of variables, there are four possible missing data patterns: both variables are observed (pattern \texttt{rr}), the first variable is observed and the second variable is missing (pattern \texttt{rm}), the first variable is missing and the second variable is observed (pattern \texttt{mr}), and finally the pattern where both variables are missing (pattern \texttt{mm}).
+```{r, include = TRUE, message = FALSE}
+md.pairs(simdata)
+```
+
+Let us now use the package \texttt{mice} to impute the values in \texttt{x2}. We start with the function \texttt{mice()} to perform step 1, i.e., to impute the missing values. We already know that the default in \texttt{mice} for continuous variables, as it is the case of $x_2$, is predictive mean matching with $d=5$ donors and \emph{Type 1} matching (between the cases with missing values and those with observed values). Also, by default in \texttt{mice} we have $M=5$. To know more, type \texttt{help(mice)}.
+```{r, include = TRUE, message = FALSE}
+imps <- mice(simdata, printFlag = FALSE, seed = 1)
+imps
+```
+
+A few comments apply. We set \texttt{printFlag = FALSE} which results in silent computation of the missing values and we also use \texttt{seed=1} so that our results are reproducible (any other value would obviously work, but fixing the seed outside the function \texttt{mice()} will not work). A summary of the imputation results can be obtained by calling the \texttt{imps} object. For instance, we see that our saved object \texttt{imps} is of class \texttt{mids} which stands for \emph{multiply imputed datasets}, which is a special type of object that the \texttt{mice} package has set up for storing multiple imputed datasets. We also obtain information about the imputation method used to impute the variables with missing values. In this case only \texttt{x2} has missing values and because we have not changed the defaults, unsurprisingly, we have that predictive mean matching was used. Lastly, we have  the \texttt{predictorMatrix} which, for instance, tell us that \texttt{y} and \texttt{x1} were used to impute \texttt{x2}. It also tells us that in case \texttt{y} had missing values, \texttt{x1} and \texttt{x2} would be used to impute it and similarly for \texttt{x1} we would use \texttt{y} and \texttt{x2}. We can also extract this information from \texttt{imps\$predictorMatrix}. The default approach in \texttt{mice} is to impute one variable based on all other variables.
+
+Now let us look at the imputed values. We can extract them from our \texttt{imps} object.
+```{r, include = TRUE, message = FALSE}
+imps$imp$x2
+```
+
+The row numbers indicate the record number in the original dataset. We can extract, for instance, the imputed values for the first imputed dataset by simply doing the following:
+```{r, include = TRUE, message = FALSE}
+imps$imp$x2[,1]
+```
+
+The (completed) imputed datasets can be extracted by using the \texttt{complete} function. As a way of illustrating the usage of this function, I am extracting the first and second completed datasets.
+```{r, include = TRUE, message = FALSE, results='hide'}
+com1 <- complete(imps, 1)
+com2 <- complete(imps, 2)
+com1
+com2
+```
+
+It is also important to visualise the imputation results and the package \texttt{mice} provides several plotting tools. This allows us to check whether imputations are plausible. As van Buuren  and Groothuis-Oudshoorn say in their paper describing the \texttt{mice} package (p. 11): ``\emph{Imputations should be values that could have been obtained had they not been missing. Imputations should be close to the data}''. One way to do this is through the \texttt{stripplot} function.
+```{r, include = TRUE, message = FALSE, fig.height = 5, fig.width = 5}
+stripplot(imps)
+```
+
+Blue circles denote observed data and red circles imputed data. The panels for \texttt{y} and \texttt{x1} contain only blue dots because these two variables are fully observed. If there are no large differences between the imputed and observed values then we can conclude that the imputed values are plausible. Here we can see that the red circles follow the blue circles well. If there are discrepancies, interpretation is more difficult, as this may be due to a bad imputation model, due to the missing mechanism not being MAR or due to a combination of both. This plot is most useful when there are not many data points. Alternatively we can use the function \texttt{bwplot}, which produces a boxplot of the observed and imputed data.
+```{r, include = TRUE, message = FALSE, fig.height = 5, fig.width = 5}
+bwplot(imps)
+```
+
+There is also the possibility of visualising the kernel density estimates of the observed and imputed data.
+```{r, include = TRUE, message = FALSE, fig.height = 4, fig.width = 4}
+densityplot(imps)
+```
+
+\textbf{Aside comment}: note that here the densities assign positive mass to negative \texttt{x2} values and we know that this should not be the case (\texttt{x2} was simulated from a uniform (0,10) distribution). By looking at the boxplots in the previous figure, we see that all imputed values are above zero, and so the imputed values are plausible. However, due to the fact that we are using kernel estimates for the densities, which is a nonparametric density estimator, with a reduced sample size, in combination with the fact that the default kernel is the normal one and there values close to zero, leads to mass assigned to negative values. 
+
+Adjustments to the defaults used by the predictive mean matching function \texttt{mice.impute.pmm} can be made by simply entering the arguments to be altered into the main \texttt{mice()} call. They will be automatically passed down to \texttt{mice.impute.pmm}. For instance, the number of donors to be sampled from can be set via the \texttt{donors} argument. let us now change this argument to three and we will also create $M=10$ copies of the dataset (instead of the default $M=5$).
+
+```{r, include = TRUE, message = FALSE}
+imps_alt <- mice(simdata, m = 10, donors = 3, printFlag = FALSE, seed = 1)
+imps_alt
+```
+
+Suppose now that we want to change our method for imputing the missing values. Specifically, suppose that we want to use the method \texttt{norm.boot}. There are two possible ways of doing it. The simplest way and feasible only when the number of variables to be imputed is small is to change the method argument directly in the \texttt{mice()} call.
+```{r, include = TRUE, message = FALSE}
+imps_normb <- mice(simdata, method = "norm.boot", printFlag = FALSE, seed = 1)
+imps_normb$imp$x2[,1]
+```
+
+An alternative way is to do a setup run of \texttt{mice()} without iterations (\texttt{maxit=0}) and to extract and modify the method from there. 
+```{r, include = TRUE, message = FALSE}
+imps0 <- mice(simdata, maxit = 0)
+meth <- imps0$method
+meth
+meth["x2"] <- "norm.boot"
+imps_norm2 <- mice(simdata, method = meth, printFlag = FALSE,
+                   seed = 1)
+imps_norm2
+imps_norm2$imp$x2[,1]
+```
+
+The setup run is also useful to customize our imputation model. Variables in the columns of the \texttt{predictorMatrix} can be switched on or off by using a 1 or a 0 to include or exclude them from the imputation model, respectively. In this way the imputation models for each variable with missing data can be customized (remember that the default is to use all variables in the dataset to impute the variable(s) with missing data). In the hypothetical case that we only want to impute \texttt{x2} using \texttt{y}, and not both \texttt{y} and \texttt{x1} (note that this is only to exemplify how to customize the imputation model, I am not saying this is necessarily the way to go in this case).
+```{r, include = TRUE, message = FALSE}
+pred <- imps0$predictorMatrix
+pred[3,2] <- 0
+imps_norm_pred <- mice(simdata, method = meth, predictorMatrix = pred, printFlag = FALSE, 
+                       seed = 1)
+imps_norm_pred
+```
+We will now proceed to step 2, and we will use the function \texttt{with()}. Suppose that our substantive model, i.e., our model of interest, is the model we have used to generate the data, that is
+\begin{equation*}
+y = \beta_0 + \beta_1x_1 + \beta_2x_2 +\varepsilon,\quad \varepsilon\sim\text{N}(0,1).
+\end{equation*}
+Just for the sake of illustration, I will be using the completed datasets stored in the object \texttt{imps}, using \texttt{mice}'s defaults.
+```{r, include = TRUE, message = FALSE}
+fits <- with(imps, lm(y ~ x1 + x2))
+class(fits)
+```
+
+The object \texttt{fits} contains the results of fitting $M=5$ complete data linear models based on the imputed datasets. The class of \texttt{fits} is \texttt{mira}, which stands for \emph{multiply imputed repeated analysis}. We can extract the results and corresponding summary of the, say, first and second imputed datasets by  doing
+```{r, include = TRUE, message = FALSE}
+fits$analyses[[1]]
+summary(fits$analyses[[1]])
+
+fits$analyses[[2]]
+summary(fits$analyses[[2]])
+```
+
+The final step is to combine (pool) the analyses to the final estimates using the \texttt{pool} function.
+```{r, include = TRUE, message = FALSE}
+ests <- pool(fits)
+#ests
+summary(ests, conf.int = TRUE)
+```
+
+The object \texttt{ests} is of class \texttt{mipo}, meaning \emph{multiply  imputed pooled outcomes}. Its printed output resembles the output of an \texttt{lm} object, but note that its content is different: \texttt{pool} gathers the data in \texttt{mipo} in a \texttt{mira} way that makes summarising the statistics using \texttt{summary} easier. One cannot therefore use \texttt{residuals} or \texttt{predict} to obtain residuals or predictions from the final estimated model.
+
+The column \texttt{estimate} correspond to the pooled regression coefficients and their corresponding standard error is available in \texttt{std.error}. By further inspecting the output we have columns corresponding to \texttt{ubar}, which is the within-imputation variance $\bar{U}$, \texttt{b} corresponds to the between-imputation variance, \texttt{rvi}, which stands for \emph{relative increase in variance} due to the missing values and as we have learned last week, its expression is given by $\frac{B+\frac{B}{M}}{\bar{U}}$, the column corresponding to \texttt{lambda}, which is the proportion of variance in the parameter of interest due to the missing values and which is given by $\frac{B+\frac{B}{M}}{V^{T}}$. Finally, \texttt{fmi} contains the \emph{fraction of missing information} as defined in Rubin (1987), and it depends on \texttt{rvi} but we will not study it further. 
+
+We can also only select the columns we are interested in  from the summary, as illustrated below. Further note that the argument \texttt{conf.int = TRUE} computes a $95\%$ confidence interval for the (pooled) coefficient estimates.
+```{r, include = TRUE, message = FALSE}
+summary(ests, conf.int = TRUE)[, c(2, 3, 7, 8)]
+```
+
+For \textbf{linear} regression models, the pooled $R^2$ can be calculated using the function \texttt{pool.r.squared()}.
+```{r, include = TRUE, message = FALSE}
+pool.r.squared(fits, adjusted = TRUE)
+```
+
+The arguments \texttt{adjusted} specifies whether the adjusted $R^2$ or the standard $R^2$ is returned.
+
+To conclude, let us check the effect of the choice of $M$ on the results which, of course, in practice, depends on the particular analysis we are doing.
+```{r, include = TRUE, message = FALSE}
+#using the default M=5 but changing the seed
+ests_seed2 <- pool(with(mice(simdata, printFlag = FALSE, seed = 11), lm(y ~ x1 + x2)))
+ests_seed3 <- pool(with(mice(simdata, printFlag = FALSE, seed = 111), lm(y ~ x1 + x2)))
+
+summary(ests, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed2, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed3, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+
+#using the M=20 and changing the seed
+ests_seed1_20 <- pool(with(mice(simdata, printFlag = FALSE, seed = 1, m = 20), lm(y ~ x1 + x2)))
+ests_seed2_20 <- pool(with(mice(simdata, printFlag = FALSE, seed = 11, m = 20), lm(y ~ x1 + x2)))
+ests_seed3_20 <- pool(with(mice(simdata, printFlag = FALSE, seed = 111, m = 20), lm(y ~ x1 + x2)))
+
+summary(ests_seed1_20, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed2_20, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed3_20, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+
+#using the M=50 and changing the seed
+ests_seed1_50 <- pool(with(mice(simdata, printFlag = FALSE, seed = 1, m = 50), lm(y ~ x1 + x2)))
+ests_seed2_50 <- pool(with(mice(simdata, printFlag = FALSE, seed = 11, m = 50), lm(y ~ x1 + x2)))
+ests_seed3_50 <- pool(with(mice(simdata, printFlag = FALSE, seed = 111, m = 50), lm(y ~ x1 + x2)))
+
+summary(ests_seed1_50, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed2_50, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed3_50, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+
+#using the M=100 and changing the seed
+ests_seed1_100 <- pool(with(mice(simdata, printFlag = FALSE, seed = 1, m = 100), lm(y ~ x1 + x2)))
+ests_seed2_100 <- pool(with(mice(simdata, printFlag = FALSE, seed = 11, m = 100), lm(y ~ x1 + x2)))
+ests_seed3_100 <- pool(with(mice(simdata, printFlag = FALSE, seed = 111, m = 100), lm(y ~ x1 + x2)))
+
+summary(ests_seed1_100, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed2_100, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+summary(ests_seed3_100, conf.int = TRUE)[, c(2, 3, 6, 7, 8)]
+```
+
+The (pooled) estimates, standard errors, and the bounds of the intervals get more stable as $M$ increases and we can be more confident in any one specific run. Note that whatever value of $M$ we choose, there will always be some variation in results between repeat runs. The point is that with a sufficiently large $M$, the results will with high probability only differ by a small amount.
+
