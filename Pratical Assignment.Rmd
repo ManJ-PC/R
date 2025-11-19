@@ -1,0 +1,162 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+# BONUS QUESTION SOLUTION
+# Two variable (Y1, Y2) problem with specified missingness mechanism
+# Author: [Student Name]
+# Date: February 18, 2025
+
+# Load required libraries
+library(ggplot2)
+library(gridExtra)
+library(lattice)
+```
+# Part (a) - Simulation and Mechanism Identification
+# ------------------------------------------------------
+
+# Set seed for reproducibility
+
+```{r}
+set.seed(1)
+
+# Generate complete dataset
+n <- 500  # sample size
+Z1 <- rnorm(n)
+Z2 <- rnorm(n)
+Z3 <- rnorm(n)
+
+# Create Y1 and Y2 according to specified equations
+Y1 <- 1 + Z1
+Y2 <- 5 + 2 * Z1 + Z2
+
+# Create the complete dataset
+complete_data <- data.frame(Y1, Y2)
+```
+
+
+```{r}
+# Implement the missingness mechanism with a=4 and b=0
+a <- 4
+b <- 0
+missing_indicator <- (a * (Y1 - 2) + b * (Y2 - 6) + Z3) < 0
+
+# Create the observed dataset with missing values
+Y2_obs <- Y2
+Y2_obs[missing_indicator] <- NA
+observed_data <- data.frame(Y1, Y2_obs)
+
+# Calculate statistics for complete and observed data
+missing_count <- sum(missing_indicator)
+missing_rate <- mean(missing_indicator) * 100
+mean_complete_Y2 <- mean(Y2)
+mean_observed_Y2 <- mean(Y2_obs, na.rm = TRUE)
+sd_complete_Y2 <- sd(Y2)
+sd_observed_Y2 <- sd(Y2_obs, na.rm = TRUE)
+```
+
+
+```{r}
+# Create visualization comparing distributions
+p1 <- ggplot() +
+  geom_density(aes(x = Y2, color = "Complete"), linewidth = 1) +
+  geom_density(aes(x = Y2_obs[!is.na(Y2_obs)], color = "Observed"), linewidth = 1) +
+  theme_minimal() +
+  labs(title = "Distribution of Y2: Complete vs Observed",
+       x = "Y2",
+       y = "Density",
+       color = "Dataset") +
+  scale_color_manual(values = c("Complete" = "blue", "Observed" = "red")) +
+  theme(legend.position = "bottom")
+
+# Create scatter plot to visualize missingness pattern
+p2 <- ggplot() +
+  geom_point(aes(x = Y1, y = Y2, color = missing_indicator), alpha = 0.6) +
+  theme_minimal() +
+  labs(title = "Scatter Plot with Missing Values Highlighted",
+       x = "Y1",
+       y = "Y2") +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "blue"),
+                     name = "Missing",
+                     labels = c("TRUE" = "Missing", "FALSE" = "Observed")) +
+  theme(legend.position = "bottom")
+```
+# Part (b) - Stochastic Regression Imputation
+# ------------------------------------------------------
+
+# Fit regression model using observed data
+```{r}
+model <- lm(Y2_obs ~ Y1, data = observed_data)
+beta0 <- coef(model)[1]
+beta1 <- coef(model)[2]
+sigma <- summary(model)$sigma
+```
+# Perform stochastic regression imputation
+```{r}
+Y2_imp <- Y2_obs
+missing_indices <- which(is.na(Y2_obs))
+Y2_imp[missing_indices] <- beta0 + beta1 * Y1[missing_indices] + 
+                           rnorm(length(missing_indices), mean = 0, sd = sigma)
+
+# Create completed dataset
+completed_data <- data.frame(Y1, Y2_imp)
+
+# Calculate statistics for imputed data
+mean_imputed_Y2 <- mean(Y2_imp)
+sd_imputed_Y2 <- sd(Y2_imp)
+```
+# Create visualization comparing complete and imputed distributions
+```{r}
+p3 <- ggplot() +
+  geom_density(aes(x = Y2, color = "Complete"), size = 1) +
+  geom_density(aes(x = Y2_imp, color = "Imputed"), size = 1) +
+  theme_minimal() +
+  labs(title = "Distribution of Y2: Complete vs Imputed",
+       x = "Y2",
+       y = "Density",
+       color = "Dataset") +
+  scale_color_manual(values = c("Complete" = "blue", "Imputed" = "green")) +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+# Arrange plots for presentation
+grid.arrange(p1, p2, p3, ncol = 2, nrow = 2)
+
+# Print summary statistics and conclusions
+cat("\n======= PART (a) =======\n")
+cat("Missing Data Mechanism Analysis:\n")
+cat("Number of missing values:", missing_count, "\n")
+cat("Missing rate:", round(missing_rate, 2), "%\n")
+cat("Mean of complete Y2:", round(mean_complete_Y2, 3), "\n")
+cat("Mean of observed Y2:", round(mean_observed_Y2, 3), "\n")
+cat("SD of complete Y2:", round(sd_complete_Y2, 3), "\n")
+cat("SD of observed Y2:", round(sd_observed_Y2, 3), "\n\n")
+
+cat("Missing Data Mechanism: MAR (Missing At Random)\n")
+cat("Justification: With a=4 and b=0, missingness depends only on Y1 (fully observed) and Z3 (random noise),\n")
+cat("               but not on the values of Y2 itself.\n\n")
+
+cat("======= PART (b) =======\n")
+cat("Stochastic Regression Imputation Results:\n")
+cat("Regression model: Y2 = β0 + β1 × Y1 + ε, where ε ~ N(0, σ²)\n")
+cat("Estimated β0:", round(beta0, 3), "\n")
+cat("Estimated β1:", round(beta1, 3), "\n")
+cat("Estimated σ:", round(sigma, 3), "\n")
+cat("Mean of complete Y2:", round(mean_complete_Y2, 3), "\n")
+cat("Mean of imputed Y2:", round(mean_imputed_Y2, 3), "\n")
+cat("SD of complete Y2:", round(sd_complete_Y2, 3), "\n")
+cat("SD of imputed Y2:", round(sd_imputed_Y2, 3), "\n")
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
