@@ -1,0 +1,108 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+# Create the dataset
+data <- data.frame(
+  Y1 = c(26, 25, 20, NA, 24, 20, NA, NA, 21, 25),
+  Y2 = c(56, NA, 40, 49, NA, 43, 50, 48, NA, 53),
+  Y3 = c(NA, 158, NA, 158, 164, 134, 161, NA, 134, 169)
+)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+
+complete_case_covariance <- function(data) {
+  # Drop rows with missing values
+  complete_data <- na.omit(data)
+  
+  # Calculate covariance matrix
+  cov_matrix <- cov(complete_data)
+  
+  cat("\nComplete Case Analysis:\n")
+  cat("Number of complete cases:", nrow(complete_data), "\n")
+  cat("\nCovariance Matrix:\n")
+  print(cov_matrix)
+  
+  return(cov_matrix)
+}
+```
+
+available_case_covariance <- function(data) {
+  n_vars <- ncol(data)
+  cov_matrix <- matrix(0, nrow = n_vars, ncol = n_vars)
+  
+  # Get column names
+  cols <- colnames(data)
+  
+  # Calculate covariance for each pair of variables
+  for (i in 1:n_vars) {
+    for (j in 1:n_vars) {
+      # Get the pair of variables
+      var1 <- data[[i]]
+      var2 <- data[[j]]
+      
+      # Get only complete pairs
+      mask <- !(is.na(var1) | is.na(var2))
+      paired_data <- data.frame(var1 = var1[mask], var2 = var2[mask])
+      
+      # Calculate covariance
+      cov <- cov(paired_data)[1, 2]
+      cov_matrix[i, j] <- cov
+    }
+  }
+  
+  cov_df <- as.data.frame(cov_matrix)
+  rownames(cov_df) <- cols
+  colnames(cov_df) <- cols
+  
+  cat("\nAvailable Case Analysis:\n")
+  cat("\nNumber of available pairs for each combination:\n")
+  for (i in 1:n_vars) {
+    for (j in 1:i) {
+      mask <- !(is.na(data[[i]]) | is.na(data[[j]]))
+      cat(cols[i], "-", cols[j], ":", sum(mask), "pairs\n")
+    }
+  }
+  
+  cat("\nCovariance Matrix:\n")
+  print(cov_df)
+  
+  return(cov_df)
+}
+
+# Calculate both covariance matrices
+complete_cov <- complete_case_covariance(data)
+available_cov <- available_case_covariance(data)
+
+# Function to calculate correlation matrices
+get_correlation_matrices <- function(complete_cov, available_cov) {
+  # For complete case
+  complete_std <- sqrt(diag(complete_cov))
+  complete_corr <- complete_cov / (outer(complete_std, complete_std))
+  
+  # For available case
+  available_std <- sqrt(diag(available_cov))
+  available_corr <- available_cov / (outer(available_std, available_std))
+  
+  cat("\nComplete Case Correlation Matrix:\n")
+  print(as.data.frame(complete_corr))
+  
+  cat("\nAvailable Case Correlation Matrix:\n")
+  print(as.data.frame(available_corr))
+}
+
+# Calculate and print correlation matrices
+get_correlation_matrices(complete_cov, available_cov)
+
